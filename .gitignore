@@ -190,3 +190,6 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+# Personal load details
+config.json
