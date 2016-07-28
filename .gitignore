@@ -193,3 +193,6 @@ local.properties
 
 # Personal load details
 config.json
+web/inventory-*
+web/player-*
+web/settings-*
