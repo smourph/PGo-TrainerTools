@@ -2,11 +2,11 @@
   {
     "Number": "001",
     "Name": "Bulbasaur",
-    "Classification": "Seed Pokèmon",
-    "Type I": [
+    "Classification": "Seed Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -39,11 +39,11 @@
   {
     "Number": "002",
     "Name": "Ivysaur",
-    "Classification": "Seed Pokèmon",
-    "Type I": [
+    "Classification": "Seed Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -78,11 +78,11 @@
   {
     "Number": "003",
     "Name": "Venusaur",
-    "Classification": "Seed Pokèmon",
-    "Type I": [
+    "Classification": "Seed Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -111,9 +111,8 @@
   {
     "Number": "004",
     "Name": "Charmander",
-    "AltName": "CHARMENDER",
-    "Classification": "Lizard Pokèmon",
-    "Type I": [
+    "Classification": "Lizard Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -145,8 +144,8 @@
   {
     "Number": "005",
     "Name": "Charmeleon",
-    "Classification": "Flame Pokèmon",
-    "Type I": [
+    "Classification": "Flame Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -180,11 +179,11 @@
   {
     "Number": "006",
     "Name": "Charizard",
-    "Classification": "Flame Pokèmon",
-    "Type I": [
+    "Classification": "Flame Pokemon",
+    "TypeI": [
       "Fire"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -212,8 +211,8 @@
   {
     "Number": "007",
     "Name": "Squirtle",
-    "Classification": "Tiny Turtle Pokèmon",
-    "Type I": [
+    "Classification": "Tiny Turtle Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -244,8 +243,8 @@
   {
     "Number": "008",
     "Name": "Wartortle",
-    "Classification": "Turtle Pokèmon",
-    "Type I": [
+    "Classification": "Turtle Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -278,8 +277,8 @@
   {
     "Number": "009",
     "Name": "Blastoise",
-    "Classification": "Shellfish Pokèmon",
-    "Type I": [
+    "Classification": "Shellfish Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -306,8 +305,8 @@
   {
     "Number": "010",
     "Name": "Caterpie",
-    "Classification": "Worm Pokèmon",
-    "Type I": [
+    "Classification": "Worm Pokemon",
+    "TypeI": [
       "Bug"
     ],
     "Weaknesses": [
@@ -339,8 +338,8 @@
   {
     "Number": "011",
     "Name": "Metapod",
-    "Classification": "Cocoon Pokèmon",
-    "Type I": [
+    "Classification": "Cocoon Pokemon",
+    "TypeI": [
       "Bug"
     ],
     "Weaknesses": [
@@ -374,11 +373,11 @@
   {
     "Number": "012",
     "Name": "Butterfree",
-    "Classification": "Butterfly Pokèmon",
-    "Type I": [
+    "Classification": "Butterfly Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -408,11 +407,11 @@
   {
     "Number": "013",
     "Name": "Weedle",
-    "Classification": "Hairy Pokèmon",
-    "Type I": [
+    "Classification": "Hairy Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -445,11 +444,11 @@
   {
     "Number": "014",
     "Name": "Kakuna",
-    "Classification": "Cocoon Pokèmon",
-    "Type I": [
+    "Classification": "Cocoon Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -484,11 +483,11 @@
   {
     "Number": "015",
     "Name": "Beedrill",
-    "Classification": "Poison Bee Pokèmon",
-    "Type I": [
+    "Classification": "Poison Bee Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -517,11 +516,11 @@
   {
     "Number": "016",
     "Name": "Pidgey",
-    "Classification": "Tiny Bird Pokèmon",
-    "Type I": [
+    "Classification": "Tiny Bird Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -557,11 +556,11 @@
   {
     "Number": "017",
     "Name": "Pidgeotto",
-    "Classification": "Bird Pokèmon",
-    "Type I": [
+    "Classification": "Bird Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -599,11 +598,11 @@
   {
     "Number": "018",
     "Name": "Pidgeot",
-    "Classification": "Bird Pokèmon",
-    "Type I": [
+    "Classification": "Bird Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -633,8 +632,8 @@
   {
     "Number": "019",
     "Name": "Rattata",
-    "Classification": "Mouse Pokèmon",
-    "Type I": [
+    "Classification": "Mouse Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -665,8 +664,8 @@
   {
     "Number": "020",
     "Name": "Raticate",
-    "Classification": "Mouse Pokèmon",
-    "Type I": [
+    "Classification": "Mouse Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -693,11 +692,11 @@
   {
     "Number": "021",
     "Name": "Spearow",
-    "Classification": "Tiny Bird Pokèmon",
-    "Type I": [
+    "Classification": "Tiny Bird Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -724,11 +723,11 @@
   {
     "Number": "022",
     "Name": "Fearow",
-    "Classification": "Beak Pokèmon",
-    "Type I": [
+    "Classification": "Beak Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -751,8 +750,8 @@
   {
     "Number": "023",
     "Name": "Ekans",
-    "Classification": "Snake Pokèmon",
-    "Type I": [
+    "Classification": "Snake Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -779,8 +778,8 @@
   {
     "Number": "024",
     "Name": "Arbok",
-    "Classification": "Cobra Pokèmon",
-    "Type I": [
+    "Classification": "Cobra Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -803,8 +802,8 @@
   {
     "Number": "025",
     "Name": "Pikachu",
-    "Classification": "Mouse Pokèmon",
-    "Type I": [
+    "Classification": "Mouse Pokemon",
+    "TypeI": [
       "Electric"
     ],
     "Weaknesses": [
@@ -830,8 +829,8 @@
   {
     "Number": "026",
     "Name": "Raichu",
-    "Classification": "Mouse Pokèmon",
-    "Type I": [
+    "Classification": "Mouse Pokemon",
+    "TypeI": [
       "Electric"
     ],
     "Weaknesses": [
@@ -853,8 +852,8 @@
   {
     "Number": "027",
     "Name": "Sandshrew",
-    "Classification": "Mouse Pokèmon",
-    "Type I": [
+    "Classification": "Mouse Pokemon",
+    "TypeI": [
       "Ground"
     ],
     "Weaknesses": [
@@ -882,8 +881,8 @@
   {
     "Number": "028",
     "Name": "Sandslash",
-    "Classification": "Mouse Pokèmon",
-    "Type I": [
+    "Classification": "Mouse Pokemon",
+    "TypeI": [
       "Ground"
     ],
     "Weaknesses": [
@@ -907,9 +906,8 @@
   {
     "Number": "029",
     "Name": "Nidoran F",
-    "AltName": "NIDORAN_FEMALE",
-    "Classification": "Poison Pin Pokèmon",
-    "Type I": [
+    "Classification": "Poison Pin Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -936,8 +934,8 @@
   {
     "Number": "030",
     "Name": "Nidorina",
-    "Classification": "Poison Pin Pokèmon",
-    "Type I": [
+    "Classification": "Poison Pin Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -970,11 +968,11 @@
   {
     "Number": "031",
     "Name": "Nidoqueen",
-    "Classification": "Drill Pokèmon",
-    "Type I": [
+    "Classification": "Drill Pokemon",
+    "TypeI": [
       "Poison"
     ],
-    "Type II": [
+    "TypeII": [
       "Ground"
     ],
     "Weaknesses": [
@@ -1003,9 +1001,8 @@
   {
     "Number": "032",
     "Name": "Nidoran M",
-    "AltName": "NIDORAN_MALE",
-    "Classification": "Poison Pin Pokèmon",
-    "Type I": [
+    "Classification": "Poison Pin Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -1032,8 +1029,8 @@
   {
     "Number": "033",
     "Name": "Nidorino",
-    "Classification": "Poison Pin Pokèmon",
-    "Type I": [
+    "Classification": "Poison Pin Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -1066,11 +1063,11 @@
   {
     "Number": "034",
     "Name": "Nidoking",
-    "Classification": "Drill Pokèmon",
-    "Type I": [
+    "Classification": "Drill Pokemon",
+    "TypeI": [
       "Poison"
     ],
-    "Type II": [
+    "TypeII": [
       "Ground"
     ],
     "Weaknesses": [
@@ -1099,9 +1096,8 @@
   {
     "Number": "035",
     "Name": "Clefairy",
-    "AltName": "CLEFARY",
-    "Classification": "Fairy Pokèmon",
-    "Type I": [
+    "Classification": "Fairy Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -1127,8 +1123,8 @@
   {
     "Number": "036",
     "Name": "Clefable",
-    "Classification": "Fairy Pokèmon",
-    "Type I": [
+    "Classification": "Fairy Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -1150,8 +1146,8 @@
   {
     "Number": "037",
     "Name": "Vulpix",
-    "Classification": "Fox Pokèmon",
-    "Type I": [
+    "Classification": "Fox Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -1179,8 +1175,8 @@
   {
     "Number": "038",
     "Name": "Ninetales",
-    "Classification": "Fox Pokèmon",
-    "Type I": [
+    "Classification": "Fox Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -1204,8 +1200,8 @@
   {
     "Number": "039",
     "Name": "Jigglypuff",
-    "Classification": "Balloon Pokèmon",
-    "Type I": [
+    "Classification": "Balloon Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -1231,8 +1227,8 @@
   {
     "Number": "040",
     "Name": "Wigglytuff",
-    "Classification": "Balloon Pokèmon",
-    "Type I": [
+    "Classification": "Balloon Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -1254,11 +1250,11 @@
   {
     "Number": "041",
     "Name": "Zubat",
-    "Classification": "Bat Pokèmon",
-    "Type I": [
+    "Classification": "Bat Pokemon",
+    "TypeI": [
       "Poison"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -1287,11 +1283,11 @@
   {
     "Number": "042",
     "Name": "Golbat",
-    "Classification": "Bat Pokèmon",
-    "Type I": [
+    "Classification": "Bat Pokemon",
+    "TypeI": [
       "Poison"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -1316,11 +1312,11 @@
   {
     "Number": "043",
     "Name": "Oddish",
-    "Classification": "Weed Pokèmon",
-    "Type I": [
+    "Classification": "Weed Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -1353,11 +1349,11 @@
   {
     "Number": "044",
     "Name": "Gloom",
-    "Classification": "Weed Pokèmon",
-    "Type I": [
+    "Classification": "Weed Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -1392,11 +1388,11 @@
   {
     "Number": "045",
     "Name": "Vileplume",
-    "Classification": "Flower Pokèmon",
-    "Type I": [
+    "Classification": "Flower Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -1425,11 +1421,11 @@
   {
     "Number": "046",
     "Name": "Paras",
-    "Classification": "Mushroom Pokèmon",
-    "Type I": [
+    "Classification": "Mushroom Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Grass"
     ],
     "Weaknesses": [
@@ -1460,11 +1456,11 @@
   {
     "Number": "047",
     "Name": "Parasect",
-    "Classification": "Mushroom Pokèmon",
-    "Type I": [
+    "Classification": "Mushroom Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Grass"
     ],
     "Weaknesses": [
@@ -1491,11 +1487,11 @@
   {
     "Number": "048",
     "Name": "Venonat",
-    "Classification": "Insect Pokèmon",
-    "Type I": [
+    "Classification": "Insect Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -1524,11 +1520,11 @@
   {
     "Number": "049",
     "Name": "Venomoth",
-    "Classification": "Poison Moth Pokèmon",
-    "Type I": [
+    "Classification": "Poison Moth Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -1553,8 +1549,8 @@
   {
     "Number": "050",
     "Name": "Diglett",
-    "Classification": "Mole Pokèmon",
-    "Type I": [
+    "Classification": "Mole Pokemon",
+    "TypeI": [
       "Ground"
     ],
     "Weaknesses": [
@@ -1582,8 +1578,8 @@
   {
     "Number": "051",
     "Name": "Dugtrio",
-    "Classification": "Mole Pokèmon",
-    "Type I": [
+    "Classification": "Mole Pokemon",
+    "TypeI": [
       "Ground"
     ],
     "Weaknesses": [
@@ -1607,8 +1603,8 @@
   {
     "Number": "052",
     "Name": "Meowth",
-    "Classification": "Scratch Cat Pokèmon",
-    "Type I": [
+    "Classification": "Scratch Cat Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -1634,8 +1630,8 @@
   {
     "Number": "053",
     "Name": "Persian",
-    "Classification": "Classy Cat Pokèmon",
-    "Type I": [
+    "Classification": "Classy Cat Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -1657,8 +1653,8 @@
   {
     "Number": "054",
     "Name": "Psyduck",
-    "Classification": "Duck Pokèmon",
-    "Type I": [
+    "Classification": "Duck Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -1685,8 +1681,8 @@
   {
     "Number": "055",
     "Name": "Golduck",
-    "Classification": "Duck Pokèmon",
-    "Type I": [
+    "Classification": "Duck Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -1709,8 +1705,8 @@
   {
     "Number": "056",
     "Name": "Mankey",
-    "Classification": "Pig Monkey Pokèmon",
-    "Type I": [
+    "Classification": "Pig Monkey Pokemon",
+    "TypeI": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -1738,8 +1734,8 @@
   {
     "Number": "057",
     "Name": "Primeape",
-    "Classification": "Pig Monkey Pokèmon",
-    "Type I": [
+    "Classification": "Pig Monkey Pokemon",
+    "TypeI": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -1763,8 +1759,8 @@
   {
     "Number": "058",
     "Name": "Growlithe",
-    "Classification": "Puppy Pokèmon",
-    "Type I": [
+    "Classification": "Puppy Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -1792,8 +1788,8 @@
   {
     "Number": "059",
     "Name": "Arcanine",
-    "Classification": "Legendary Pokèmon",
-    "Type I": [
+    "Classification": "Legendary Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -1817,8 +1813,8 @@
   {
     "Number": "060",
     "Name": "Poliwag",
-    "Classification": "Tadpole Pokèmon",
-    "Type I": [
+    "Classification": "Tadpole Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -1849,8 +1845,8 @@
   {
     "Number": "061",
     "Name": "Poliwhirl",
-    "Classification": "Tadpole Pokèmon",
-    "Type I": [
+    "Classification": "Tadpole Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -1883,11 +1879,11 @@
   {
     "Number": "062",
     "Name": "Poliwrath",
-    "Classification": "Tadpole Pokèmon",
-    "Type I": [
+    "Classification": "Tadpole Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -1917,8 +1913,8 @@
   {
     "Number": "063",
     "Name": "Abra",
-    "Classification": "Psi Pokèmon",
-    "Type I": [
+    "Classification": "Psi Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -1950,8 +1946,8 @@
   {
     "Number": "064",
     "Name": "Kadabra",
-    "Classification": "Psi Pokèmon",
-    "Type I": [
+    "Classification": "Psi Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -1985,9 +1981,8 @@
   {
     "Number": "065",
     "Name": "Alakazam",
-    "AltName": "ALAKHAZAM",
-    "Classification": "Psi Pokèmon",
-    "Type I": [
+    "Classification": "Psi Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -2015,8 +2010,8 @@
   {
     "Number": "066",
     "Name": "Machop",
-    "Classification": "Superpower Pokèmon",
-    "Type I": [
+    "Classification": "Superpower Pokemon",
+    "TypeI": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -2048,8 +2043,8 @@
   {
     "Number": "067",
     "Name": "Machoke",
-    "Classification": "Superpower Pokèmon",
-    "Type I": [
+    "Classification": "Superpower Pokemon",
+    "TypeI": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -2083,8 +2078,8 @@
   {
     "Number": "068",
     "Name": "Machamp",
-    "Classification": "Superpower Pokèmon",
-    "Type I": [
+    "Classification": "Superpower Pokemon",
+    "TypeI": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -2112,11 +2107,11 @@
   {
     "Number": "069",
     "Name": "Bellsprout",
-    "Classification": "Flower Pokèmon",
-    "Type I": [
+    "Classification": "Flower Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2149,11 +2144,11 @@
   {
     "Number": "070",
     "Name": "Weepinbell",
-    "Classification": "Flycatcher Pokèmon",
-    "Type I": [
+    "Classification": "Flycatcher Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2188,11 +2183,11 @@
   {
     "Number": "071",
     "Name": "Victreebel",
-    "Classification": "Flycatcher Pokèmon",
-    "Type I": [
+    "Classification": "Flycatcher Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2221,11 +2216,11 @@
   {
     "Number": "072",
     "Name": "Tentacool",
-    "Classification": "Jellyfish Pokèmon",
-    "Type I": [
+    "Classification": "Jellyfish Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2253,11 +2248,11 @@
   {
     "Number": "073",
     "Name": "Tentacruel",
-    "Classification": "Jellyfish Pokèmon",
-    "Type I": [
+    "Classification": "Jellyfish Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2281,12 +2276,11 @@
   {
     "Number": "074",
     "Name": "Geodude",
-    "AltName": "GEODUGE",
-    "Classification": "Rock Pokèmon",
-    "Type I": [
+    "Classification": "Rock Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Ground"
     ],
     "Weaknesses": [
@@ -2321,11 +2315,11 @@
   {
     "Number": "075",
     "Name": "Graveler",
-    "Classification": "Rock Pokèmon",
-    "Type I": [
+    "Classification": "Rock Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Ground"
     ],
     "Weaknesses": [
@@ -2362,11 +2356,11 @@
   {
     "Number": "076",
     "Name": "Golem",
-    "Classification": "Megaton Pokèmon",
-    "Type I": [
+    "Classification": "Megaton Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Ground"
     ],
     "Weaknesses": [
@@ -2397,8 +2391,8 @@
   {
     "Number": "077",
     "Name": "Ponyta",
-    "Classification": "Fire Horse Pokèmon",
-    "Type I": [
+    "Classification": "Fire Horse Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -2426,8 +2420,8 @@
   {
     "Number": "078",
     "Name": "Rapidash",
-    "Classification": "Fire Horse Pokèmon",
-    "Type I": [
+    "Classification": "Fire Horse Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -2451,11 +2445,11 @@
   {
     "Number": "079",
     "Name": "Slowpoke",
-    "Classification": "Dopey Pokèmon",
-    "Type I": [
+    "Classification": "Dopey Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -2485,11 +2479,11 @@
   {
     "Number": "080",
     "Name": "Slowbro",
-    "Classification": "Hermit Crab Pokèmon",
-    "Type I": [
+    "Classification": "Hermit Crab Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -2515,11 +2509,11 @@
   {
     "Number": "081",
     "Name": "Magnemite",
-    "Classification": "Magnet Pokèmon",
-    "Type I": [
+    "Classification": "Magnet Pokemon",
+    "TypeI": [
       "Electric"
     ],
-    "Type II": [
+    "TypeII": [
       "Steel"
     ],
     "Weaknesses": [
@@ -2547,11 +2541,11 @@
   {
     "Number": "082",
     "Name": "Magneton",
-    "Classification": "Magnet Pokèmon",
-    "Type I": [
+    "Classification": "Magnet Pokemon",
+    "TypeI": [
       "Electric"
     ],
-    "Type II": [
+    "TypeII": [
       "Steel"
     ],
     "Weaknesses": [
@@ -2575,11 +2569,11 @@
   {
     "Number": "083",
     "Name": "Farfetch'd",
-    "Classification": "Wild Duck Pokèmon",
-    "Type I": [
+    "Classification": "Wild Duck Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -2598,11 +2592,11 @@
   {
     "Number": "084",
     "Name": "Doduo",
-    "Classification": "Twin Bird Pokèmon",
-    "Type I": [
+    "Classification": "Twin Bird Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -2629,11 +2623,11 @@
   {
     "Number": "085",
     "Name": "Dodrio",
-    "Classification": "Triple Bird Pokèmon",
-    "Type I": [
+    "Classification": "Triple Bird Pokemon",
+    "TypeI": [
       "Normal"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -2656,8 +2650,8 @@
   {
     "Number": "086",
     "Name": "Seel",
-    "Classification": "Sea Lion Pokèmon",
-    "Type I": [
+    "Classification": "Sea Lion Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -2684,11 +2678,11 @@
   {
     "Number": "087",
     "Name": "Dewgong",
-    "Classification": "Sea Lion Pokèmon",
-    "Type I": [
+    "Classification": "Sea Lion Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Ice"
     ],
     "Weaknesses": [
@@ -2713,8 +2707,8 @@
   {
     "Number": "088",
     "Name": "Grimer",
-    "Classification": "Sludge Pokèmon",
-    "Type I": [
+    "Classification": "Sludge Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2741,8 +2735,8 @@
   {
     "Number": "089",
     "Name": "Muk",
-    "Classification": "Sludge Pokèmon",
-    "Type I": [
+    "Classification": "Sludge Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2765,8 +2759,8 @@
   {
     "Number": "090",
     "Name": "Shellder",
-    "Classification": "Bivalve Pokèmon",
-    "Type I": [
+    "Classification": "Bivalve Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -2793,11 +2787,11 @@
   {
     "Number": "091",
     "Name": "Cloyster",
-    "Classification": "Bivalve Pokèmon",
-    "Type I": [
+    "Classification": "Bivalve Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Ice"
     ],
     "Weaknesses": [
@@ -2822,11 +2816,11 @@
   {
     "Number": "092",
     "Name": "Gastly",
-    "Classification": "Gas Pokèmon",
-    "Type I": [
+    "Classification": "Gas Pokemon",
+    "TypeI": [
       "Ghost"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2859,11 +2853,11 @@
   {
     "Number": "093",
     "Name": "Haunter",
-    "Classification": "Gas Pokèmon",
-    "Type I": [
+    "Classification": "Gas Pokemon",
+    "TypeI": [
       "Ghost"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2898,11 +2892,11 @@
   {
     "Number": "094",
     "Name": "Gengar",
-    "Classification": "Shadow Pokèmon",
-    "Type I": [
+    "Classification": "Shadow Pokemon",
+    "TypeI": [
       "Ghost"
     ],
-    "Type II": [
+    "TypeII": [
       "Poison"
     ],
     "Weaknesses": [
@@ -2931,11 +2925,11 @@
   {
     "Number": "095",
     "Name": "Onix",
-    "Classification": "Rock Snake Pokèmon",
-    "Type I": [
+    "Classification": "Rock Snake Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Ground"
     ],
     "Weaknesses": [
@@ -2956,8 +2950,8 @@
   {
     "Number": "096",
     "Name": "Drowzee",
-    "Classification": "Hypnosis Pokèmon",
-    "Type I": [
+    "Classification": "Hypnosis Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -2985,8 +2979,8 @@
   {
     "Number": "097",
     "Name": "Hypno",
-    "Classification": "Hypnosis Pokèmon",
-    "Type I": [
+    "Classification": "Hypnosis Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -3010,8 +3004,8 @@
   {
     "Number": "098",
     "Name": "Krabby",
-    "Classification": "River Crab Pokèmon",
-    "Type I": [
+    "Classification": "River Crab Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3038,8 +3032,8 @@
   {
     "Number": "099",
     "Name": "Kingler",
-    "Classification": "Pincer Pokèmon",
-    "Type I": [
+    "Classification": "Pincer Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3062,8 +3056,8 @@
   {
     "Number": "100",
     "Name": "Voltorb",
-    "Classification": "Ball Pokèmon",
-    "Type I": [
+    "Classification": "Ball Pokemon",
+    "TypeI": [
       "Electric"
     ],
     "Weaknesses": [
@@ -3089,8 +3083,8 @@
   {
     "Number": "101",
     "Name": "Electrode",
-    "Classification": "Ball Pokèmon",
-    "Type I": [
+    "Classification": "Ball Pokemon",
+    "TypeI": [
       "Electric"
     ],
     "Weaknesses": [
@@ -3112,11 +3106,11 @@
   {
     "Number": "102",
     "Name": "Exeggcute",
-    "Classification": "Egg Pokèmon",
-    "Type I": [
+    "Classification": "Egg Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -3148,11 +3142,11 @@
   {
     "Number": "103",
     "Name": "Exeggutor",
-    "Classification": "Coconut Pokèmon",
-    "Type I": [
+    "Classification": "Coconut Pokemon",
+    "TypeI": [
       "Grass"
     ],
-    "Type II": [
+    "TypeII": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -3180,8 +3174,8 @@
   {
     "Number": "104",
     "Name": "Cubone",
-    "Classification": "Lonely Pokèmon",
-    "Type I": [
+    "Classification": "Lonely Pokemon",
+    "TypeI": [
       "Ground"
     ],
     "Weaknesses": [
@@ -3209,8 +3203,8 @@
   {
     "Number": "105",
     "Name": "Marowak",
-    "Classification": "Bone Keeper Pokèmon",
-    "Type I": [
+    "Classification": "Bone Keeper Pokemon",
+    "TypeI": [
       "Ground"
     ],
     "Weaknesses": [
@@ -3234,8 +3228,8 @@
   {
     "Number": "106",
     "Name": "Hitmonlee",
-    "Classification": "Kicking Pokèmon",
-    "Type I": [
+    "Classification": "Kicking Pokemon",
+    "TypeI": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -3259,8 +3253,8 @@
   {
     "Number": "107",
     "Name": "Hitmonchan",
-    "Classification": "Punching Pokèmon",
-    "Type I": [
+    "Classification": "Punching Pokemon",
+    "TypeI": [
       "Fighting"
     ],
     "Weaknesses": [
@@ -3284,8 +3278,8 @@
   {
     "Number": "108",
     "Name": "Lickitung",
-    "Classification": "Licking Pokèmon",
-    "Type I": [
+    "Classification": "Licking Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -3301,8 +3295,8 @@
   {
     "Number": "109",
     "Name": "Koffing",
-    "Classification": "Poison Gas Pokèmon",
-    "Type I": [
+    "Classification": "Poison Gas Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -3329,8 +3323,8 @@
   {
     "Number": "110",
     "Name": "Weezing",
-    "Classification": "Poison Gas Pokèmon",
-    "Type I": [
+    "Classification": "Poison Gas Pokemon",
+    "TypeI": [
       "Poison"
     ],
     "Weaknesses": [
@@ -3353,11 +3347,11 @@
   {
     "Number": "111",
     "Name": "Rhyhorn",
-    "Classification": "Spikes Pokèmon",
-    "Type I": [
+    "Classification": "Spikes Pokemon",
+    "TypeI": [
       "Ground"
     ],
-    "Type II": [
+    "TypeII": [
       "Rock"
     ],
     "Weaknesses": [
@@ -3388,11 +3382,11 @@
   {
     "Number": "112",
     "Name": "Rhydon",
-    "Classification": "Drill Pokèmon",
-    "Type I": [
+    "Classification": "Drill Pokemon",
+    "TypeI": [
       "Ground"
     ],
-    "Type II": [
+    "TypeII": [
       "Rock"
     ],
     "Weaknesses": [
@@ -3419,8 +3413,8 @@
   {
     "Number": "113",
     "Name": "Chansey",
-    "Classification": "Egg Pokèmon",
-    "Type I": [
+    "Classification": "Egg Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -3436,8 +3430,8 @@
   {
     "Number": "114",
     "Name": "Tangela",
-    "Classification": "Vine Pokèmon",
-    "Type I": [
+    "Classification": "Vine Pokemon",
+    "TypeI": [
       "Grass"
     ],
     "Weaknesses": [
@@ -3457,8 +3451,8 @@
   {
     "Number": "115",
     "Name": "Kangaskhan",
-    "Classification": "Parent Pokèmon",
-    "Type I": [
+    "Classification": "Parent Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -3474,8 +3468,8 @@
   {
     "Number": "116",
     "Name": "Horsea",
-    "Classification": "Dragon Pokèmon",
-    "Type I": [
+    "Classification": "Dragon Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3502,8 +3496,8 @@
   {
     "Number": "117",
     "Name": "Seadra",
-    "Classification": "Dragon Pokèmon",
-    "Type I": [
+    "Classification": "Dragon Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3526,8 +3520,8 @@
   {
     "Number": "118",
     "Name": "Goldeen",
-    "Classification": "Goldfish Pokèmon",
-    "Type I": [
+    "Classification": "Goldfish Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3554,8 +3548,8 @@
   {
     "Number": "119",
     "Name": "Seaking",
-    "Classification": "Goldfish Pokèmon",
-    "Type I": [
+    "Classification": "Goldfish Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3578,8 +3572,8 @@
   {
     "Number": "120",
     "Name": "Staryu",
-    "Classification": "Starshape Pokèmon",
-    "Type I": [
+    "Classification": "Starshape Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3606,11 +3600,11 @@
   {
     "Number": "121",
     "Name": "Starmie",
-    "Classification": "Mysterious Pokèmon",
-    "Type I": [
+    "Classification": "Mysterious Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -3636,8 +3630,8 @@
   {
     "Number": "122",
     "Name": "Mr. Mime",
-    "Classification": "Barrier Pokèmon",
-    "Type I": [
+    "Classification": "Barrier Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -3655,11 +3649,11 @@
   {
     "Number": "123",
     "Name": "Scyther",
-    "Classification": "Mantis Pokèmon",
-    "Type I": [
+    "Classification": "Mantis Pokemon",
+    "TypeI": [
       "Bug"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -3679,11 +3673,11 @@
   {
     "Number": "124",
     "Name": "Jynx",
-    "Classification": "Humanshape Pokèmon",
-    "Type I": [
+    "Classification": "Humanshape Pokemon",
+    "TypeI": [
       "Ice"
     ],
-    "Type II": [
+    "TypeII": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -3704,8 +3698,8 @@
   {
     "Number": "125",
     "Name": "Electabuzz",
-    "Classification": "Electric Pokèmon",
-    "Type I": [
+    "Classification": "Electric Pokemon",
+    "TypeI": [
       "Electric"
     ],
     "Weaknesses": [
@@ -3721,8 +3715,8 @@
   {
     "Number": "126",
     "Name": "Magmar",
-    "Classification": "Spitfire Pokèmon",
-    "Type I": [
+    "Classification": "Spitfire Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -3740,8 +3734,8 @@
   {
     "Number": "127",
     "Name": "Pinsir",
-    "Classification": "Stagbeetle Pokèmon",
-    "Type I": [
+    "Classification": "Stagbeetle Pokemon",
+    "TypeI": [
       "Bug"
     ],
     "Weaknesses": [
@@ -3759,8 +3753,8 @@
   {
     "Number": "128",
     "Name": "Tauros",
-    "Classification": "Wild Bull Pokèmon",
-    "Type I": [
+    "Classification": "Wild Bull Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -3776,8 +3770,8 @@
   {
     "Number": "129",
     "Name": "Magikarp",
-    "Classification": "Fish Pokèmon",
-    "Type I": [
+    "Classification": "Fish Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3804,11 +3798,11 @@
   {
     "Number": "130",
     "Name": "Gyarados",
-    "Classification": "Atrocious Pokèmon",
-    "Type I": [
+    "Classification": "Atrocious Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -3831,11 +3825,11 @@
   {
     "Number": "131",
     "Name": "Lapras",
-    "Classification": "Transport Pokèmon",
-    "Type I": [
+    "Classification": "Transport Pokemon",
+    "TypeI": [
       "Water"
     ],
-    "Type II": [
+    "TypeII": [
       "Ice"
     ],
     "Weaknesses": [
@@ -3854,8 +3848,8 @@
   {
     "Number": "132",
     "Name": "Ditto",
-    "Classification": "Transform Pokèmon",
-    "Type I": [
+    "Classification": "Transform Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -3873,8 +3867,8 @@
   {
     "Number": "133",
     "Name": "Eevee",
-    "Classification": "Evolution Pokèmon",
-    "Type I": [
+    "Classification": "Evolution Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -3908,8 +3902,8 @@
   {
     "Number": "134",
     "Name": "Vaporeon",
-    "Classification": "Bubble Jet Pokèmon",
-    "Type I": [
+    "Classification": "Bubble Jet Pokemon",
+    "TypeI": [
       "Water"
     ],
     "Weaknesses": [
@@ -3932,8 +3926,8 @@
   {
     "Number": "135",
     "Name": "Jolteon",
-    "Classification": "Lightning Pokèmon",
-    "Type I": [
+    "Classification": "Lightning Pokemon",
+    "TypeI": [
       "Electric"
     ],
     "Weaknesses": [
@@ -3955,8 +3949,8 @@
   {
     "Number": "136",
     "Name": "Flareon",
-    "Classification": "Flame Pokèmon",
-    "Type I": [
+    "Classification": "Flame Pokemon",
+    "TypeI": [
       "Fire"
     ],
     "Weaknesses": [
@@ -3980,8 +3974,8 @@
   {
     "Number": "137",
     "Name": "Porygon",
-    "Classification": "Virtual Pokèmon",
-    "Type I": [
+    "Classification": "Virtual Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -3997,11 +3991,11 @@
   {
     "Number": "138",
     "Name": "Omanyte",
-    "Classification": "Spiral Pokèmon",
-    "Type I": [
+    "Classification": "Spiral Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Water"
     ],
     "Weaknesses": [
@@ -4030,11 +4024,11 @@
   {
     "Number": "139",
     "Name": "Omastar",
-    "Classification": "Spiral Pokèmon",
-    "Type I": [
+    "Classification": "Spiral Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Water"
     ],
     "Weaknesses": [
@@ -4059,11 +4053,11 @@
   {
     "Number": "140",
     "Name": "Kabuto",
-    "Classification": "Shellfish Pokèmon",
-    "Type I": [
+    "Classification": "Shellfish Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Water"
     ],
     "Weaknesses": [
@@ -4092,11 +4086,11 @@
   {
     "Number": "141",
     "Name": "Kabutops",
-    "Classification": "Shellfish Pokèmon",
-    "Type I": [
+    "Classification": "Shellfish Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Water"
     ],
     "Weaknesses": [
@@ -4121,11 +4115,11 @@
   {
     "Number": "142",
     "Name": "Aerodactyl",
-    "Classification": "Fossil Pokèmon",
-    "Type I": [
+    "Classification": "Fossil Pokemon",
+    "TypeI": [
       "Rock"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -4145,8 +4139,8 @@
   {
     "Number": "143",
     "Name": "Snorlax",
-    "Classification": "Sleeping Pokèmon",
-    "Type I": [
+    "Classification": "Sleeping Pokemon",
+    "TypeI": [
       "Normal"
     ],
     "Weaknesses": [
@@ -4162,11 +4156,11 @@
   {
     "Number": "144",
     "Name": "Articuno",
-    "Classification": "Freeze Pokèmon",
-    "Type I": [
+    "Classification": "Freeze Pokemon",
+    "TypeI": [
       "Ice"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -4187,11 +4181,11 @@
   {
     "Number": "145",
     "Name": "Zapdos",
-    "Classification": "Electric Pokèmon",
-    "Type I": [
+    "Classification": "Electric Pokemon",
+    "TypeI": [
       "Electric"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -4210,11 +4204,11 @@
   {
     "Number": "146",
     "Name": "Moltres",
-    "Classification": "Flame Pokèmon",
-    "Type I": [
+    "Classification": "Flame Pokemon",
+    "TypeI": [
       "Fire"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -4234,8 +4228,8 @@
   {
     "Number": "147",
     "Name": "Dratini",
-    "Classification": "Dragon Pokèmon",
-    "Type I": [
+    "Classification": "Dragon Pokemon",
+    "TypeI": [
       "Dragon"
     ],
     "Weaknesses": [
@@ -4257,8 +4251,8 @@
   {
     "Number": "148",
     "Name": "Dragonair",
-    "Classification": "Dragon Pokèmon",
-    "Type I": [
+    "Classification": "Dragon Pokemon",
+    "TypeI": [
       "Dragon"
     ],
     "Weaknesses": [
@@ -4286,11 +4280,11 @@
   {
     "Number": "149",
     "Name": "Dragonite",
-    "Classification": "Dragon Pokèmon",
-    "Type I": [
+    "Classification": "Dragon Pokemon",
+    "TypeI": [
       "Dragon"
     ],
-    "Type II": [
+    "TypeII": [
       "Flying"
     ],
     "Weaknesses": [
@@ -4315,8 +4309,8 @@
   {
     "Number": "150",
     "Name": "Mewtwo",
-    "Classification": "Genetic Pokèmon",
-    "Type I": [
+    "Classification": "Genetic Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [
@@ -4336,8 +4330,8 @@
   {
     "Number": "151",
     "Name": "Mew",
-    "Classification": "New Species Pokèmon",
-    "Type I": [
+    "Classification": "New Species Pokemon",
+    "TypeI": [
       "Psychic"
     ],
     "Weaknesses": [

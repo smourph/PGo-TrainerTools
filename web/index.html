@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>OpenPoGo Web UI</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
@@ -8,94 +8,96 @@
     <!--Import Google Icon Font-->
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"
+          type="text/css">
     <!-- Compiled and minified JavaScript -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js" type="text/javascript" ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"
+            type="text/javascript"></script>
     <link rel="stylesheet" href="css/main.css" type="text/css">
-  </head>
-  <body>
-    <div class="container" id="menu">
-      <div class="row" id="options">
+</head>
+<body>
+<div class="container" id="menu">
+    <div class="row" id="options">
         <div class="col s12">
-          <ul class="collapsible" data-collapsible="accordion">
-          <li>
-            <div class="collapsible-header"><i class="material-icons">settings</i>Settings</div>
-            <div class="collapsible-body">
-              <ul id="optionsList">
+            <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                  Pan
-                  <div class="switch">
-                    <label>
-                      Off
-                      <input type="checkbox" id="switchPan">
-                      <span class="lever"></span>
-                      On
-                    </label>
-                  </div>
-                  <br>
+                    <div class="collapsible-header"><i class="material-icons">settings</i>Settings</div>
+                    <div class="collapsible-body">
+                        <ul id="optionsList">
+                            <li>
+                                Pan
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" id="switchPan">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                                <br>
+                            </li>
+                            <li>
+                                Zoom
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" id="switchZoom">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                                <br>
+                            </li>
+                            <li>
+                                Bot Path
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" id="strokeOn">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                                <br>
+                            </li>
+                            <li>
+                                Logs
+                                <a class="indigo waves-effect waves-light btn" id="logs-button">Logs</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                <li>
-                  Zoom
-                  <div class="switch">
-                    <label>
-                      Off
-                      <input type="checkbox" id="switchZoom">
-                      <span class="lever"></span>
-                      On
-                    </label>
-                  </div>
-                  <br>
-                </li>
-                <li>
-                  Bot Path
-                  <div class="switch">
-                    <label>
-                      Off
-                      <input type="checkbox" id="strokeOn">
-                      <span class="lever"></span>
-                      On
-                    </label>
-                  </div>
-                  <br>
-                </li>
-                <li>
-                  Logs
-                  <a class="indigo waves-effect waves-light btn" id="logs-button">Logs</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
+            </ul>
         </div>
-      </div>
-      <div class="row" id="trainers">
-      </div>
     </div>
+    <div class="row" id="trainers">
+    </div>
+</div>
 
-    <div class="container" id="submenu">
-        <div class="col s12">
-          <div class="card white">
+<div class="container" id="submenu">
+    <div class="col s12">
+        <div class="card white">
             <div class="card-content black-text">
-              <span class="card-title" id="subtitle">Submenu</span>
-              <span id="close">×</span>
-              <div class="row" id="sortButtons"></div>
-              <div id="subcontent"></div>
+                <span class="card-title" id="subtitle">Submenu</span>
+                <span id="close">×</span>
+                <div class="row" id="sortButtons"></div>
+                <div id="subcontent"></div>
             </div>
-          </div>
         </div>
     </div>
+</div>
 
-    <div id="logs-panel">
-      <div class="card white">
+<div id="logs-panel">
+    <div class="card white">
         <div class="card-content black-text">
-          <b>Logs</b>
+            <b>Logs</b>
         </div>
-      </div>
     </div>
+</div>
 
-    <div id="map"></div>
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <script type="text/javascript" src="config/userdata.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-  </body>
+<div id="map"></div>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script type="text/javascript" src="config/userdata.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
 </html>
