@@ -10,9 +10,9 @@ install_reqs = parse_requirements(path_req, session=False)
 
 reqs = [str(ir.req) for ir in install_reqs]
 
-setup(name='PGo-PlayerInfo',
+setup(name='PGo-TrainerTools',
       author='smourph',
-      description='Pokemon Go - PlayerInfo',
+      description='Provide trainer infos and tools for Pokemon Go players',
       version='0.1.0',
       url='',
       packages=find_packages(),
