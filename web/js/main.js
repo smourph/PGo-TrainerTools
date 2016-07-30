@@ -97,20 +97,12 @@ var trainerToolsView = {
             });
         });
 
-        // Bots list and menus
-        var submenuIndex = 0,
-            currentUserId;
+        // Build content view when an item is selected
         $('body').on('click', ".bot-user .bot-items .btn", function () {
             var itemIndex = $(this).parent().parent().find('.btn').index($(this)) + 1,
                 userId = $(this).closest('ul').data('user-id');
-            if ($('#submenu').is(':visible') && itemIndex == submenuIndex && currentUserId == userId) {
-                self.buildTrainersMenu();
-                $('#submenu').toggle();
-            } else {
-                submenuIndex = itemIndex;
-                currentUserId = userId;
-                self.buildMenu(userId, itemIndex);
-            }
+
+            self.buildContentView(userId, itemIndex);
         });
 
         $('body').on('click', '#close', function () {
@@ -218,7 +210,7 @@ var trainerToolsView = {
         $('.collapsible').collapsible();
     },
 
-    buildMenu: function (userId, menu) {
+    buildContentView: function (userId, menu) {
         var self = this,
             out = '';
 
