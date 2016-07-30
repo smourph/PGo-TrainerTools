@@ -346,10 +346,6 @@ var trainerToolsView = {
             playerInfo = self.trainer_data[user].player;
 
         if (playerInfo && typeof playerInfo !== 'undefined' && playerInfo.length !== 0) {
-            self.log({
-                message: 'Team ' + self.teams[playerInfo.team] + ' found for ' + user,
-                color: "green-text"
-            });
             return playerInfo.team;
         } else {
             self.log({
