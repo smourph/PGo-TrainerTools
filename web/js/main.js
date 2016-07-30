@@ -100,7 +100,7 @@ var trainerToolsView = {
         // Bots list and menus
         var submenuIndex = 0,
             currentUserId;
-        $('body').on('click', ".bot-user .bot-items .btn:not(.tFind)", function () {
+        $('body').on('click', ".bot-user .bot-items .btn", function () {
             var itemIndex = $(this).parent().parent().find('.btn').index($(this)) + 1,
                 userId = $(this).closest('ul').data('user-id');
             if ($('#submenu').is(':visible') && itemIndex == submenuIndex && currentUserId == userId) {
@@ -115,10 +115,6 @@ var trainerToolsView = {
 
         $('body').on('click', '#close', function () {
             $('#submenu').toggle();
-        });
-
-        $('body').on('click', '.tFind', function () {
-            self.findBot($(this).closest('ul').data('user-id'));
         });
 
         // Binding sorts
@@ -205,8 +201,7 @@ var trainerToolsView = {
                        <li><a class="team-' + team + ' waves-effect waves-light btn tInfo">Info</a></li><br>\
                        <li><a class="team-' + team + ' waves-effect waves-light btn tItems">Items</a></li><br>\
                        <li><a class="team-' + team + ' waves-effect waves-light btn tPokemon">Pokemon</a></li><br>\
-                       <li><a class="team-' + team + ' waves-effect waves-light btn tPokedex">Pokedex</a></li><br>\
-                       <li><a class="team-' + team + ' waves-effect waves-light btn tFind">Find</a></li>\
+                       <li><a class="team-' + team + ' waves-effect waves-light btn tPokedex">Pokedex</a></li>\
                    </ul>\
                </div>\
            </li>';
