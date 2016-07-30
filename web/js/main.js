@@ -104,7 +104,7 @@ var trainerToolsView = {
             var itemIndex = $(this).parent().parent().find('.btn').index($(this)) + 1,
                 userId = $(this).closest('ul').data('user-id');
             if ($('#submenu').is(':visible') && itemIndex == submenuIndex && currentUserId == userId) {
-                self.buildTrainersList();
+                self.buildTrainersMenu();
                 $('#submenu').toggle();
             } else {
                 submenuIndex = itemIndex;
@@ -138,6 +138,10 @@ var trainerToolsView = {
         var self = trainerToolsView;
 
         for (var i = 0; i < self.settings.users.length; i++) {
+            self.log({
+                message: "Starting to load trainer " + self.settings.users[i],
+                color: "blue-text"
+            });
             self.loadJSON('inventory-' + self.settings.users[i] + '.json', self.getInventoryData, self.errorFunc, i);
             self.loadJSON('player-' + self.settings.users[i] + '.json', self.getPlayerData, self.errorFunc, i);
             self.loadJSON('settings-' + self.settings.users[i] + '.json', self.getSettingsData, self.errorFuncForSettingFileLoad, i);
@@ -173,6 +177,10 @@ var trainerToolsView = {
 
         trainerData.player = data;
         self.trainer_data[self.settings.users[user_index]] = trainerData;
+
+        if (user_index + 1 === self.settings.users.length) {
+            self.buildTrainersMenu();
+        }
     },
 
     getSettingsData: function (data, user_index) {
@@ -180,12 +188,10 @@ var trainerToolsView = {
             trainerData = self.trainer_data[self.settings.users[user_index]];
 
         trainerData.settings = data;
-        self.trainer_data[self.settings.users[user_index]] = trainerData
-
-        self.buildTrainersList();
+        self.trainer_data[self.settings.users[user_index]] = trainerData;
     },
 
-    buildTrainersList: function () {
+    buildTrainersMenu: function () {
         var self = this,
             users = self.settings.users,
             out = '<div class="col s12"><ul id="trainers-list" class="collapsible" data-collapsible="accordion"> \
@@ -601,16 +607,6 @@ var trainerToolsView = {
             message: xhr,
             color: "red-text"
         });
-    },
-
-    errorFuncForSettingFileLoad: function (xhr) {
-        console.error(xhr);
-        self.log({
-            message: xhr,
-            color: "red-text"
-        });
-
-        self.buildTrainersList();
     },
 
     // Adds events to log panel and if it's closed sends Toast
