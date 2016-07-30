@@ -98,15 +98,15 @@ var trainerToolsView = {
         });
 
         // Build content view when an item is selected
-        $('body').on('click', ".bot-user .bot-items .btn", function () {
+        $('body').on('click', ".trainer-element .trainer-buttons-list .btn", function () {
             var itemIndex = $(this).parent().parent().find('.btn').index($(this)) + 1,
                 userId = $(this).closest('ul').data('user-id');
 
             self.buildContentView(userId, itemIndex);
         });
 
-        $('body').on('click', '#close', function () {
-            $('#submenu').toggle();
+        $('body').on('click', '.close', function () {
+            $('#content').toggle();
         });
 
         // Binding sorts
@@ -186,20 +186,20 @@ var trainerToolsView = {
     buildTrainersMenu: function () {
         var self = this,
             users = self.settings.users,
-            out = '<div class="col s12"><ul id="trainers-list" class="collapsible" data-collapsible="accordion"> \
+            out = '<div class="col s12"><ul class="trainers-list collapsible" data-collapsible="accordion"> \
               <li><div class="collapsible-title"><i class="material-icons">people</i>Trainers</div></li>';
 
         for (var i = 0; i < users.length; i++) {
             var team = self.getTeam(users[i]);
 
-            var content = '<li class="bot-user">\
+            var content = '<li class="trainer-element">\
             <div class="collapsible-header trainer-name">{0}</div>\
                 <div class="collapsible-body">\
-                    <ul class="bot-items" data-user-id="{1}">\
-                       <li><a class="team-' + team + ' waves-effect waves-light btn tInfo">Info</a></li><br>\
-                       <li><a class="team-' + team + ' waves-effect waves-light btn tItems">Items</a></li><br>\
-                       <li><a class="team-' + team + ' waves-effect waves-light btn tPokemon">Pokemon</a></li><br>\
-                       <li><a class="team-' + team + ' waves-effect waves-light btn tPokedex">Pokedex</a></li>\
+                    <ul class="trainer-buttons-list" data-user-id="{1}">\
+                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tInfo">Info</a></li><br>\
+                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tItems">Items</a></li><br>\
+                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tPokemon">Pokemon</a></li><br>\
+                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tPokedex">Pokedex</a></li>\
                    </ul>\
                </div>\
            </li>';
@@ -214,7 +214,7 @@ var trainerToolsView = {
         var self = this,
             out = '';
 
-        $("#submenu").show();
+        $("#content").show();
         switch (menu) {
             case 1:
                 var team = self.getTeam(self.settings.users[userId]);
