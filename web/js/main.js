@@ -228,7 +228,7 @@ var trainerToolsView = {
 
                 var current_user_stats = self.trainer_data[self.settings.users[userId]].stats[0].inventory_item_data.player_stats;
                 $('#subtitle').html('Trainer Info');
-                $('#sortButtons').html('');
+                $('#sort-buttons').html('');
 
                 out += '<div class="row"><div class="col s12"><h5>' +
                     self.settings.users[userId] +
@@ -269,7 +269,7 @@ var trainerToolsView = {
                 var current_user_bag_items = self.trainer_data[self.settings.users[userId]].bagItems;
                 $('#subtitle').html(current_user_bag_items.length + " item" + (current_user_bag_items.length !== 1 ? "s" : "") + " in Bag");
 
-                $('#sortButtons').html('');
+                $('#sort-buttons').html('');
 
                 out = '<div class="items"><div class="row">';
                 for (var i = 0; i < current_user_bag_items.length; i++) {
@@ -301,7 +301,7 @@ var trainerToolsView = {
                 sortButtons += '<div class="chip"><a href="#" data-sort="time">Time</a></div>';
                 sortButtons += '</div>';
 
-                $('#sortButtons').html(sortButtons);
+                $('#sort-buttons').html(sortButtons);
 
                 self.sortAndShowBagPokemon('cp', userId);
                 break;
@@ -316,7 +316,7 @@ var trainerToolsView = {
                 sortButtons += '<div class="chip"><a href="#" data-sort="cap">Caught</a></div>';
                 sortButtons += '</div>';
 
-                $('#sortButtons').html(sortButtons);
+                $('#sort-buttons').html(sortButtons);
 
                 self.sortAndShowPokedex('id', userId);
                 break;
@@ -509,7 +509,7 @@ var trainerToolsView = {
         out = '<div class="items"><div class="row">';
         for (var i = 0; i < user.pokedex.length; i++) {
             var pokedex_entry = user.pokedex[i].inventory_item_data.pokedex_entry,
-                pkmID = pokedex_entry.pokedex_entry_number,
+                pkmID = pokedex_entry.pokemon_id,
                 pkmnName = self.pokemonArray[pkmID - 1].Name,
                 pkmEnc = pokedex_entry.times_encountered,
                 pkmCap = pokedex_entry.times_captured;
