@@ -87,10 +87,6 @@ var trainerToolsView = {
     bindUI: function () {
         var self = this;
 
-        $('#optionsButton').click(function () {
-            $('#optionsList').toggle();
-        });
-
         $('#logs-button').click(function () {
             $('#logs-panel').toggle();
         });
