@@ -1,645 +1,919 @@
 [
   {
     "id": 13,
+    "name": "Wrap",
     "type": "Normal",
-    "name": "Wrap"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 14,
+    "name": "Hyper Beam",
     "type": "Normal",
-    "name": "Hyper Beam"
+    "power": 120,
+    "charge": 1
   },
   {
     "id": 16,
+    "name": "Dark Pulse",
     "type": "Dark",
-    "name": "Dark Pulse"
+    "power": 45,
+    "charge": 3
   },
   {
     "id": 18,
+    "name": "Sludge",
     "type": "Poison",
-    "name": "Sludge"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 20,
+    "name": "Vice Grip",
     "type": "Normal",
-    "name": "Vice Grip"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 21,
+    "name": "Flame Wheel",
     "type": "Fire",
-    "name": "Flame Wheel"
+    "power": 35,
+    "charge": 4
   },
   {
     "id": 22,
+    "name": "Megahorn",
     "type": "Bug",
-    "name": "Megahorn"
+    "power": 55,
+    "charge": 1
   },
   {
     "id": 24,
+    "name": "Flamethrower",
     "type": "Fire",
-    "name": "Flamethrower"
+    "power": 55,
+    "charge": 2
   },
   {
     "id": 26,
+    "name": "Dig",
     "type": "Ground",
-    "name": "Dig"
+    "power": 70,
+    "charge": 3
   },
   {
     "id": 28,
+    "name": "Cross Chop",
     "type": "Fighting",
-    "name": "Cross Chop"
+    "power": 60,
+    "charge": 1
   },
   {
     "id": 30,
+    "name": "Psybeam",
     "type": "Psychic",
-    "name": "Psybeam"
+    "power": 40,
+    "charge": 4
   },
   {
     "id": 31,
+    "name": "Earthquake",
     "type": "Ground",
-    "name": "Earthquake"
+    "power": 100,
+    "charge": 1
   },
   {
     "id": 32,
+    "name": "Stone Edge",
     "type": "Rock",
-    "name": "Stone Edge"
+    "power": 55,
+    "charge": 1
   },
   {
     "id": 33,
+    "name": "Ice Punch",
     "type": "Ice",
-    "name": "Ice Punch"
+    "power": 45,
+    "charge": 3
   },
   {
     "id": 34,
+    "name": "Heart Stamp",
     "type": "Psychic",
-    "name": "Heart Stamp"
+    "power": 20,
+    "charge": 4
   },
   {
     "id": 35,
+    "name": "Discharge",
     "type": "Electric",
-    "name": "Discharge"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 36,
+    "name": "Flash Cannon",
     "type": "Steel",
-    "name": "Flash Cannon"
+    "power": 60,
+    "charge": 3
   },
   {
     "id": 38,
+    "name": "Drill Peck",
     "type": "Flying",
-    "name": "Drill Peck"
+    "power": 30,
+    "charge": 3
   },
   {
     "id": 39,
+    "name": "Ice Beam",
     "type": "Ice",
-    "name": "Ice Beam"
+    "power": 65,
+    "charge": 2
   },
   {
     "id": 40,
+    "name": "Blizzard",
     "type": "Ice",
-    "name": "Blizzard"
+    "power": 100,
+    "charge": 1
   },
   {
     "id": 42,
+    "name": "Heat Wave",
     "type": "Fire",
-    "name": "Heat Wave"
+    "power": 60,
+    "charge": 1
   },
   {
     "id": 45,
+    "name": "Aerial Ace",
     "type": "Flying",
-    "name": "Aerial Ace"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 46,
+    "name": "Drill Run",
     "type": "Ground",
-    "name": "Drill Run"
+    "power": 50,
+    "charge": 3
   },
   {
     "id": 47,
+    "name": "Petal Blizzard",
     "type": "Grass",
-    "name": "Petal Blizzard"
+    "power": 65,
+    "charge": 2
   },
   {
     "id": 48,
+    "name": "Mega Drain",
     "type": "Grass",
-    "name": "Mega Drain"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 49,
+    "name": "Bug Buzz",
     "type": "Bug",
-    "name": "Bug Buzz"
+    "power": 75,
+    "charge": 2
   },
   {
     "id": 50,
+    "name": "Poison Fang",
     "type": "Poison",
-    "name": "Poison Fang"
+    "power": 25,
+    "charge": 5
   },
   {
     "id": 51,
+    "name": "Night Slash",
     "type": "Dark",
-    "name": "Night Slash"
+    "power": 25,
+    "charge": 4
   },
   {
     "id": 53,
+    "name": "Bubble Beam",
     "type": "Water",
-    "name": "Bubble Beam"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 54,
+    "name": "Submission",
     "type": "Fighting",
-    "name": "Submission"
+    "power": 30,
+    "charge": 3
   },
   {
     "id": 56,
+    "name": "Low Sweep",
     "type": "Fighting",
-    "name": "Low Sweep"
+    "power": 25,
+    "charge": 4
   },
   {
     "id": 57,
+    "name": "Aqua Jet",
     "type": "Water",
-    "name": "Aqua Jet"
+    "power": 25,
+    "charge": 5
   },
   {
     "id": 58,
+    "name": "Aqua Tail",
     "type": "Water",
-    "name": "Aqua Tail"
+    "power": 45,
+    "charge": 2
   },
   {
     "id": 59,
+    "name": "Seed Bomb",
     "type": "Grass",
-    "name": "Seed Bomb"
+    "power": 40,
+    "charge": 3
   },
   {
     "id": 60,
+    "name": "Psyshock",
     "type": "Psychic",
-    "name": "Psyshock"
+    "power": 40,
+    "charge": 3
   },
   {
     "id": 62,
+    "name": "Ancient Power",
     "type": "Rock",
-    "name": "Ancient Power"
+    "power": 35,
+    "charge": 4
   },
   {
     "id": 63,
+    "name": "Rock Tomb",
     "type": "Rock",
-    "name": "Rock Tomb"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 64,
+    "name": "Rock Slide",
     "type": "Rock",
-    "name": "Rock Slide"
+    "power": 50,
+    "charge": 3
   },
   {
     "id": 65,
+    "name": "Power Gem",
     "type": "Rock",
-    "name": "Power Gem"
+    "power": 40,
+    "charge": 3
   },
   {
     "id": 66,
+    "name": "Shadow Sneak",
     "type": "Ghost",
-    "name": "Shadow Sneak"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 67,
+    "name": "Shadow Punch",
     "type": "Ghost",
-    "name": "Shadow Punch"
+    "power": 20,
+    "charge": 4
   },
   {
     "id": 69,
+    "name": "Ominous Wind",
     "type": "Ghost",
-    "name": "Ominous Wind"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 70,
+    "name": "Shadow Ball",
     "type": "Ghost",
-    "name": "Shadow Ball"
+    "power": 45,
+    "charge": 3
   },
   {
     "id": 72,
+    "name": "Magnet Bomb",
     "type": "Steel",
-    "name": "Magnet Bomb"
+    "power": 25,
+    "charge": 4
   },
   {
     "id": 74,
+    "name": "Iron Head",
     "type": "Steel",
-    "name": "Iron Head"
+    "power": 30,
+    "charge": 3
   },
   {
     "id": 75,
+    "name": "Parabolic Charge",
     "type": "Electric",
-    "name": "Parabolic Charge"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 77,
+    "name": "Thunder Punch",
     "type": "Electric",
-    "name": "Thunder Punch"
+    "power": 40,
+    "charge": 3
   },
   {
     "id": 78,
+    "name": "Thunder",
     "type": "Electric",
-    "name": "Thunder"
+    "power": 100,
+    "charge": 1
   },
   {
     "id": 79,
+    "name": "Thunderbolt",
     "type": "Electric",
-    "name": "Thunderbolt"
+    "power": 55,
+    "charge": 2
   },
   {
     "id": 80,
+    "name": "Twister",
     "type": "Dragon",
-    "name": "Twister"
+    "power": 25,
+    "charge": 5
   },
   {
     "id": 82,
+    "name": "Dragon Pulse",
     "type": "Dragon",
-    "name": "Dragon Pulse"
+    "power": 65,
+    "charge": 2
   },
   {
     "id": 83,
+    "name": "Dragon Claw",
     "type": "Dragon",
-    "name": "Dragon Claw"
+    "power": 40,
+    "charge": 2
   },
   {
     "id": 84,
+    "name": "Disarming Voice",
     "type": "Fairy",
-    "name": "Disarming Voice"
+    "power": 25,
+    "charge": 5
   },
   {
     "id": 85,
+    "name": "Draining Kiss",
     "type": "Fairy",
-    "name": "Draining Kiss"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 86,
+    "name": "Dazzling Gleam",
     "type": "Fairy",
-    "name": "Dazzling Gleam"
+    "power": 45,
+    "charge": 3
   },
   {
     "id": 87,
+    "name": "Moonblast",
     "type": "Fairy",
-    "name": "Moonblast"
+    "power": 85,
+    "charge": 1
   },
   {
     "id": 88,
+    "name": "Play Rough",
     "type": "Fairy",
-    "name": "Play Rough"
+    "power": 55,
+    "charge": 2
   },
   {
     "id": 89,
+    "name": "Cross Poison",
     "type": "Poison",
-    "name": "Cross Poison"
+    "power": 20,
+    "charge": 4
   },
   {
     "id": 90,
+    "name": "Sludge Bomb",
     "type": "Poison",
-    "name": "Sludge Bomb"
+    "power": 55,
+    "charge": 2
   },
   {
     "id": 91,
+    "name": "Sludge Wave",
     "type": "Poison",
-    "name": "Sludge Wave"
+    "power": 60,
+    "charge": 1
   },
   {
     "id": 92,
+    "name": "Gunk Shot",
     "type": "Poison",
-    "name": "Gunk Shot"
+    "power": 60,
+    "charge": 1
   },
   {
     "id": 94,
+    "name": "Bone Club",
     "type": "Ground",
-    "name": "Bone Club"
+    "power": 20,
+    "charge": 4
   },
   {
     "id": 95,
+    "name": "Bulldoze",
     "type": "Ground",
-    "name": "Bulldoze"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 96,
+    "name": "Mud Bomb",
     "type": "Ground",
-    "name": "Mud Bomb"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 99,
+    "name": "Signal Beam",
     "type": "Bug",
-    "name": "Signal Beam"
+    "power": 45,
+    "charge": 3
   },
   {
     "id": 100,
+    "name": "X-Scissor",
     "type": "Bug",
-    "name": "X Scissor"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 101,
+    "name": "Flame Charge",
     "type": "Fire",
-    "name": "Flame Charge"
+    "power": 20,
+    "charge": 5
   },
   {
     "id": 102,
+    "name": "Flame Burst",
     "type": "Fire",
-    "name": "Flame Burst"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 103,
+    "name": "Fire Blast",
     "type": "Fire",
-    "name": "Fire Blast"
+    "power": 100,
+    "charge": 1
   },
   {
     "id": 104,
+    "name": "Brine",
     "type": "Water",
-    "name": "Brine"
+    "power": 25,
+    "charge": 4
   },
   {
     "id": 105,
+    "name": "Water Pulse",
     "type": "Water",
-    "name": "Water Pulse"
+    "power": 35,
+    "charge": 4
   },
   {
     "id": 106,
+    "name": "Scald",
     "type": "Water",
-    "name": "Scald"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 107,
+    "name": "Hydro Pump",
     "type": "Water",
-    "name": "Hydro Pump"
+    "power": 90,
+    "charge": 1
   },
   {
     "id": 108,
+    "name": "Psychic",
     "type": "Psychic",
-    "name": "Psychic"
+    "power": 55,
+    "charge": 2
   },
   {
     "id": 109,
+    "name": "Psystrike",
     "type": "Psychic",
-    "name": "Psystrike"
+    "power": 70,
+    "charge": 1
   },
   {
     "id": 111,
+    "name": "Icy Wind",
     "type": "Ice",
-    "name": "Icy Wind"
+    "power": 25,
+    "charge": 5
   },
   {
     "id": 114,
+    "name": "Giga Drain",
     "type": "Grass",
-    "name": "Giga Drain"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 115,
+    "name": "Fire Punch",
     "type": "Fire",
-    "name": "Fire Punch"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 116,
+    "name": "Solar Beam",
     "type": "Grass",
-    "name": "Solar Beam"
+    "power": 120,
+    "charge": 1
   },
   {
     "id": 117,
+    "name": "Leaf Blade",
     "type": "Grass",
-    "name": "Leaf Blade"
+    "power": 45,
+    "charge": 2
   },
   {
     "id": 118,
+    "name": "Power Whip",
     "type": "Grass",
-    "name": "Power Whip"
+    "power": 70,
+    "charge": 1
   },
   {
     "id": 121,
+    "name": "Air Cutter",
     "type": "Flying",
-    "name": "Air Cutter"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 122,
+    "name": "Hurricane",
     "type": "Flying",
-    "name": "Hurricane"
+    "power": 60,
+    "charge": 1
   },
   {
     "id": 123,
+    "name": "Brick Break",
     "type": "Fighting",
-    "name": "Brick Break"
+    "power": 30,
+    "charge": 3
   },
   {
     "id": 125,
+    "name": "Swift",
     "type": "Normal",
-    "name": "Swift"
+    "power": 30,
+    "charge": 4
   },
   {
     "id": 126,
+    "name": "Horn Attack",
     "type": "Normal",
-    "name": "Horn Attack"
+    "power": 25,
+    "charge": 4
   },
   {
     "id": 127,
+    "name": "Stomp",
     "type": "Normal",
-    "name": "Stomp"
+    "power": 25,
+    "charge": 4
   },
   {
     "id": 129,
+    "name": "Hyper Fang",
     "type": "Normal",
-    "name": "Hyper Fang"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 131,
+    "name": "Body Slam",
     "type": "Normal",
-    "name": "Body Slam"
+    "power": 40,
+    "charge": 2
   },
   {
     "id": 132,
+    "name": "Rest",
     "type": "Normal",
-    "name": "Rest"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 133,
+    "name": "Struggle",
     "type": "Normal",
-    "name": "Struggle"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 134,
+    "name": "Scald (unused)",
     "type": "Water",
-    "name": "Scald Blastoise"
+    "power": 35,
+    "charge": 3
   },
   {
     "id": 135,
+    "name": "Hydro Pump (unused)",
     "type": "Water",
-    "name": "Hydro Pump Blastoise"
+    "power": 60,
+    "charge": 1
   },
   {
     "id": 136,
+    "name": "Wrap Green (unused)",
     "type": "Normal",
-    "name": "Wrap Green"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 137,
+    "name": "Wrap Pink (unused)",
     "type": "Normal",
-    "name": "Wrap Pink"
+    "power": 15,
+    "charge": 5
   },
   {
     "id": 200,
-    "name": "Fury Cutter"
+    "name": "Fury Cutter",
+    "type": "Bug",
+    "power": 3
   },
   {
     "id": 201,
-    "name": "Bug Bite"
+    "name": "Bug Bite",
+    "type": "Bug",
+    "power": 5
   },
   {
     "id": 202,
-    "name": "Bite"
+    "name": "Bite",
+    "type": "Dark",
+    "power": 6
   },
   {
     "id": 203,
-    "name": "Sucker Punch"
+    "name": "Sucker Punch",
+    "type": "Dark",
+    "power": 7
   },
   {
     "id": 204,
-    "name": "Dragon Breath"
+    "name": "Dragon Breath",
+    "type": "Dragon",
+    "power": 6
   },
   {
     "id": 205,
-    "name": "Thunder Shock"
+    "name": "Thunder Shock",
+    "type": "Electric",
+    "power": 5
   },
   {
     "id": 206,
-    "name": "Spark"
+    "name": "Spark",
+    "type": "Electric",
+    "power": 7
   },
   {
     "id": 207,
-    "name": "Low Kick"
+    "name": "Low Kick",
+    "type": "Fighting",
+    "power": 5
   },
   {
     "id": 208,
-    "name": "Karate Chop"
+    "name": "Karate Chop",
+    "type": "Fighting",
+    "power": 6
   },
   {
     "id": 209,
-    "name": "Ember"
+    "name": "Ember",
+    "type": "Fire",
+    "power": 10
   },
   {
     "id": 210,
-    "name": "Wing Attack"
+    "name": "Wing Attack",
+    "type": "Flying",
+    "power": 9
   },
   {
     "id": 211,
-    "name": "Peck"
+    "name": "Peck",
+    "type": "Flying",
+    "power": 10
   },
   {
     "id": 212,
-    "name": "Lick"
+    "name": "Lick",
+    "type": "Ghost",
+    "power": 5
   },
   {
     "id": 213,
-    "name": "Shadow Claw"
+    "name": "Shadow Claw",
+    "type": "Ghost",
+    "power": 11
   },
   {
     "id": 214,
-    "name": "Vine Whip"
+    "name": "Vine Whip",
+    "type": "Grass",
+    "power": 7
   },
   {
     "id": 215,
-    "name": "Razor Leaf"
+    "name": "Razor Leaf",
+    "type": "Grass",
+    "power": 15
   },
   {
     "id": 216,
-    "name": "Mud Shot"
+    "name": "Mud Shot",
+    "type": "Ground",
+    "power": 12
   },
   {
     "id": 217,
-    "name": "Ice Shard"
+    "name": "Ice Shard",
+    "type": "Ice",
+    "power": 15
   },
   {
     "id": 218,
-    "name": "Frost Breath"
+    "name": "Frost Breath",
+    "type": "Ice",
+    "power": 12
   },
   {
     "id": 219,
-    "name": "Quick Attack"
+    "name": "Quick Attack",
+    "type": "Normal",
+    "power": 10
   },
   {
     "id": 220,
-    "name": "Scratch"
+    "name": "Scratch",
+    "type": "Normal",
+    "power": 6
   },
   {
     "id": 221,
-    "name": "Tackle"
+    "name": "Tackle",
+    "type": "Normal",
+    "power": 12
   },
   {
     "id": 222,
-    "name": "Pound"
+    "name": "Pound",
+    "type": "Normal",
+    "power": 7
   },
   {
     "id": 223,
-    "name": "Cut"
+    "name": "Cut",
+    "type": "Normal",
+    "power": 12
   },
   {
     "id": 224,
-    "name": "Poison Jab"
+    "name": "Poison Jab",
+    "type": "Poison",
+    "power": 12
   },
   {
     "id": 225,
-    "name": "Acid"
+    "name": "Acid",
+    "type": "Poison",
+    "power": 10
   },
   {
     "id": 226,
-    "name": "Psycho Cut"
+    "name": "Psycho Cut",
+    "type": "Psychic",
+    "power": 15
   },
   {
     "id": 227,
-    "name": "Rock Throw"
+    "name": "Rock Throw",
+    "type": "Rock",
+    "power": 12
   },
   {
     "id": 228,
-    "name": "Metal Claw"
+    "name": "Metal Claw",
+    "type": "Steel",
+    "power": 8
   },
   {
     "id": 229,
-    "name": "Bullet Punch"
+    "name": "Bullet Punch",
+    "type": "Steel",
+    "power": 10
   },
   {
     "id": 230,
-    "name": "Water Gun"
+    "name": "Water Gun",
+    "type": "Water",
+    "power": 6
   },
   {
     "id": 231,
-    "name": "Splash"
+    "name": "Splash",
+    "type": "Water",
+    "power": 0
   },
   {
     "id": 232,
-    "name": "Water Gun Blastoise"
+    "name": "Water Gun (unused)",
+    "type": "Water",
+    "power": 10
   },
   {
     "id": 233,
-    "name": "Mud Slap"
+    "name": "Mud-Slap",
+    "type": "Ground",
+    "power": 6
   },
   {
     "id": 234,
-    "name": "Zen Headbutt"
+    "name": "Zen Headbutt",
+    "type": "Psychic",
+    "power": 12
   },
   {
     "id": 235,
-    "name": "Confusion"
+    "name": "Confusion",
+    "type": "Psychic",
+    "power": 15
   },
   {
     "id": 236,
-    "name": "Poison Sting"
+    "name": "Poison Sting",
+    "type": "Poison",
+    "power": 6
   },
   {
     "id": 237,
-    "name": "Bubble"
+    "name": "Bubble",
+    "type": "Water",
+    "power": 25
   },
   {
     "id": 238,
-    "name": "Feint Attack"
+    "name": "Feint Attack",
+    "type": "Dark",
+    "power": 12
   },
   {
     "id": 239,
-    "name": "Steel Wing"
+    "name": "Steel Wing",
+    "type": "Steel",
+    "power": 15
   },
   {
     "id": 240,
-    "name": "Fire Fang"
+    "name": "Fire Fang",
+    "type": "Fire",
+    "power": 7
   },
   {
     "id": 241,
-    "name": "Rock Smash"
+    "name": "Rock Smash",
+    "type": "Fighting",
+    "power": 15
   }
 ]
