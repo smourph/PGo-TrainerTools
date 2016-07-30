@@ -192,6 +192,7 @@ local.properties
 .recommenders/
 
 # Personal load details
+web/less/main.less
 config.json
 web/inventory-*
 web/player-*

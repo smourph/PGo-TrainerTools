@@ -1,200 +1,164 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-
 #map {
-    height: 100%;
+  height: 100%;
 }
-
 #menu {
-    position: fixed;
-    right: 10px;
-    top: 10px;
-    z-index: 5;
-    height: auto;
-    width: 180px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 5;
+  height: auto;
+  width: 180px;
 }
-
 #submenu {
-    position: fixed;
-    left: 50%;
-    top: 10px;
-    transform: translate(-50%, 0);
-    width: 50%;
-    z-index: 6;
-    display: none;
+  position: fixed;
+  left: 50%;
+  top: 10px;
+  transform: translate(-50%, 0);
+  width: 50%;
+  z-index: 6;
+  display: none;
 }
-
 #sortButtons {
-    text-align: right;
+  text-align: right;
 }
-
 #sortButtons .chip {
-    margin-right: 3px;
+  margin-right: 3px;
 }
-
 #close {
-    float: right;
-    font-size: 32px;
-    cursor: pointer;
-    line-height: 48px;
+  float: right;
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 48px;
 }
-
 .items {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 80vh;
 }
-
 .item_img {
-    width: 75px;
-    height: auto;
+  width: 75px;
+  height: auto;
 }
-
 .gif_img {
-    width: 38px;
-    height: auto;
+  width: 38px;
+  height: auto;
 }
-
 .png_img {
-    width: 96px;
-    height: auto;
+  width: 96px;
+  height: auto;
 }
-
 .navButton {
-    position: relative;
-    top: -30px;
-    right: -30px;
+  position: relative;
+  top: -30px;
+  right: -30px;
 }
-
 .row {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-
 .collapsible-body a {
-    width: 100%;
+  width: 100%;
 }
-
 #toast-container {
-    top: auto !important;
-    right: auto !important;
-    bottom: 10%;
-    left: 7%;
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left: 7%;
 }
-
 #trainers-list {
-    max-height: 80vh;
+  max-height: 80vh;
 }
-
 #trainers-list::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-
 .collapsible-body {
-    background: #FFF;
-    padding: 1em;
+  background: #FFF;
+  padding: 1em;
 }
-
 .card .card-content {
-    padding: 10px 20px 20px 20px;
+  padding: 10px 20px 20px 20px;
 }
-
 .collapsible-title {
-    display: block;
-    min-height: 3rem;
-    line-height: 3rem;
-    padding: 0 1rem;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+  display: block;
+  min-height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
 }
-
 .collapsible-title i {
-    width: 2rem;
-    font-size: 1.6rem;
-    line-height: 3rem;
-    display: block;
-    float: left;
-    text-align: center;
-    margin-right: 1rem;
+  width: 2rem;
+  font-size: 1.6rem;
+  line-height: 3rem;
+  display: block;
+  float: left;
+  text-align: center;
+  margin-right: 1rem;
 }
-
 .trainer-name {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-
 #logs-panel {
-    display: none;
-    position: fixed;
-    height: 50vh;
-    width: 360px;
-    z-index: 5;
-    left: 10px;
-    bottom: 10px;
+  display: none;
+  position: fixed;
+  height: 50vh;
+  width: 360px;
+  z-index: 5;
+  left: 10px;
+  bottom: 10px;
 }
-
 #logs-panel .card {
-    overflow-y: scroll;
-    height: 100%;
-    margin: 0;
+  overflow-y: scroll;
+  height: 100%;
+  margin: 0;
 }
-
 .log-item {
-    padding: .3em 0 .3em 0;
-    font-size: 14px;
+  padding: .3em 0 .3em 0;
+  font-size: 14px;
 }
-
 .log-date {
-    color: #666;
+  color: #666;
 }
-
 .team-0 {
-    background-color: #229954 !important;
+  background-color: #229954 !important;
 }
-
 .team-0:hover {
-    background-color: #A9DFBF;
+  background-color: #A9DFBF;
 }
-
 .teambar-0 {
-    background-color: #A9DFBF;
+  background-color: #A9DFBF;
 }
-
 .team-1 {
-    background-color: #2471A3 !important;
+  background-color: #2471A3 !important;
 }
-
 .team-1:hover {
-    background-color: #A9CCE3;
+  background-color: #A9CCE3;
 }
-
 .teambar-1 {
-    background-color: #A9CCE3;
+  background-color: #A9CCE3;
 }
-
 .team-2 {
-    background-color: #A93226 !important;
+  background-color: #A93226 !important;
 }
-
 .team-2:hover {
-    background-color: #E6B0AA;
+  background-color: #E6B0AA;
 }
-
 .teambar-2 {
-    background-color: #E6B0AA;
+  background-color: #E6B0AA;
 }
-
 .team-3 {
-    background-color: #D4AC0D !important;
+  background-color: #D4AC0D !important;
 }
-
 .team-3:hover {
-    background-color: #F9E79F;
+  background-color: #F9E79F;
 }
-
 .teambar-3 {
-    background-color: #F9E79F;
+  background-color: #F9E79F;
 }
