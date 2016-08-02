@@ -194,6 +194,7 @@ local.properties
 # Personal load details
 web/less/main.less
 config.json
+web/config/trainersdata.js
 web/inventory-*
 web/player-*
 web/settings-*

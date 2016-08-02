@@ -4,161 +4,252 @@ body {
   margin: 0;
   padding: 0;
 }
-.container .row {
+/* Materialize elements */
+.card {
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+.card .card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.card .card-content {
+  padding: 10px 20px 50px;
+}
+#toast-container {
+  top: auto !important;
+  right: 5%;
+  bottom: 5%;
+  left: 5%;
+  min-width: inherit;
+}
+/* Design Fix Action Button tooltips on wide screen */
+@media only screen and (min-width: 993px) {
+  .mobile-fab-tip {
+    display: none;
+  }
+  .material-tooltip {
+    border-radius: 10px;
+  }
+}
+/* Fix and design Fix Action Button tooltips on mobile */
+@media only screen and (max-width: 992px) {
+  .material-tooltip {
+    display: none !important;
+  }
+  .mobile-fab-tip {
+    position: fixed;
+    z-index: 2000;
+    right: 85px;
+    margin-top: 12px;
+    padding: 10px 8px;
+    text-align: right;
+    background-color: #323232;
+    border-radius: 10px;
+    color: #FFF;
+    min-height: 36px;
+    line-height: 120%;
+    font-size: 1rem;
+    overflow: hidden;
+    opacity: 0;
+    -webkit-animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -o-animation: fadein 1s;
+    animation: fadein 1s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay: 0.5s;
+    -moz-animation-delay: 0.5s;
+    -o-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+  }
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes fadein {
+    /* Firefox */
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-o-keyframes fadein {
+    /* Opera */
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+/* Navbar */
+nav .brand-logo .trainertool-logo {
+  width: 48px;
+  height: 56px;
+  background: transparent url(../image/icons/Settings.png) no-repeat center center;
+  background-size: 48px;
+}
+@media only screen and (min-width: 601px) {
+  nav .brand-logo .trainertool-logo {
+    width: 56px;
+    height: 64px;
+    background-size: 56px;
+  }
+}
+nav .brand-logo .left {
+  left: 0.5rem;
+}
+/* Content bloc */
+.bloc-content .row {
   margin-bottom: 0;
 }
-.container.bloc-menu {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  z-index: 5;
-  height: auto;
-  width: 180px;
+.bloc-content .col {
+  padding: 0 0.25rem;
 }
-.container.bloc-menu .team-0:hover {
-  background-color: #BBB !important;
-}
-.container.bloc-menu .team-1:hover {
-  background-color: #A9CCE3 !important;
-}
-.container.bloc-menu .team-2:hover {
-  background-color: #E6B0AA !important;
-}
-.container.bloc-menu .team-3:hover {
-  background-color: #F9E79F !important;
-}
-.container.bloc-content {
-  position: fixed;
-  left: 50%;
-  top: 10px;
-  transform: translate(-50%, 0);
-  width: 50%;
-  z-index: 6;
-  display: none;
-}
-.container.bloc-content .close {
+.bloc-content .col .close {
   float: right;
   font-size: 32px;
   cursor: pointer;
   line-height: 48px;
 }
-.container.bloc-content .bloc-list-button.bloc-list-button-sort {
+.bloc-content .col .bloc-list-button.bloc-list-button-sort {
   text-align: right;
 }
-.container.bloc-content .bloc-list-button.bloc-list-button-sort .chip {
+.bloc-content .col .bloc-list-button.bloc-list-button-sort .chip {
   margin-right: 3px;
 }
-.container.bloc-content .items {
+.bloc-content .col .items {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 80vh;
 }
-.container.bloc-content .item_img {
+.bloc-content .col .item_img {
   width: 75px;
   height: auto;
 }
-.container.bloc-content .gif_img {
+.bloc-content .col .gif_img {
   width: 38px;
   height: auto;
 }
-.container.bloc-content .png_img {
+.bloc-content .col .png_img {
   width: 96px;
   height: auto;
 }
-.container.bloc-content .teambar-0 {
+.bloc-content .col .teambar-0 {
   background-color: #BBB;
 }
-.container.bloc-content .teambar-1 {
+.bloc-content .col .teambar-1 {
   background-color: #A9CCE3;
 }
-.container.bloc-content .teambar-2 {
+.bloc-content .col .teambar-2 {
   background-color: #E6B0AA;
 }
-.container.bloc-content .teambar-3 {
+.bloc-content .col .teambar-3 {
   background-color: #F9E79F;
 }
-.container.bloc-trainers .trainers-list {
-  max-height: 80vh;
+.bloc-content .col .team-0 {
+  background-color: #777;
 }
-.container.bloc-trainers .trainers-list .trainer-button-element {
-  margin-bottom: 20px;
+.bloc-content .col .team-1 {
+  background-color: #2471A3;
 }
-.container.bloc-trainers .trainers-list::-webkit-scrollbar {
-  display: none;
+.bloc-content .col .team-2 {
+  background-color: #A93226;
 }
-.navButton {
-  position: relative;
-  top: -30px;
-  right: -30px;
+.bloc-content .col .team-3 {
+  background-color: #D4AC0D;
 }
-.collapsible-body a {
-  width: 100%;
+/* Section menu bloc */
+#section-button {
+  bottom: 10px;
+  right: 2.75rem;
+  margin-right: -28px;
 }
-#toast-container {
-  top: auto !important;
-  right: auto !important;
-  bottom: 10%;
-  left: 7%;
+#section-button .section-button-logo {
+  width: 55.5px;
+  height: 55.5px;
+  background: transparent url(../image/icons/pokemon_go_app_icon.png) no-repeat center center;
+  background-size: 55.5px;
 }
-.collapsible-body {
-  background: #FFF;
-  padding: 1em;
+#section-button .btn-floating .bag-logo {
+  width: 55.5px;
+  height: 54.5px;
+  background: transparent url(../image/icons/Bag.png) no-repeat center center;
+  background-size: 42px;
+  margin-top: -1px;
 }
-.card .card-content {
-  padding: 10px 20px 20px 20px;
+#section-button .btn-floating .pokedex-logo {
+  width: 55.5px;
+  height: 55.5px;
+  background: transparent url(../image/icons/Pokedex.png) no-repeat center center;
+  background-size: 44px;
 }
-.collapsible-title {
-  display: block;
-  min-height: 3rem;
-  line-height: 3rem;
-  padding: 0 1rem;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+#section-button .btn-floating .pokemon-logo {
+  width: 55.5px;
+  height: 55.5px;
+  background: transparent url(../image/icons/psyduck.png) no-repeat center center;
+  background-size: 44px;
 }
-.collapsible-title i {
-  width: 2rem;
-  font-size: 1.6rem;
-  line-height: 3rem;
-  display: block;
-  float: left;
-  text-align: center;
-  margin-right: 1rem;
+#section-button .btn-floating .info-logo {
+  width: 55.5px;
+  height: 53.5px;
+  background: transparent url(../image/icons/pokemon_pokecenter.png) no-repeat center center;
+  background-size: 42px;
+  margin-top: 2px;
 }
-.trainer-name {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+#section-button .btn-floating.red .info-logo {
+  background-image: url(../image/icons/pokemon_moltres.png);
+}
+#section-button .btn-floating.blue .info-logo {
+  background-image: url(../image/icons/pokemon_articuro.png);
+}
+#section-button .btn-floating.yellow .info-logo {
+  background-image: url(../image/icons/pokemon_zapdos.png);
+}
+/* Logs bloc */
+#logs-button {
+  position: fixed;
+  z-index: 1000;
+  left: 0.75rem;
+  bottom: 10px;
+  border-radius: 10px;
 }
 #logs-panel {
   display: none;
   position: fixed;
   height: 50vh;
-  width: 360px;
-  z-index: 5;
-  left: 10px;
-  bottom: 10px;
+  z-index: 1000;
+  left: 0.75rem;
+  bottom: 51px;
 }
 #logs-panel .card {
   overflow-y: scroll;
   height: 100%;
   margin: 0;
 }
-.log-item {
+#logs-panel .card .log-item {
   padding: .3em 0 .3em 0;
   font-size: 14px;
 }
-.log-date {
+#logs-panel .card .log-item .log-date {
   color: #666;
-}
-.team-0 {
-  background-color: #777 !important;
-}
-.team-1 {
-  background-color: #2471A3 !important;
-}
-.team-2 {
-  background-color: #A93226 !important;
-}
-.team-3 {
-  background-color: #D4AC0D !important;
 }

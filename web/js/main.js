@@ -5,17 +5,27 @@ $(document).ready(function () {
 });
 
 var trainerToolsView = {
-    userIndex: 0,
-    emptyDex: [],
-    numTrainers: [
-        177,
-        109
-    ],
     teams: [
-        'TeamLess',
-        'Mystic',
-        'Valor',
-        'Instinct'
+        {
+            name: 'TeamLess',
+            color: 'grey',
+            colorVariant: 'darken-2'
+        },
+        {
+            name: 'Mystic',
+            color: 'blue',
+            colorVariant: 'darken-3'
+        },
+        {
+            name: 'Valor',
+            color: 'red',
+            colorVariant: 'darken-3'
+        },
+        {
+            name: 'Instinct',
+            color: 'yellow',
+            colorVariant: 'darken-3'
+        }
     ],
     trainerSex: [
         'm',
@@ -37,6 +47,7 @@ var trainerToolsView = {
         '#D68910',
         '#BA4A00'
     ],
+    trainerId: 0,
     pokemonArray: {},
     pokemoncandyArray: {},
     itemsArray: {},
@@ -46,38 +57,38 @@ var trainerToolsView = {
     init: function () {
         var self = this;
 
-        self.settings = $.extend(true, self.settings, userInfo);
+        self.settings = $.extend(true, self.settings, trainersInfo);
 
         self.bindUI();
 
         self.log({
-            message: 'Loading Data...',
+            message: 'Loading game data...',
             color: "blue-text"
         });
 
         var pokemonsJsonFile = 'data/pokemons.json';
-        self.loadJSON(pokemonsJsonFile, function (data, successData) {
+        self.loadJSON(pokemonsJsonFile, function (data) {
             self.pokemonArray = data;
         }, self.errorFunc, 'Failed to load \'' + pokemonsJsonFile + '\' file');
 
         var candiesJsonFile = 'data/candies.json';
-        self.loadJSON(candiesJsonFile, function (data, successData) {
+        self.loadJSON(candiesJsonFile, function (data) {
             self.pokemoncandyArray = data;
         }, self.errorFunc, 'Failed to load \'' + candiesJsonFile + '\' file');
 
         var itemsJsonFile = 'data/items.json';
-        self.loadJSON(itemsJsonFile, function (data, successData) {
+        self.loadJSON(itemsJsonFile, function (data) {
             self.itemsArray = data;
         }, self.errorFunc, 'Failed to load \'' + itemsJsonFile + '\' file');
 
         self.log({
-            message: 'Data Loaded !',
+            message: 'Game data Loaded !',
             color: "green-text"
         });
 
-        for (var i = 0; i < self.settings.users.length; i++) {
-            var user = self.settings.users[i];
-            self.trainer_data[user] = {};
+        for (var i = 0; i < self.settings.trainers.length; i++) {
+            var trainerName = self.settings.trainers[i];
+            self.trainer_data[trainerName] = {};
         }
 
         self.initView();
@@ -86,6 +97,8 @@ var trainerToolsView = {
     // TODO: recheck de la fonction quand tous les menus seront présents
     bindUI: function () {
         var self = this;
+
+        var body = $('body');
 
         $('#logs-button').click(function () {
             $('#logs-panel').toggle();
@@ -97,24 +110,33 @@ var trainerToolsView = {
             });
         });
 
-        // Build content view when an item is selected
-        $('body').on('click', ".trainer-element .trainer-buttons-list .btn", function () {
-            var itemIndex = $(this).parent().parent().find('.btn').index($(this)) + 1,
-                userId = $(this).closest('ul').data('user-id');
-
-            self.buildContentView(userId, itemIndex);
+        // Close section menu on clic everywhere
+        body.click(function () {
+            var fab = $('#section-button');
+            if (fab.hasClass('active')) {
+                fab.closeFAB();
+            }
         });
 
-        $('body').on('click', '.close', function () {
+        // Build content view when an item is selected
+        body.on('click', "#section-button .btn-section", function () {
+            var self = trainerToolsView,
+                contentId = $(this).data('section'),
+                trainerName = self.settings.trainers[self.trainerId];
+
+            self.buildContentView(contentId, trainerName);
+        });
+
+        body.on('click', '.close', function () {
             $('#content').toggle();
         });
 
         // Binding sorts
-        $('body').on('click', '.pokemon-sort a', function () {
+        body.on('click', '.pokemon-sort a', function () {
             var item = $(this);
             self.sortAndShowBagPokemon(item.data('sort'), item.parent().parent().data('user-id'));
         });
-        $('body').on('click', '.pokedex-sort a', function () {
+        body.on('click', '.pokedex-sort a', function () {
             var item = $(this);
             self.sortAndShowPokedex(item.data('sort'), item.parent().parent().data('user-id'));
         });
@@ -129,193 +151,302 @@ var trainerToolsView = {
     loadTrainersFiles: function () {
         var self = trainerToolsView;
 
-        for (var i = 0; i < self.settings.users.length; i++) {
+        if (self.settings.trainers.length >= 1) {
             self.log({
-                message: "Starting to load trainer " + self.settings.users[i],
+                message: "Starting to load trainers data...",
                 color: "blue-text"
             });
-            self.loadJSON('inventory-' + self.settings.users[i] + '.json', self.getInventoryData, self.errorFunc, i);
-            self.loadJSON('player-' + self.settings.users[i] + '.json', self.getPlayerData, self.errorFunc, i);
-            self.loadJSON('settings-' + self.settings.users[i] + '.json', self.getSettingsData, self.errorFuncForSettingFileLoad, i);
 
+            for (var i = 0; i < self.settings.trainers.length; i++) {
+                self.loadJSON('inventory-' + self.settings.trainers[i] + '.json', self.getInventoryData, self.errorFunc, i);
+                self.loadJSON('player-' + self.settings.trainers[i] + '.json', self.getPlayerData, self.errorFunc, i);
+                self.loadJSON('settings-' + self.settings.trainers[i] + '.json', self.getSettingsData, self.errorFunc, i);
+
+                self.log({
+                    message: self.settings.trainers[i] + " data loaded !",
+                    color: "green-text"
+                }, true, 'green');
+            }
+        } else {
             self.log({
-                message: "Trainer loaded: " + self.settings.users[i],
-                color: "green-text"
-            });
+                message: "Error: no setting was found for trainer in config/trainersdata.js",
+                color: "red-text"
+            }, true, 'red');
+
+            //TODO : Display something when there is no trainer configured in trainersdata.js
         }
     },
 
-    getInventoryData: function (data, user_index) {
+    getInventoryData: function (data, trainerIndex) {
         var self = trainerToolsView,
-            trainerData = self.trainer_data[self.settings.users[user_index]],
-            bagCandy = self.filterInventory(data, 'candy'),
-            bagItems = self.filterInventory(data, 'item'),
-            bagPokemon = self.filterInventory(data, 'pokemon_data'),
-            pokedex = self.filterInventory(data, 'pokedex_entry'),
-            stats = self.filterInventory(data, 'player_stats');
+            trainerData = self.trainer_data[self.settings.trainers[trainerIndex]];
 
-        trainerData.bagCandy = bagCandy;
-        trainerData.bagItems = bagItems;
-        trainerData.bagPokemon = bagPokemon;
-        trainerData.pokedex = pokedex;
-        trainerData.stats = stats;
+        trainerData.bagCandy = self.filterInventory(data, 'candy');
+        trainerData.bagItems = self.filterInventory(data, 'item');
+        trainerData.bagPokemon = self.filterInventory(data, 'pokemon_data');
+        trainerData.pokedex = self.filterInventory(data, 'pokedex_entry');
+        trainerData.stats = self.filterInventory(data, 'player_stats');
 
-        self.trainer_data[self.settings.users[user_index]] = trainerData;
+        self.trainer_data[self.settings.trainers[trainerIndex]] = trainerData;
     },
 
-    getPlayerData: function (data, user_index) {
+    getPlayerData: function (data, trainerIndex) {
         var self = trainerToolsView,
-            trainerData = self.trainer_data[self.settings.users[user_index]];
+            trainerData = self.trainer_data[self.settings.trainers[trainerIndex]];
 
         trainerData.player = data;
-        self.trainer_data[self.settings.users[user_index]] = trainerData;
 
-        if (user_index + 1 === self.settings.users.length) {
-            self.buildTrainersMenu();
+        self.trainer_data[self.settings.trainers[trainerIndex]] = trainerData;
+
+        if (trainerIndex + 1 === self.settings.trainers.length) {
+            self.buildTrainersListMenu();
         }
     },
 
-    getSettingsData: function (data, user_index) {
+    getSettingsData: function (data, trainerIndex) {
         var self = trainerToolsView,
-            trainerData = self.trainer_data[self.settings.users[user_index]];
+            trainerData = self.trainer_data[self.settings.trainers[trainerIndex]];
 
         trainerData.settings = data;
-        self.trainer_data[self.settings.users[user_index]] = trainerData;
+
+        self.trainer_data[self.settings.trainers[trainerIndex]] = trainerData;
     },
 
-    buildTrainersMenu: function () {
+    buildTrainersListMenu: function () {
         var self = this,
-            users = self.settings.users,
-            out = '<div class="col s12"><ul class="trainers-list collapsible" data-collapsible="accordion"> \
-              <li><div class="collapsible-title"><i class="material-icons">people</i>Trainers</div></li>';
-
-        for (var i = 0; i < users.length; i++) {
-            var team = self.getTeam(users[i]);
-
-            var content = '<li class="trainer-element">\
-            <div class="collapsible-header trainer-name">{0}</div>\
-                <div class="collapsible-body">\
-                    <ul class="trainer-buttons-list" data-user-id="{1}">\
-                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tInfo">Info</a></li><br>\
-                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tItems">Items</a></li><br>\
-                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tPokemon">Pokemon</a></li><br>\
-                       <li class="trainer-button-element"><a class="team-' + team + ' waves-effect waves-light btn tPokedex">Pokedex</a></li>\
-                   </ul>\
-               </div>\
-           </li>';
-            out += content.format(users[i], i);
-        }
-        out += "</ul></div>";
-        $('#trainers').html(out);
-        $('.collapsible').collapsible();
-    },
-
-    buildContentView: function (userId, menu) {
-        var self = this,
+            trainers = self.settings.trainers,
+            navContainer = $('#nav-mobile'),
+            trainerList = $('#trainers-list'),
+            dropDownMenu = navContainer.find('.dropdown-button'),
+            aloneMenu = navContainer.find('.alone-button'),
             out = '';
 
-        $("#content").show();
-        switch (menu) {
-            case 1:
-                var team = self.getTeam(self.settings.users[userId]);
+        if (trainers.length > 1) {
+            for (var i = 0; i < trainers.length; i++) {
+                var content = '<li><a href="#" class="trainer black-text" data-trainer-id="' + i + '">{0}</a></li>';
+                out += content.format(trainers[i]);
+            }
+            trainerList.html(out);
 
-                var current_user_stats = self.trainer_data[self.settings.users[userId]].stats[0].inventory_item_data.player_stats;
-                $('#subtitle').html('Trainer Info');
-                $('#sort-buttons').html('');
+            // Bind event when user select a trainer
+            trainerList.on('click', '.trainer', function () {
+                self.trainerId = $(this).data('trainer-id');
 
-                out += '<div class="row"><div class="col s12"><h5>' +
-                    self.settings.users[userId] +
-                    '</h5><br>Level: ' +
-                    current_user_stats.level +
-                    '<br><div class="progress teambar-' + team + '" style="height: 10px"> <div class="determinate team-' + team + '" style="width: ' +
-                    (current_user_stats.experience /
-                    current_user_stats.next_level_xp) * 100 +
-                    '%"></div></div>Exp: ' +
-                    current_user_stats.experience +
-                    '<br>Exp to Lvl ' +
-                    (parseInt(current_user_stats.level, 10) + 1) +
-                    ': ' +
-                    (parseInt(current_user_stats.next_level_xp, 10) - current_user_stats.experience) +
-                    '<br>Pokemon Encountered: ' +
-                    (current_user_stats.pokemons_encountered || 0) +
-                    '<br>Pokeballs Thrown: ' +
-                    (current_user_stats.pokeballs_thrown || 0) +
-                    '<br>Pokemon Caught: ' +
-                    (current_user_stats.pokemons_captured || 0) +
-                    '<br>Small Ratata Caught: ' +
-                    (current_user_stats.small_rattata_caught || 0) +
-                    '<br>Pokemon Evolved: ' +
-                    (current_user_stats.evolutions || 0) +
-                    '<br>Eggs Hatched: ' +
-                    (current_user_stats.eggs_hatched || 0) +
-                    '<br>Unique Pokedex Entries: ' +
-                    (current_user_stats.unique_pokedex_entries || 0) +
-                    '<br>PokeStops Visited: ' +
-                    (current_user_stats.poke_stop_visits || 0) +
-                    '<br>Kilometers Walked: ' +
-                    (parseFloat(current_user_stats.km_walked).toFixed(2) || 0) +
-                    '</div></div>';
+                var trainerName = trainers[self.trainerId];
 
-                $('#subcontent').html(out);
-                break;
-            case 2:
-                var current_user_bag_items = self.trainer_data[self.settings.users[userId]].bagItems;
-                $('#subtitle').html(current_user_bag_items.length + " item" + (current_user_bag_items.length !== 1 ? "s" : "") + " in Bag");
+                // Display trainer name in dropdown title
+                $('#nav-mobile').find('.dropdown-title').html(trainerName);
 
-                $('#sort-buttons').html('');
+                // Apply team color
+                self.applyTrainerTeamColor(trainerName);
 
-                out = '<div class="items"><div class="row">';
-                for (var i = 0; i < current_user_bag_items.length; i++) {
-                    out += '<div class="col s12 m6 l3 center" style="float: left"><img src="image/items/' +
-                        current_user_bag_items[i].inventory_item_data.item.item_id +
-                        '.png" class="item_img"><br><b>' +
-                        self.itemsArray[current_user_bag_items[i].inventory_item_data.item.item_id] +
-                        '</b><br>Count: ' +
-                        (current_user_bag_items[i].inventory_item_data.item.count || 0) +
-                        '</div>';
+                // Show section menu
+                $('#section-button').removeClass('hide');
+            });
+
+            aloneMenu.addClass('hide');
+            dropDownMenu.removeClass('hide');
+        } else if (trainers.length === 1) {
+            out = trainers[0];
+            aloneMenu.html(out);
+
+            // Simulate trainer selection
+            self.trainerId = 0;
+            var trainerName = trainers[self.trainerId];
+            // Apply team color
+            self.applyTrainerTeamColor(trainerName);
+            // Show section menu
+            $('#section-button').removeClass('hide');
+        }
+    },
+
+    applyTrainerTeamColor: function (trainerName) {
+        var self = this,
+            teams = self.teams,
+            trainerTeam = self.teams[self.getTeam(trainerName)];
+
+        // Change color for nav bar
+        var navContainer = $('#nav-wrapper');
+        navContainer.removeClass('black');
+        for (var i = 0; i < teams.length; i++) {
+            navContainer.removeClass(teams[i].color);
+            if (teams[i].colorVariant !== '') {
+                navContainer.removeClass(teams[i].colorVariant);
+            }
+        }
+        navContainer.addClass(trainerTeam.color);
+        navContainer.addClass(trainerTeam.colorVariant);
+
+        // Change color for logs button
+        var logButton = $('#logs-button');
+        logButton.removeClass('black');
+        for (var i = 0; i < teams.length; i++) {
+            logButton.removeClass(teams[i].color);
+            if (teams[i].colorVariant !== '') {
+                logButton.removeClass(teams[i].colorVariant);
+            }
+        }
+        logButton.addClass(trainerTeam.color);
+        logButton.addClass(trainerTeam.colorVariant);
+
+        // Change color for section button elements
+        var sectionButton = $('#section-button');
+        sectionButton.find('.btn-floating').each(function () {
+            for (var i = 0; i < teams.length; i++) {
+                $(this).removeClass(teams[i].color);
+                if (teams[i].colorVariant !== '') {
+                    $(this).removeClass(teams[i].colorVariant);
                 }
-                out += '</div></div>';
-                var nth = 0;
-                out = out.replace(/<\/div><div/g, function (match, i, original) {
-                    nth++;
-                    return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
-                });
-                $('#subcontent').html(out);
+            }
+            $(this).addClass(trainerTeam.color);
+            $(this).addClass(trainerTeam.colorVariant);
+        });
+    },
+
+    buildContentView: function (contentId, trainerName) {
+        var self = this;
+
+        $("#content").show();
+        switch (contentId) {
+            case 'infos':
+                self.showInfosContent(trainerName);
                 break;
-            case 3:
-                var pkmnTotal = self.trainer_data[self.settings.users[userId]].bagPokemon.length;
-                $('#subtitle').html(pkmnTotal + " Pokemon");
-
-                var sortButtons = '<div class="col s12 pokemon-sort" data-user-id="' + userId + '">Sort : ';
-                sortButtons += '<div class="chip"><a href="#" data-sort="cp">CP</a></div>';
-                sortButtons += '<div class="chip"><a href="#" data-sort="iv">IV</a></div>';
-                sortButtons += '<div class="chip"><a href="#" data-sort="name">Name</a></div>';
-                sortButtons += '<div class="chip"><a href="#" data-sort="id">ID</a></div>';
-                sortButtons += '<div class="chip"><a href="#" data-sort="time">Time</a></div>';
-                sortButtons += '</div>';
-
-                $('#sort-buttons').html(sortButtons);
-
-                self.sortAndShowBagPokemon('cp', userId);
+            case 'pokedex':
+                self.showPokedexContent(trainerName);
                 break;
-            case 4:
-                var pkmnTotal = self.trainer_data[self.settings.users[userId]].pokedex.length;
-                $('#subtitle').html('Pokedex ' + pkmnTotal + ' / 151');
-
-                var sortButtons = '<div class="col s12 pokedex-sort" dat-user-id="' + userId + '">Sort : ';
-                sortButtons += '<div class="chip"><a href="#" data-sort="id">ID</a></div>';
-                sortButtons += '<div class="chip"><a href="#" data-sort="name">Name</a></div>';
-                sortButtons += '<div class="chip"><a href="#" data-sort="enc">Seen</a></div>';
-                sortButtons += '<div class="chip"><a href="#" data-sort="cap">Caught</a></div>';
-                sortButtons += '</div>';
-
-                $('#sort-buttons').html(sortButtons);
-
-                self.sortAndShowPokedex('id', userId);
+            case 'pokemon':
+                self.showPokemonContent(trainerName);
+                break;
+            case 'item':
+                self.showItemContent(trainerName);
                 break;
             default:
                 break;
         }
+    },
+
+    showInfosContent: function (trainerName) {
+        var self = this,
+            currentTrainerStats = self.trainer_data[trainerName].stats[0].inventory_item_data.player_stats,
+            playerInfo = self.trainer_data[trainerName].player,
+            team = self.getTeam(trainerName),
+            out;
+
+        $('#subtitle').html('Trainer Infos');
+        $('#sort-buttons').html('').addClass('hide');
+
+        out = '<div class="row">' +
+            '<div class="col s12">' +
+            '<ul class="collection with-header">' +
+            '<li class="collection-header"><h5 class="center">' + playerInfo.username + ' (' + currentTrainerStats.level + ')</h5></li>' +
+            '<li class="collection-header"><div class="progress teambar-' + team + '" style="height: 10px">' +
+            '<div class="determinate team-' + team + '" style="width: ' +
+            (currentTrainerStats.experience / currentTrainerStats.next_level_xp) * 100 + '%">' +
+            '</div>' +
+            '</div></li>' +
+            '<li class="collection-item">Start to play: ' + self.timeConverter(playerInfo.creation_timestamp_ms) +
+            (parseInt(currentTrainerStats.next_level_xp, 10) - currentTrainerStats.experience) + ')</li>' +
+            '<li class="collection-item">Stardust: ' + (parseFloat(playerInfo.currencies[1].amount) || 0) + '</li>' +
+            '<li class="collection-item">Pokecoin: ' + (parseFloat(playerInfo.currencies[0].amount) || 0) + '</li>' +
+            '<li class="collection-item">Exp: ' + currentTrainerStats.experience + ' (to next level: ' +
+            '<li class="collection-item">Kilometers walked: ' + (parseFloat(currentTrainerStats.km_walked).toFixed(3) || 0) + '</li>' +
+            '<li class="collection-item">Pokemon encountered: ' + (currentTrainerStats.pokemons_encountered || 0) + '</li>' +
+            '<li class="collection-item">Pokeballs thrown: ' + (currentTrainerStats.pokeballs_thrown || 0) + '</li>' +
+            '<li class="collection-item">Pokemon caught: ' + (currentTrainerStats.pokemons_captured || 0) + '</li>' +
+            '<li class="collection-item">Pokemon evolved: ' + (currentTrainerStats.evolutions || 0) + '</li>' +
+            '<li class="collection-item">Eggs hatched: ' + (currentTrainerStats.eggs_hatched || 0) + '</li>' +
+            '<li class="collection-item">Unique pokedex entries: ' + (currentTrainerStats.unique_pokedex_entries || 0) + '</li>' +
+            '<li class="collection-item">PokeStops visited: ' + (currentTrainerStats.poke_stop_visits || 0) + '</li>' +
+            '<li class="collection-item">Gym attacks won/total: ' + (currentTrainerStats.battle_attack_won || 0) + '/' +
+            (currentTrainerStats.battle_attack_total || 0) + '</li>' +
+            '<li class="collection-item">Gym training won/total: ' + (currentTrainerStats.battle_training_won || 0) + '/' +
+            (currentTrainerStats.battle_training_total || 0) + '</li>' +
+            '<li class="collection-item">Prestige raised: ' + (currentTrainerStats.prestige_raised_total || 0) + '</li>' +
+            '<li class="collection-item">Prestige dropped: ' + (currentTrainerStats.prestige_dropped_total || 0) + '</li>' +
+            '<li class="collection-item">Big magikarp caught: ' + (currentTrainerStats.big_magikarp_caught || 0) + '</li>' +
+            '<li class="collection-item">Small rattata caught: ' + (currentTrainerStats.small_rattata_caught || 0) + '</li>' +
+            '</ul>' +
+            '</div>' +
+            '</div>';
+
+        $('#subcontent').html(out);
+    },
+
+    showPokedexContent: function (trainerName) {
+        var self = this;
+
+        var pkmnTotal = self.trainer_data[trainerName].pokedex.length;
+        $('#subtitle').html('Pokedex ' + pkmnTotal + ' / 151');
+
+        var sortButtons = '<div class="col s12 pokedex-sort" dat-user-id="' + trainerName + '">Sort : ';
+        sortButtons += '<div class="chip"><a href="#" data-sort="id">ID</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="name">Name</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="enc">Seen</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="cap">Caught</a></div>';
+        sortButtons += '</div>';
+
+        $('#sort-buttons').html(sortButtons).removeClass('hide');
+
+        self.sortAndShowPokedex('id', trainerName);
+    },
+
+    showPokemonContent: function (trainerName) {
+        var self = this;
+
+        var pkmnTotal = self.trainer_data[trainerName].bagPokemon.length;
+        $('#subtitle').html(pkmnTotal + " Pokemon");
+
+        var sortButtons = '<div class="col s12 pokemon-sort" data-user-id="' + trainerName + '">Sort : ';
+        sortButtons += '<div class="chip"><a href="#" data-sort="cp">CP</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="iv">IV</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="name">Name</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="id">ID</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="time">Time</a></div>';
+        sortButtons += '</div>';
+
+        $('#sort-buttons').html(sortButtons).removeClass('hide');
+
+        self.sortAndShowBagPokemon('cp', trainerName);
+    },
+
+    showItemContent: function (trainerName) {
+        var self = this,
+            out;
+
+        var currentTrainerItems = self.trainer_data[trainerName].bagItems;
+        $('#subtitle').html(currentTrainerItems.length + " item" + (currentTrainerItems.length !== 1 ? "s" : "") + " in Bag");
+
+        $('#sort-buttons').html('').addClass('hide');
+
+        out = '<div class="items"><div class="row">';
+        for (var i = 0; i < currentTrainerItems.length; i++) {
+            out += '<div class="col s12 m6 l3 center" style="float: left"><img src="image/items/' +
+                currentTrainerItems[i].inventory_item_data.item.item_id +
+                '.png" class="item_img"><br><b>' +
+                self.itemsArray[currentTrainerItems[i].inventory_item_data.item.item_id] +
+                '</b><br>Count: ' +
+                (currentTrainerItems[i].inventory_item_data.item.count || 0) +
+                '</div>';
+        }
+        out += '</div></div>';
+        var nth = 0;
+        out = out.replace(/<\/div><div/g, function (match, i, original) {
+            nth++;
+            return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
+        });
+        $('#subcontent').html(out);
+    },
+
+    timeConverter: function (timestamp) {
+        var datetime = new Date(timestamp);
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var year = datetime.getFullYear();
+        var month = months[datetime.getMonth()];
+        var date = datetime.getDate();
+        var hour = datetime.getHours();
+        var min = datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes();
+        var sec = datetime.getSeconds() < 10 ? '0' + datetime.getSeconds() : datetime.getSeconds();
+        return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
     },
 
     filterInventory: function (arr, search) {
@@ -329,34 +460,33 @@ var trainerToolsView = {
         return filtered;
     },
 
-    getCandy: function (p_num, userId) {
-        var self = this,
-            user = self.trainer_data[self.settings.users[userId]];
+    getCandy: function (p_num, trainer) {
+        var self = this;
 
-        for (var i = 0; i < user.bagCandy.length; i++) {
-            var checkCandy = user.bagCandy[i].inventory_item_data.candy.family_id;
+        for (var i = 0; i < trainer.bagCandy.length; i++) {
+            var checkCandy = trainer.bagCandy[i].inventory_item_data.candy.family_id;
             if (self.pokemoncandyArray[p_num] === checkCandy) {
-                return (user.bagCandy[i].inventory_item_data.candy.candy || 0);
+                return (trainer.bagCandy[i].inventory_item_data.candy.candy || 0);
             }
         }
     },
 
-    getTeam: function (user) {
+    getTeam: function (trainerName) {
         var self = this,
-            playerInfo = self.trainer_data[user].player;
+            playerInfo = self.trainer_data[trainerName].player;
 
         if (playerInfo && typeof playerInfo !== 'undefined' && playerInfo.length !== 0) {
             return playerInfo.team;
         } else {
             self.log({
-                message: 'No team was found for ' + user + '.',
+                message: 'No team was found for ' + trainerName + '.',
                 color: "red-text"
             });
             return 0
         }
     },
 
-    pad_with_zeroes: function (number, length) {
+    addMissingZero: function (number, length) {
         var my_string = '' + number;
 
         while (my_string.length < length) {
@@ -365,23 +495,22 @@ var trainerToolsView = {
         return my_string;
     },
 
-    sortAndShowBagPokemon: function (sortOn, userId) {
+    sortAndShowBagPokemon: function (sortOn, trainerName) {
         var self = this,
             eggs = 0,
             sortedPokemon = [],
             out = '',
-            user = self.trainer_data[self.settings.users[userId]],
-            userId = userId || 0;
+            trainer = self.trainer_data[trainerName];
 
-        if (!user.bagPokemon.length) return;
+        if (!trainer.bagPokemon.length) return;
 
         out = '<div class="items"><div class="row">';
-        for (var i = 0; i < user.bagPokemon.length; i++) {
-            if (user.bagPokemon[i].inventory_item_data.pokemon_data.is_egg) {
+        for (var i = 0; i < trainer.bagPokemon.length; i++) {
+            if (trainer.bagPokemon[i].inventory_item_data.pokemon_data.is_egg) {
                 eggs++;
                 continue;
             }
-            var pokemonData = user.bagPokemon[i].inventory_item_data.pokemon_data,
+            var pokemonData = trainer.bagPokemon[i].inventory_item_data.pokemon_data,
                 pkmID = pokemonData.pokemon_id,
                 pkmnName = self.pokemonArray[pkmID - 1].Name,
                 pkmCP = pokemonData.cp,
@@ -452,14 +581,14 @@ var trainerToolsView = {
         }
         for (var i = 0; i < sortedPokemon.length; i++) {
             var pkmnNum = sortedPokemon[i].id,
-                pkmnImage = self.pad_with_zeroes(pkmnNum, 3) + '.png',
+                pkmnImage = self.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = self.pokemonArray[pkmnNum - 1].Name,
                 pkmnCP = sortedPokemon[i].cp,
                 pkmnIV = sortedPokemon[i].iv,
                 pkmnIVA = sortedPokemon[i].attack,
                 pkmnIVD = sortedPokemon[i].defense,
                 pkmnIVS = sortedPokemon[i].stamina,
-                candyNum = self.getCandy(pkmnNum, userId);
+                candyNum = self.getCandy(pkmnNum, trainer);
 
             out += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
                 pkmnImage +
@@ -486,18 +615,17 @@ var trainerToolsView = {
         $('#subcontent').html(out);
     },
 
-    sortAndShowPokedex: function (sortOn, userId) {
+    sortAndShowPokedex: function (sortOn, trainerName) {
         var self = this,
             out = '',
             sortedPokedex = [],
-            userId = (userId || 0),
-            user = self.trainer_data[self.settings.users[userId]];
+            trainer = self.trainer_data[trainerName];
 
-        if (!user.pokedex.length) return;
+        if (!trainer.pokedex.length) return;
 
         out = '<div class="items"><div class="row">';
-        for (var i = 0; i < user.pokedex.length; i++) {
-            var pokedex_entry = user.pokedex[i].inventory_item_data.pokedex_entry,
+        for (var i = 0; i < trainer.pokedex.length; i++) {
+            var pokedex_entry = trainer.pokedex[i].inventory_item_data.pokedex_entry,
                 pkmID = pokedex_entry.pokemon_id,
                 pkmnName = self.pokemonArray[pkmID - 1].Name,
                 pkmEnc = pokedex_entry.times_encountered,
@@ -541,16 +669,16 @@ var trainerToolsView = {
         }
         for (var i = 0; i < sortedPokedex.length; i++) {
             var pkmnNum = sortedPokedex[i].id,
-                pkmnImage = self.pad_with_zeroes(pkmnNum, 3) + '.png',
+                pkmnImage = self.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = self.pokemonArray[pkmnNum - 1].Name,
                 pkmnName = self.pokemonArray[pkmnNum - 1].Name,
                 pkmnEnc = sortedPokedex[i].enc,
                 pkmnCap = sortedPokedex[i].cap,
-                candyNum = self.getCandy(pkmnNum, userId);
+                candyNum = self.getCandy(pkmnNum, trainer);
             out += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
                 pkmnImage +
                 '" class="png_img"><br><b> ' +
-                self.pad_with_zeroes(pkmnNum, 3) +
+                self.addMissingZero(pkmnNum, 3) +
                 ' ' +
                 pkmnName +
                 '</b><br>Times Seen: ' +
@@ -598,15 +726,19 @@ var trainerToolsView = {
     },
 
     // Adds events to log panel and if it's closed sends Toast
-    log: function (log_object) {
+    log: function (log, onToast, toastClass) {
         var currentDate = new Date(),
             time = ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + (currentDate.getMinutes())).slice(-2);
 
         $("#logs-panel .card-content").append("<div class='log-item'>\
-  <span class='log-date'>" + time + "</span><p class='" + log_object.color + "'>" + log_object.message + "</p></div>");
+      <span class='log-date'>" + time + "</span><p class='" + log.color + "'>" + log.message + "</p></div>");
 
-        if (!$('#logs-panel').is(":visible")) {
-            Materialize.toast(log_object.message, 3000);
+        if (onToast && !$('#logs-panel').is(":visible")) {
+            var toastDesign = 'rounded';
+            if (toastClass && toastClass !== '') {
+                toastDesign += ' ' + toastClass;
+            }
+            Materialize.toast(log.message, 1500, toastDesign);
         }
     }
 };
