@@ -121,10 +121,10 @@ var trainerToolsView = {
         // Build content view when an item is selected
         body.on('click', "#section-button .btn-section", function () {
             var self = trainerToolsView,
-                contentId = $(this).data('section'),
+                sectionTarget = $(this).data('section-target'),
                 trainerName = self.settings.trainers[self.trainerId];
 
-            self.buildContentView(contentId, trainerName);
+            self.buildContentView(sectionTarget, trainerName);
         });
 
         body.on('click', '.close', function () {
@@ -309,11 +309,11 @@ var trainerToolsView = {
         });
     },
 
-    buildContentView: function (contentId, trainerName) {
+    buildContentView: function (sectionTarget, trainerName) {
         var self = this;
 
         $("#content").show();
-        switch (contentId) {
+        switch (sectionTarget) {
             case 'infos':
                 self.showInfosContent(trainerName);
                 break;

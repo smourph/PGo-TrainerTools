@@ -13,84 +13,94 @@
 </head>
 <body>
 
-<nav>
-    <div id="nav-wrapper" class="nav-wrapper black">
-        <a href="#" class="brand-logo left"><i class="trainertool-logo"></i></a>
-        <ul id="nav-mobile" class="right">
-            <li>
-                <a class="alone-button" href="#"></a>
-            </li>
-            <li>
-                <a class="dropdown-button hide" href="#" data-activates="trainers-list" data-beloworigin="true"
-                   data-constrainwidth="false">
-                    <span class="dropdown-title">Select a trainer</span>
-                    <i class="material-icons right">arrow_drop_down</i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<header>
+    <nav>
+        <div id="nav-wrapper" class="nav-wrapper black">
+            <a href="#" class="brand-logo left"><i class="trainertool-logo"></i></a>
+            <ul id="nav-mobile" class="right">
+                <li>
+                    <a class="alone-button" href="#"></a>
+                </li>
+                <li>
+                    <a class="dropdown-button hide" href="#" data-activates="trainers-list" data-beloworigin="true"
+                       data-constrainwidth="false">
+                        <span class="dropdown-title">Select a trainer</span>
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <ul id="trainers-list" class="dropdown-content"></ul>
+</header>
 
-<ul id="trainers-list" class="dropdown-content"></ul>
-
-<div id="content" class="bloc-content">
+<section id="content" class="bloc-content">
     <div class="row">
         <div class="col s12">
-            <div class="card white">
+            <article class="card white" data-section="welcome">
                 <div class="card-content black-text">
                     <span id="subtitle" class="card-title">Welcome to PGo - Trainer Tools !</span>
                     <span class="close">×</span>
                     <div id="sort-buttons" class="row bloc-list-button bloc-list-button-sort"></div>
                     <div id="subcontent"></div>
                 </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<aside id="section-menu-bloc">
+    <div id="section-button" class="fixed-action-btn click-to-toggle hide">
+        <a class="btn-floating btn-large waves-effect waves-light"><i class="section-button-logo"></i></a>
+        <ul>
+            <li>
+                <span class="mobile-fab-tip">Trainer infos</span>
+                <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped"
+                   data-section-target="infos"
+                   data-position="left" data-delay="100" data-tooltip="Trainer infos">
+                    <i class="info-logo"></i>
+                </a>
+            </li>
+            <li>
+                <span class="mobile-fab-tip">Pokedex</span>
+                <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped"
+                   data-section-target="pokedex"
+                   data-position="left" data-delay="100" data-tooltip="Pokedex">
+                    <i class="pokedex-logo"></i>
+                </a>
+            </li>
+            <li>
+                <span class="mobile-fab-tip">Pokemons in bag</span>
+                <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped"
+                   data-section-target="pokemon"
+                   data-position="left" data-delay="100" data-tooltip="Pokemons in bag">
+                    <i class="pokemon-logo"></i>
+                </a>
+            </li>
+            <li>
+                <span class="mobile-fab-tip">Items in bag</span>
+                <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped"
+                   data-section-target="item"
+                   data-position="left" data-delay="100" data-tooltip="Items in bag">
+                    <i class="bag-logo"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<aside id="logs-bloc">
+    <a id="logs-button" class="black waves-effect waves-light btn">Logs</a>
+
+    <div id="logs-panel">
+        <div class="card white">
+            <div class="card-content black-text">
+                <span class="title">Logs</span>
+                <div class="divider"></div>
             </div>
         </div>
     </div>
-</div>
-
-<div id="section-button" class="fixed-action-btn click-to-toggle hide">
-    <a class="btn-floating btn-large waves-effect waves-light"><i class="section-button-logo"></i></a>
-    <ul>
-        <li>
-            <span class="mobile-fab-tip">Trainer infos</span>
-            <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped" data-section="infos"
-               data-position="left" data-delay="100" data-tooltip="Trainer infos">
-                <i class="info-logo"></i>
-            </a>
-        </li>
-        <li>
-            <span class="mobile-fab-tip">Pokedex</span>
-            <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped" data-section="pokedex"
-               data-position="left" data-delay="100" data-tooltip="Pokedex">
-                <i class="pokedex-logo"></i>
-            </a>
-        </li>
-        <li>
-            <span class="mobile-fab-tip">Pokemons in bag</span>
-            <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped" data-section="pokemon"
-               data-position="left" data-delay="100" data-tooltip="Pokemons in bag">
-                <i class="pokemon-logo"></i>
-            </a>
-        </li>
-        <li>
-            <span class="mobile-fab-tip">Items in bag</span>
-            <a class="btn-section btn-floating btn-large waves-effect waves-light tooltipped" data-section="item"
-               data-position="left" data-delay="100" data-tooltip="Items in bag">
-                <i class="bag-logo"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<a id="logs-button" class="black waves-effect waves-light btn">Logs</a>
-
-<div id="logs-panel">
-    <div class="card white">
-        <div class="card-content black-text">
-            <b>Logs</b>
-        </div>
-    </div>
-</div>
+</aside>
 
 <!-- Compiled and minified jQuery -->
 <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>

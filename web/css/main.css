@@ -119,121 +119,121 @@ nav .brand-logo .left {
   left: 0.5rem;
 }
 /* Content bloc */
-.bloc-content .row {
+section.bloc-content .row {
   margin-bottom: 0;
 }
-.bloc-content .col {
+section.bloc-content .col {
   padding: 0 0.25rem;
 }
-.bloc-content .col .close {
+section.bloc-content .col .close {
   float: right;
   font-size: 32px;
   cursor: pointer;
   line-height: 48px;
 }
-.bloc-content .col .bloc-list-button.bloc-list-button-sort {
+section.bloc-content .col .bloc-list-button.bloc-list-button-sort {
   text-align: right;
 }
-.bloc-content .col .bloc-list-button.bloc-list-button-sort .chip {
+section.bloc-content .col .bloc-list-button.bloc-list-button-sort .chip {
   margin-right: 3px;
 }
-.bloc-content .col .items {
+section.bloc-content .col .items {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 80vh;
 }
-.bloc-content .col .item_img {
+section.bloc-content .col .item_img {
   width: 75px;
   height: auto;
 }
-.bloc-content .col .gif_img {
+section.bloc-content .col .gif_img {
   width: 38px;
   height: auto;
 }
-.bloc-content .col .png_img {
+section.bloc-content .col .png_img {
   width: 96px;
   height: auto;
 }
-.bloc-content .col .teambar-0 {
+section.bloc-content .col .teambar-0 {
   background-color: #BBB;
 }
-.bloc-content .col .teambar-1 {
+section.bloc-content .col .teambar-1 {
   background-color: #A9CCE3;
 }
-.bloc-content .col .teambar-2 {
+section.bloc-content .col .teambar-2 {
   background-color: #E6B0AA;
 }
-.bloc-content .col .teambar-3 {
+section.bloc-content .col .teambar-3 {
   background-color: #F9E79F;
 }
-.bloc-content .col .team-0 {
+section.bloc-content .col .team-0 {
   background-color: #777;
 }
-.bloc-content .col .team-1 {
+section.bloc-content .col .team-1 {
   background-color: #2471A3;
 }
-.bloc-content .col .team-2 {
+section.bloc-content .col .team-2 {
   background-color: #A93226;
 }
-.bloc-content .col .team-3 {
+section.bloc-content .col .team-3 {
   background-color: #D4AC0D;
 }
 /* Section menu bloc */
-#section-button {
+aside#section-menu-bloc .fixed-action-btn {
   bottom: 10px;
   right: 2.75rem;
   margin-right: -28px;
 }
-#section-button .section-button-logo {
+aside#section-menu-bloc .fixed-action-btn .section-button-logo {
   width: 55.5px;
   height: 55.5px;
   background: transparent url(../image/icons/pokemon_go_app_icon.png) no-repeat center center;
   background-size: 55.5px;
 }
-#section-button .btn-floating .bag-logo {
+aside#section-menu-bloc .fixed-action-btn .btn-floating .bag-logo {
   width: 55.5px;
   height: 54.5px;
   background: transparent url(../image/icons/Bag.png) no-repeat center center;
   background-size: 42px;
   margin-top: -1px;
 }
-#section-button .btn-floating .pokedex-logo {
+aside#section-menu-bloc .fixed-action-btn .btn-floating .pokedex-logo {
   width: 55.5px;
   height: 55.5px;
   background: transparent url(../image/icons/Pokedex.png) no-repeat center center;
   background-size: 44px;
 }
-#section-button .btn-floating .pokemon-logo {
+aside#section-menu-bloc .fixed-action-btn .btn-floating .pokemon-logo {
   width: 55.5px;
   height: 55.5px;
   background: transparent url(../image/icons/psyduck.png) no-repeat center center;
   background-size: 44px;
 }
-#section-button .btn-floating .info-logo {
+aside#section-menu-bloc .fixed-action-btn .btn-floating .info-logo {
   width: 55.5px;
   height: 53.5px;
   background: transparent url(../image/icons/pokemon_pokecenter.png) no-repeat center center;
   background-size: 42px;
   margin-top: 2px;
 }
-#section-button .btn-floating.red .info-logo {
+aside#section-menu-bloc .fixed-action-btn .btn-floating.red .info-logo {
   background-image: url(../image/icons/pokemon_moltres.png);
 }
-#section-button .btn-floating.blue .info-logo {
+aside#section-menu-bloc .fixed-action-btn .btn-floating.blue .info-logo {
   background-image: url(../image/icons/pokemon_articuro.png);
 }
-#section-button .btn-floating.yellow .info-logo {
+aside#section-menu-bloc .fixed-action-btn .btn-floating.yellow .info-logo {
   background-image: url(../image/icons/pokemon_zapdos.png);
 }
 /* Logs bloc */
-#logs-button {
+aside#logs-bloc #logs-button {
   position: fixed;
   z-index: 1000;
   left: 0.75rem;
   bottom: 10px;
   border-radius: 10px;
 }
-#logs-panel {
+aside#logs-bloc #logs-panel {
   display: none;
   position: fixed;
   height: 50vh;
@@ -241,15 +241,22 @@ nav .brand-logo .left {
   left: 0.75rem;
   bottom: 51px;
 }
-#logs-panel .card {
+aside#logs-bloc #logs-panel .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+aside#logs-bloc #logs-panel .divider {
+  margin: 3px 0;
+}
+aside#logs-bloc #logs-panel .card {
   overflow-y: scroll;
   height: 100%;
   margin: 0;
 }
-#logs-panel .card .log-item {
+aside#logs-bloc #logs-panel .card .log-item {
   padding: .3em 0 .3em 0;
   font-size: 14px;
 }
-#logs-panel .card .log-item .log-date {
+aside#logs-bloc #logs-panel .card .log-item .log-date {
   color: #666;
 }
