@@ -234,6 +234,12 @@ var trainerToolsView = {
 
                 var trainerName = trainers[self.trainerId];
 
+                // Hide and remove section content
+                $('#content').toggle();
+                $('#subtitle').html('');
+                $('#sort-buttons').html('').addClass('hide');
+                $('#subcontent').html('');
+
                 // Display trainer name in dropdown title
                 $('#nav-mobile').find('.dropdown-title').html(trainerName);
 
