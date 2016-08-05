@@ -735,10 +735,10 @@ var trainerToolsView = {
     // Adds events to log panel and if it's closed sends Toast
     log: function (log, onToast, toastClass) {
         var currentDate = new Date(),
-            time = ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + (currentDate.getMinutes())).slice(-2);
+            time = ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' + (currentDate.getMinutes())).slice(-2) + ':' + currentDate.getSeconds();
 
         $("#logs-panel .card-content").append("<div class='log-item'>\
-      <span class='log-date'>" + time + "</span><p class='" + log.color + "'>" + log.message + "</p></div>");
+      <span class='log-date'>" + time + " - </span><span class='" + log.color + "'>" + log.message + "</span></div>");
 
         if (onToast && !$('#logs-panel').is(":visible")) {
             var toastDesign = 'rounded';

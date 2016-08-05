@@ -51,9 +51,6 @@ html, body {
     font-size: 1.8rem;
     font-weight: bold;
   }
-  .card-content {
-    padding: 10px 20px 50px;
-  }
 }
 
 #toast-container {
@@ -121,74 +118,77 @@ section.bloc-content {
   }
   .col {
     padding: 0 0.25rem;
-    .close {
-      float: right;
-      font-size: 32px;
-      cursor: pointer;
-      line-height: 48px;
-    }
+    .card-content {
+      padding: 10px 20px 50px;
+      .close {
+        float: right;
+        font-size: 32px;
+        cursor: pointer;
+        line-height: 48px;
+      }
 
-    .bloc-list-button {
-      &.bloc-list-button-sort {
-        text-align: right;
+      .bloc-list-button {
+        &.bloc-list-button-sort {
+          text-align: right;
 
-        .chip {
-          margin-right: 3px;
+          .chip {
+            margin-right: 3px;
+          }
         }
       }
-    }
 
-    .items {
-      overflow-y: scroll;
-      overflow-x: hidden;
-      height: 80vh;
-    }
+      .items {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 80vh;
+      }
 
-    .item_img {
-      width: 75px;
-      height: auto;
-    }
+      .item_img {
+        width: 75px;
+        height: auto;
+      }
 
-    .gif_img {
-      width: 38px;
-      height: auto;
-    }
+      .gif_img {
+        width: 38px;
+        height: auto;
+      }
 
-    .png_img {
-      width: 96px;
-      height: auto;
-    }
+      .png_img {
+        width: 96px;
+        height: auto;
+      }
 
-    .teambar-0 {
-      background-color: #BBB;
-    }
+      .teambar-0 {
+        background-color: #BBB;
+      }
 
-    .teambar-1 {
-      background-color: #A9CCE3;
-    }
+      .teambar-1 {
+        background-color: #A9CCE3;
+      }
 
-    .teambar-2 {
-      background-color: #E6B0AA;
-    }
+      .teambar-2 {
+        background-color: #E6B0AA;
+      }
 
-    .teambar-3 {
-      background-color: #F9E79F;
-    }
+      .teambar-3 {
+        background-color: #F9E79F;
+      }
 
-    .team-0 {
-      background-color: #777;
-    }
+      .team-0 {
+        background-color: #777;
+      }
 
-    .team-1 {
-      background-color: #2471A3;
-    }
+      .team-1 {
+        background-color: #2471A3;
+      }
 
-    .team-2 {
-      background-color: #A93226;
-    }
+      .team-2 {
+        background-color: #A93226;
+      }
 
-    .team-3 {
-      background-color: #D4AC0D;
+      .team-3 {
+        background-color: #D4AC0D;
+      }
     }
   }
 }
@@ -265,10 +265,10 @@ aside.logs-bloc {
   .panel {
     display: none;
     position: fixed;
-    height: 50vh;
+    height: 40vh;
     z-index: 1000;
     left: 0.75rem;
-    bottom: 51px;
+    bottom: 56px;
     .title {
       font-size: 18px;
       font-weight: bold;
@@ -281,7 +281,7 @@ aside.logs-bloc {
       height: 100%;
       margin: 0;
       .log-item {
-        padding: .3em 0 .3em 0;
+        padding: 3px 0;
         font-size: 14px;
         .log-date {
           color: #666;

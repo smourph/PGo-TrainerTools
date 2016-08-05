@@ -48,9 +48,6 @@ body {
   font-size: 1.8rem;
   font-weight: bold;
 }
-.card .card-content {
-  padding: 10px 20px 50px;
-}
 #toast-container {
   top: auto !important;
   right: 5%;
@@ -111,57 +108,60 @@ section.bloc-content .row {
 section.bloc-content .col {
   padding: 0 0.25rem;
 }
-section.bloc-content .col .close {
+section.bloc-content .col .card-content {
+  padding: 10px 20px 50px;
+}
+section.bloc-content .col .card-content .close {
   float: right;
   font-size: 32px;
   cursor: pointer;
   line-height: 48px;
 }
-section.bloc-content .col .bloc-list-button.bloc-list-button-sort {
+section.bloc-content .col .card-content .bloc-list-button.bloc-list-button-sort {
   text-align: right;
 }
-section.bloc-content .col .bloc-list-button.bloc-list-button-sort .chip {
+section.bloc-content .col .card-content .bloc-list-button.bloc-list-button-sort .chip {
   margin-right: 3px;
 }
-section.bloc-content .col .items {
+section.bloc-content .col .card-content .items {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 80vh;
 }
-section.bloc-content .col .item_img {
+section.bloc-content .col .card-content .item_img {
   width: 75px;
   height: auto;
 }
-section.bloc-content .col .gif_img {
+section.bloc-content .col .card-content .gif_img {
   width: 38px;
   height: auto;
 }
-section.bloc-content .col .png_img {
+section.bloc-content .col .card-content .png_img {
   width: 96px;
   height: auto;
 }
-section.bloc-content .col .teambar-0 {
+section.bloc-content .col .card-content .teambar-0 {
   background-color: #BBB;
 }
-section.bloc-content .col .teambar-1 {
+section.bloc-content .col .card-content .teambar-1 {
   background-color: #A9CCE3;
 }
-section.bloc-content .col .teambar-2 {
+section.bloc-content .col .card-content .teambar-2 {
   background-color: #E6B0AA;
 }
-section.bloc-content .col .teambar-3 {
+section.bloc-content .col .card-content .teambar-3 {
   background-color: #F9E79F;
 }
-section.bloc-content .col .team-0 {
+section.bloc-content .col .card-content .team-0 {
   background-color: #777;
 }
-section.bloc-content .col .team-1 {
+section.bloc-content .col .card-content .team-1 {
   background-color: #2471A3;
 }
-section.bloc-content .col .team-2 {
+section.bloc-content .col .card-content .team-2 {
   background-color: #A93226;
 }
-section.bloc-content .col .team-3 {
+section.bloc-content .col .card-content .team-3 {
   background-color: #D4AC0D;
 }
 /* Section menu bloc */
@@ -222,10 +222,10 @@ aside.logs-bloc .button {
 aside.logs-bloc .panel {
   display: none;
   position: fixed;
-  height: 50vh;
+  height: 40vh;
   z-index: 1000;
   left: 0.75rem;
-  bottom: 51px;
+  bottom: 56px;
 }
 aside.logs-bloc .panel .title {
   font-size: 18px;
@@ -240,7 +240,7 @@ aside.logs-bloc .panel .card {
   margin: 0;
 }
 aside.logs-bloc .panel .card .log-item {
-  padding: .3em 0 .3em 0;
+  padding: 3px 0;
   font-size: 14px;
 }
 aside.logs-bloc .panel .card .log-item .log-date {
