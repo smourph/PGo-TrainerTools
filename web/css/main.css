@@ -165,61 +165,61 @@ section.bloc-content .col .team-3 {
   background-color: #D4AC0D;
 }
 /* Section menu bloc */
-aside#section-menu-bloc .fixed-action-btn {
+aside.section-menu-bloc .fixed-action-btn {
   bottom: 10px;
   right: 2.75rem;
   margin-right: -28px;
 }
-aside#section-menu-bloc .fixed-action-btn .section-button-logo {
+aside.section-menu-bloc .fixed-action-btn .section-button-logo {
   width: 55.5px;
   height: 55.5px;
   background: transparent url(../image/icons/pokemon_go_app_icon.png) no-repeat center center;
   background-size: 55.5px;
 }
-aside#section-menu-bloc .fixed-action-btn .btn-floating .bag-logo {
+aside.section-menu-bloc .fixed-action-btn .btn-floating .bag-logo {
   width: 55.5px;
   height: 54.5px;
   background: transparent url(../image/icons/Bag.png) no-repeat center center;
   background-size: 42px;
   margin-top: -1px;
 }
-aside#section-menu-bloc .fixed-action-btn .btn-floating .pokedex-logo {
+aside.section-menu-bloc .fixed-action-btn .btn-floating .pokedex-logo {
   width: 55.5px;
   height: 55.5px;
   background: transparent url(../image/icons/Pokedex.png) no-repeat center center;
   background-size: 44px;
 }
-aside#section-menu-bloc .fixed-action-btn .btn-floating .pokemon-logo {
+aside.section-menu-bloc .fixed-action-btn .btn-floating .pokemon-logo {
   width: 55.5px;
   height: 55.5px;
   background: transparent url(../image/icons/psyduck.png) no-repeat center center;
   background-size: 44px;
 }
-aside#section-menu-bloc .fixed-action-btn .btn-floating .info-logo {
+aside.section-menu-bloc .fixed-action-btn .btn-floating .info-logo {
   width: 55.5px;
   height: 53.5px;
   background: transparent url(../image/icons/pokemon_pokecenter.png) no-repeat center center;
   background-size: 42px;
   margin-top: 2px;
 }
-aside#section-menu-bloc .fixed-action-btn .btn-floating.red .info-logo {
+aside.section-menu-bloc .fixed-action-btn .btn-floating.red .info-logo {
   background-image: url(../image/icons/pokemon_moltres.png);
 }
-aside#section-menu-bloc .fixed-action-btn .btn-floating.blue .info-logo {
+aside.section-menu-bloc .fixed-action-btn .btn-floating.blue .info-logo {
   background-image: url(../image/icons/pokemon_articuro.png);
 }
-aside#section-menu-bloc .fixed-action-btn .btn-floating.yellow .info-logo {
+aside.section-menu-bloc .fixed-action-btn .btn-floating.yellow .info-logo {
   background-image: url(../image/icons/pokemon_zapdos.png);
 }
 /* Logs bloc */
-aside#logs-bloc #logs-button {
+aside.logs-bloc .button {
   position: fixed;
   z-index: 1000;
   left: 0.75rem;
   bottom: 10px;
   border-radius: 10px;
 }
-aside#logs-bloc #logs-panel {
+aside.logs-bloc .panel {
   display: none;
   position: fixed;
   height: 50vh;
@@ -227,22 +227,22 @@ aside#logs-bloc #logs-panel {
   left: 0.75rem;
   bottom: 51px;
 }
-aside#logs-bloc #logs-panel .title {
+aside.logs-bloc .panel .title {
   font-size: 18px;
   font-weight: bold;
 }
-aside#logs-bloc #logs-panel .divider {
+aside.logs-bloc .panel .divider {
   margin: 3px 0;
 }
-aside#logs-bloc #logs-panel .card {
+aside.logs-bloc .panel .card {
   overflow-y: scroll;
   height: 100%;
   margin: 0;
 }
-aside#logs-bloc #logs-panel .card .log-item {
+aside.logs-bloc .panel .card .log-item {
   padding: .3em 0 .3em 0;
   font-size: 14px;
 }
-aside#logs-bloc #logs-panel .card .log-item .log-date {
+aside.logs-bloc .panel .card .log-item .log-date {
   color: #666;
 }
