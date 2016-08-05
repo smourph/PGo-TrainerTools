@@ -111,10 +111,11 @@ var trainerToolsView = {
         });
 
         // Close section menu on clic everywhere
-        body.click(function () {
+        body.click(function (e) {
             var fab = $('#section-button');
             if (fab.hasClass('active')) {
                 fab.closeFAB();
+                e.stopPropagation();
             }
         });
 
