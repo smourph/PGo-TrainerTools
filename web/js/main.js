@@ -94,7 +94,6 @@ var trainerToolsView = {
         self.initView();
     },
 
-    // TODO: recheck de la fonction quand tous les menus seront présents
     bindUI: function () {
         var self = this;
 
@@ -125,7 +124,7 @@ var trainerToolsView = {
                 sectionTarget = $(this).data('section-target'),
                 trainerName = self.settings.trainers[self.trainerId];
 
-            self.buildContentView(sectionTarget, trainerName);
+            self.showContent(sectionTarget);
         });
 
         body.on('click', '.close', function () {
@@ -235,12 +234,6 @@ var trainerToolsView = {
 
                 var trainerName = trainers[self.trainerId];
 
-                // Hide and remove section content
-                $('#content').toggle();
-                $('#subtitle').html('');
-                $('#sort-buttons').html('').addClass('hide');
-                $('#subcontent').html('');
-
                 // Display trainer name in dropdown title
                 $('#nav-mobile').find('.dropdown-title').html(trainerName);
 
@@ -249,6 +242,9 @@ var trainerToolsView = {
 
                 // Show section menu
                 $('#section-button').removeClass('hide');
+
+                // Build content card
+                self.buildAllContents(trainerName)
             });
 
             aloneMenu.addClass('hide');
@@ -260,10 +256,15 @@ var trainerToolsView = {
             // Simulate trainer selection
             self.trainerId = 0;
             var trainerName = trainers[self.trainerId];
+
             // Apply team color
             self.applyTrainerTeamColor(trainerName);
+
             // Show section menu
             $('#section-button').removeClass('hide');
+
+            // Build content card
+            self.buildAllContents(trainerName)
         }
     },
 
@@ -310,37 +311,31 @@ var trainerToolsView = {
         });
     },
 
-    buildContentView: function (sectionTarget, trainerName) {
+    buildAllContents: function (trainerName) {
         var self = this;
 
-        $("#content").show();
-        switch (sectionTarget) {
-            case 'infos':
-                self.showInfosContent(trainerName);
-                break;
-            case 'pokedex':
-                self.showPokedexContent(trainerName);
-                break;
-            case 'pokemon':
-                self.showPokemonContent(trainerName);
-                break;
-            case 'item':
-                self.showItemContent(trainerName);
-                break;
-            default:
-                break;
-        }
+        // Build info card
+        self.buildInfosContent(trainerName);
+
+        // Build pokemon card
+        self.buildPokemonContent(trainerName);
+
+        // Build pokedex card
+        self.buildPokedexContent(trainerName);
+
+        // Build item card
+        self.buildItemContent(trainerName);
     },
 
-    showInfosContent: function (trainerName) {
+    buildInfosContent: function (trainerName) {
         var self = this,
+            container = $('article.content[data-section="info"]'),
             currentTrainerStats = self.trainer_data[trainerName].stats[0].inventory_item_data.player_stats,
             playerInfo = self.trainer_data[trainerName].player,
             team = self.getTeam(trainerName),
             out;
 
-        $('#subtitle').html('Trainer Infos');
-        $('#sort-buttons').html('').addClass('hide');
+        container.find('.subtitle').html('Trainer Infos');
 
         out = '<div class="row">' +
             '<div class="col s12">' +
@@ -376,32 +371,15 @@ var trainerToolsView = {
             '</div>' +
             '</div>';
 
-        $('#subcontent').html(out);
+        container.find('.subcontent').html(out);
     },
 
-    showPokedexContent: function (trainerName) {
-        var self = this;
-
-        var pkmnTotal = self.trainer_data[trainerName].pokedex.length;
-        $('#subtitle').html('Pokedex ' + pkmnTotal + ' / 151');
-
-        var sortButtons = '<div class="col s12 pokedex-sort" dat-user-id="' + trainerName + '">Sort : ';
-        sortButtons += '<div class="chip"><a href="#" data-sort="id">ID</a></div>';
-        sortButtons += '<div class="chip"><a href="#" data-sort="name">Name</a></div>';
-        sortButtons += '<div class="chip"><a href="#" data-sort="enc">Seen</a></div>';
-        sortButtons += '<div class="chip"><a href="#" data-sort="cap">Caught</a></div>';
-        sortButtons += '</div>';
-
-        $('#sort-buttons').html(sortButtons).removeClass('hide');
-
-        self.sortAndShowPokedex('id', trainerName);
-    },
-
-    showPokemonContent: function (trainerName) {
-        var self = this;
+    buildPokemonContent: function (trainerName) {
+        var self = this,
+            container = $('article.content[data-section="pokemon"]');
 
         var pkmnTotal = self.trainer_data[trainerName].bagPokemon.length;
-        $('#subtitle').html(pkmnTotal + " Pokemon");
+        container.find('.subtitle').html(pkmnTotal + " Pokemon");
 
         var sortButtons = '<div class="col s12 pokemon-sort" data-user-id="' + trainerName + '">Sort : ';
         sortButtons += '<div class="chip"><a href="#" data-sort="cp">CP</a></div>';
@@ -410,20 +388,38 @@ var trainerToolsView = {
         sortButtons += '<div class="chip"><a href="#" data-sort="id">ID</a></div>';
         sortButtons += '<div class="chip"><a href="#" data-sort="time">Time</a></div>';
         sortButtons += '</div>';
+        container.find('.sort-buttons').html(sortButtons);
 
-        $('#sort-buttons').html(sortButtons).removeClass('hide');
-
-        self.sortAndShowBagPokemon('cp', trainerName);
+        var pokemonList = self.sortAndShowBagPokemon('cp', trainerName);
+        container.find('.subcontent').html(pokemonList);
     },
 
-    showItemContent: function (trainerName) {
+    buildPokedexContent: function (trainerName) {
         var self = this,
+            container = $('article.content[data-section="pokedex"]');
+
+        var pkmnTotal = self.trainer_data[trainerName].pokedex.length;
+        container.find('.subtitle').html('Pokedex ' + pkmnTotal + ' / 151');
+
+        var sortButtons = '<div class="col s12 pokedex-sort" dat-user-id="' + trainerName + '">Sort : ';
+        sortButtons += '<div class="chip"><a href="#" data-sort="id">ID</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="name">Name</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="enc">Seen</a></div>';
+        sortButtons += '<div class="chip"><a href="#" data-sort="cap">Caught</a></div>';
+        sortButtons += '</div>';
+        container.find('.sort-buttons').html(sortButtons);
+
+        var pokemonList = self.sortAndShowPokedex('id', trainerName);
+        container.find('.subcontent').html(pokemonList);
+    },
+
+    buildItemContent: function (trainerName) {
+        var self = this,
+            container = $('article.content[data-section="item"]'),
             out;
 
         var currentTrainerItems = self.trainer_data[trainerName].bagItems;
-        $('#subtitle').html(currentTrainerItems.length + " item" + (currentTrainerItems.length !== 1 ? "s" : "") + " in Bag");
-
-        $('#sort-buttons').html('').addClass('hide');
+        container.find('.subtitle').html(currentTrainerItems.length + " item" + (currentTrainerItems.length !== 1 ? "s" : "") + " in Bag");
 
         out = '<div class="items"><div class="row">';
         for (var i = 0; i < currentTrainerItems.length; i++) {
@@ -441,7 +437,17 @@ var trainerToolsView = {
             nth++;
             return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
         });
-        $('#subcontent').html(out);
+        container.find('.subcontent').html(out);
+    },
+
+    showContent: function (sectionTarget) {
+        // Hides all contents
+        $("article.content").addClass('hide');
+
+        // Show target content
+        $("article.content[data-section=" + sectionTarget + "]").removeClass('hide');
+
+        $('#content').show();
     },
 
     timeConverter: function (timestamp) {
@@ -619,7 +625,8 @@ var trainerToolsView = {
             nth++;
             return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
         });
-        $('#subcontent').html(out);
+
+        return out;
     },
 
     sortAndShowPokedex: function (sortOn, trainerName) {
@@ -702,7 +709,8 @@ var trainerToolsView = {
             nth++;
             return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
         });
-        $('#subcontent').html(out);
+
+        return out;
     },
 
     loadJSON: function (path, success, error, successData) {
