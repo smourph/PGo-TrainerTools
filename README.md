@@ -86,7 +86,8 @@ TODO
 
 ## TODO list
 
-* [ ] Launch a scan directly with javascript
+* [ ] **Redesign pokemons in bag, items in bag and pokedex**
+* [ ] **Launch a scan directly with javascript**
 * [ ] Use an Object Oriented API
 * [ ] Complete README.md section
 * [ ] Complete wiki section (Home, Getting started, FAQ, Dev guidelines)
