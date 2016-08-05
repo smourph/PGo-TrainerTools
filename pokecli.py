@@ -151,11 +151,11 @@ def main():
     # backup latest output files
     now = str(int(time.time()))
     if os.path.isfile(web_inventory_user):
-        copyfile(web_inventory_user, web_inventory_user + now)
+        copyfile(web_inventory_user, web_inventory_user + '.' + now)
     if os.path.isfile(web_player_user):
-        copyfile(web_player_user, web_player_user + now)
+        copyfile(web_player_user, web_player_user + '.' + now)
     if os.path.isfile(web_settings_user):
-        copyfile(web_settings_user, web_settings_user + now)
+        copyfile(web_settings_user, web_settings_user + '.' + now)
 
     # write the output inventory file
     inventory_dict = response_dict['responses']['GET_INVENTORY'][
