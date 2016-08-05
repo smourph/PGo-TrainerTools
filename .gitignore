@@ -1,3 +1,27 @@
+# Project ignore files #
+
+# Useless OS files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenvs
+env/
+venv/
+
+# Personal load details
+config.json
+web/config/trainersdata.js
+web/inventory-*.json*
+web/player-*.json*
+web/settings-*.json*
+
+
+
 # Created by https://www.gitignore.io/api/python,intellij,netbeans,eclipse
 
 ### Python ###
@@ -190,11 +214,3 @@ local.properties
 
 # Code Recommenders
 .recommenders/
-
-# Personal load details
-web/less/main.less
-config.json
-web/config/trainersdata.js
-web/inventory-*
-web/player-*
-web/settings-*
