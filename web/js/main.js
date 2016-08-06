@@ -54,7 +54,6 @@ var trainerTools = {
     pokemoncandyArray: {},
     itemsArray: {},
 
-    trainerId: 0,
     trainerData: {},
 
     init: function () {
@@ -68,7 +67,9 @@ var trainerTools = {
         this.loadTrainers();
 
         // Design view
-        this.initView();
+        setTimeout(function () {
+            trainerTools.initView();
+        }, 250);
 
         // Bind UI events
         this.bindUIEvents();
@@ -83,17 +84,17 @@ var trainerTools = {
 
         this.loadJSON(pokemonsJsonFile, function (data) {
             trainerTools.pokemonArray = data;
-            trainerTools.successLog(pokemonsJsonFile + ' loaded !');
+            trainerTools.successLog(pokemonsJsonFile + ' loaded!');
         }, null, this.errorLog, 'Failed to load \'' + pokemonsJsonFile + '\' file', true);
 
         this.loadJSON(candiesJsonFile, function (data) {
             trainerTools.pokemoncandyArray = data;
-            trainerTools.successLog(candiesJsonFile + ' loaded !');
+            trainerTools.successLog(candiesJsonFile + ' loaded!');
         }, null, this.errorLog, 'Failed to load \'' + candiesJsonFile + '\' file', true);
 
         this.loadJSON(itemsJsonFile, function (data) {
             trainerTools.itemsArray = data;
-            trainerTools.successLog(itemsJsonFile + ' loaded !');
+            trainerTools.successLog(itemsJsonFile + ' loaded!');
         }, null, this.errorLog, 'Failed to load \'' + itemsJsonFile + '\' file', true);
     },
 
@@ -102,14 +103,14 @@ var trainerTools = {
             trainerName,
             inventoryJson,
             playerJson,
-            settingsJson;
+            settingsJson,
+            noSettingFound = 'No setting was found for trainer in config/trainersdata.js';
 
         if (trainersNameList.length >= 1) {
             this.infoLog('Starting to load trainers data...');
 
             for (var i = 0; i < trainersNameList.length; i++) {
                 trainerName = trainersNameList[i];
-                this.trainerData[trainerName] = {};
 
                 inventoryJson = 'inventory-' + trainerName + '.json';
                 playerJson = 'player-' + trainerName + '.json';
@@ -119,10 +120,11 @@ var trainerTools = {
                 this.loadJSON(playerJson, this.setPlayerData, trainerName, this.errorLog);
                 this.loadJSON(settingsJson, this.setSettingsData, trainerName, this.errorLog);
 
-                this.successLog(trainerName + ' data loaded !');
+                this.successLog(trainerName + ' data loaded!');
             }
         } else {
-            this.errorLog('None setting was found for trainer in config/trainersdata.js', true);
+            this.errorLogAndConsole(noSettingFound, true);
+            this.buildErrorContent(noSettingFound);
         }
     },
 
@@ -164,44 +166,64 @@ var trainerTools = {
         var trainers = this.settings.trainers,
             navContainer = $('#nav-mobile'),
             dropDownMenu = navContainer.find('.dropdown-button'),
-            aloneMenu = navContainer.find('.alone-button'),
+            aloneButton = navContainer.find('.alone-button'),
             trainersNameList = $('#trainers-list'),
-            html = '';
+            atLeastOneTrainer = false,
+            noDataFoundMessage = 'No trainer data found in web directory!<br/>' +
+                'Please, check you have already fetch some data with python scan tool then reload this page',
+            noDataFoundMessageNavBar = 'No trainer data found',
+            html;
 
         if (trainers.length > 1) {
             for (var i = 0; i < trainers.length; i++) {
-                html += '<li>' +
-                    '<a href="#" class="trainer black-text" data-trainer-id="' + i + '">' + trainers[i] + '</a>' +
-                    '</li>';
+                if (typeof this.trainerData[trainers[i]] !== 'undefined') {
+                    html = '<li>' +
+                        '<a href="#" class="trainer black-text" data-trainer-id="' + i + '">' + trainers[i] + '</a>' +
+                        '</li>';
+                    trainersNameList.append(html);
+                    atLeastOneTrainer = true;
+                }
             }
-            trainersNameList.html(html);
 
-            // Bind event when user select a trainer in list
-            trainersNameList.on('click', '.trainer', function () {
-                // Get trainer name
-                trainerTools.trainerId = $(this).data('trainer-id');
-                var trainerName = trainers[trainerTools.trainerId];
+            if (atLeastOneTrainer) {
+                // Bind event when user select a trainer in list
+                trainersNameList.on('click', '.trainer', function () {
+                    // Get trainer name
+                    var trainerId = $(this).data('trainer-id');
+                    var trainerName = trainers[trainerId];
 
-                // Display trainer name in dropdown title
-                $('#nav-mobile').find('.dropdown-title').html(trainerName);
+                    // Display trainer name in dropdown title
+                    $('#nav-mobile').find('.dropdown-title').html(trainerName);
 
-                // Set team color and build contents
-                trainerTools.activateUserAndBuildContents(trainerName);
-            });
+                    // Set team color and build contents
+                    trainerTools.activateUserAndBuildContents(trainerName);
+                });
 
-            aloneMenu.addClass('hide');
-            dropDownMenu.removeClass('hide');
-        } else if (trainers.length === 1) {
+                aloneButton.addClass('hide');
+                dropDownMenu.removeClass('hide');
+            } else {
+                aloneButton.html(noDataFoundMessageNavBar);
+                this.buildErrorContent(noDataFoundMessage);
+            }
+        } else if (trainers.length === 1 && typeof this.trainerData[trainers[0]] !== 'undefined') {
             // Get trainer name
-            this.trainerId = 0;
-            var trainerName = trainers[this.trainerId];
+            var trainerName = trainers[0];
 
             // Display trainer name in navbar
-            aloneMenu.html(trainerName);
+            aloneButton.html(trainerName);
 
             // Set team color and build contents
             this.activateUserAndBuildContents(trainerName);
+        } else {
+            aloneButton.html(noDataFoundMessageNavBar);
+            this.buildErrorContent(noDataFoundMessage);
         }
+    },
+
+    buildErrorContent: function (errorMessage) {
+        var container = $('article.content[data-section="welcome"]'),
+            html = '<div class="row"><div class="col s12 red-text">' + errorMessage + '</div></div>';
+        container.find('.subcontent').html(html);
     },
 
     activateUserAndBuildContents: function (trainerName) {
@@ -618,12 +640,15 @@ var trainerTools = {
         if (playerInfo && typeof playerInfo !== 'undefined' && playerInfo.length !== 0) {
             return playerInfo.team;
         } else {
-            this.errorLog('No team was found for ' + trainerName + '.');
+            this.errorLogAndConsole('No team was found for ' + trainerName + '.');
             return 0;
         }
     },
 
     setInventoryData: function (data, trainerName) {
+        if (typeof trainerTools.trainerData[trainerName] === 'undefined') {
+            trainerTools.trainerData[trainerName] = {};
+        }
         trainerTools.trainerData[trainerName].bagCandy = trainerTools.filterInventory(data, 'candy');
         trainerTools.trainerData[trainerName].bagItems = trainerTools.filterInventory(data, 'item');
         trainerTools.trainerData[trainerName].bagPokemon = trainerTools.filterInventory(data, 'pokemon_data');
@@ -632,10 +657,16 @@ var trainerTools = {
     },
 
     setPlayerData: function (data, trainerName) {
+        if (typeof trainerTools.trainerData[trainerName] === 'undefined') {
+            trainerTools.trainerData[trainerName] = {};
+        }
         trainerTools.trainerData[trainerName].player = data;
     },
 
     setSettingsData: function (data, trainerName) {
+        if (typeof trainerTools.trainerData[trainerName] === 'undefined') {
+            trainerTools.trainerData[trainerName] = {};
+        }
         trainerTools.trainerData[trainerName].settings = data;
     },
 
@@ -677,6 +708,13 @@ var trainerTools = {
     },
 
     errorLog: function (message, addToast) {
+        trainerTools.log({
+            message: message,
+            color: "red-text"
+        }, addToast, 'red');
+    },
+
+    errorLogAndConsole: function (message, addToast) {
         console.error(message);
 
         trainerTools.log({
