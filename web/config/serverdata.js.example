@@ -1,0 +1,5 @@
+var pythonServerInfo = {
+    url_scan: 'URL_OF_PYTHON_API (remote_api.py)',
+    default_location: 'DEFAULT_LOCATION'
+    gmapApiKey: "GOOGLE_MAP_API_KEY"
+};

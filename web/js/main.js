@@ -49,6 +49,7 @@ var trainerTools = {
     ],
 
     settings: {},
+    pythonServer: {},
 
     pokemonArray: {},
     pokemoncandyArray: {},
@@ -60,6 +61,9 @@ var trainerTools = {
         // Load settings from trainersdata.js
         this.settings = $.extend(true, this.settings, trainersInfo);
 
+        // Load settings from serverdata.js
+        this.pythonServer = $.extend(true, this.pythonServer, pythonServerInfo);
+
         // Load datagame files
         this.loadDatagameFiles();
 
@@ -69,7 +73,7 @@ var trainerTools = {
         // Design view
         setTimeout(function () {
             trainerTools.initView();
-        }, 250);
+        }, 1000);
 
         // Bind UI events
         this.bindUIEvents();
@@ -84,17 +88,17 @@ var trainerTools = {
 
         this.loadJSON(pokemonsJsonFile, function (data) {
             trainerTools.pokemonArray = data;
-            trainerTools.successLog(pokemonsJsonFile + ' loaded!');
+            trainerTools.successLog(pokemonsJsonFile + ' loaded');
         }, null, this.errorLog, 'Failed to load \'' + pokemonsJsonFile + '\' file', true);
 
         this.loadJSON(candiesJsonFile, function (data) {
             trainerTools.pokemoncandyArray = data;
-            trainerTools.successLog(candiesJsonFile + ' loaded!');
+            trainerTools.successLog(candiesJsonFile + ' loaded');
         }, null, this.errorLog, 'Failed to load \'' + candiesJsonFile + '\' file', true);
 
         this.loadJSON(itemsJsonFile, function (data) {
             trainerTools.itemsArray = data;
-            trainerTools.successLog(itemsJsonFile + ' loaded!');
+            trainerTools.successLog(itemsJsonFile + ' loaded');
         }, null, this.errorLog, 'Failed to load \'' + itemsJsonFile + '\' file', true);
     },
 
@@ -119,8 +123,6 @@ var trainerTools = {
                 this.loadJSON(inventoryJson, this.setInventoryData, trainerName, this.errorLog);
                 this.loadJSON(playerJson, this.setPlayerData, trainerName, this.errorLog);
                 this.loadJSON(settingsJson, this.setSettingsData, trainerName, this.errorLog);
-
-                this.successLog(trainerName + ' data loaded!');
             }
         } else {
             this.errorLogAndConsole(noSettingFound, true);
@@ -134,6 +136,35 @@ var trainerTools = {
     },
 
     bindUIEvents: function () {
+        // Launch a scan
+        $('#scan-logo').click(function () {
+            var gmapApiKey = trainerTools.pythonServer.gmapApiKey,
+                location;
+
+            $.ajax({
+                url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + gmapApiKey,
+                type: "POST",
+                success: function (data) {
+                    if (typeof data !== 'undefined' &&
+                        typeof data.accuracy !== 'undefined' &&
+                        typeof data.location !== 'undefined' &&
+                        typeof data.location.lat !== 'undefined' &&
+                        typeof data.location.lng !== 'undefined' &&
+                        data.accuracy < 2000) {
+                        location = data.location.lat + ',' + data.location.lng
+                    } else {
+                        location = trainerTools.pythonServer.defaultLocation;
+                    }
+                },
+                error: function () {
+                    location = trainerTools.pythonServer.defaultLocation;
+                },
+                complete: function () {
+                    trainerTools.doAPokeScan(location);
+                }
+            });
+        });
+
         // Open / close logs panels
         $('#logs-button').click(function () {
             $('#logs-panel').toggle();
@@ -171,10 +202,11 @@ var trainerTools = {
             atLeastOneTrainer = false,
             noDataFoundMessage = 'No trainer data found in web directory!<br/>' +
                 'Please, check you have already fetch some data with python scan tool then reload this page',
-            noDataFoundMessageNavBar = 'No trainer data found',
+            noDataFoundMessageShort = 'No trainer data found',
             html;
 
         if (trainers.length > 1) {
+            trainersNameList.empty();
             for (var i = 0; i < trainers.length; i++) {
                 if (typeof this.trainerData[trainers[i]] !== 'undefined') {
                     html = '<li>' +
@@ -198,11 +230,15 @@ var trainerTools = {
                     // Set team color and build contents
                     trainerTools.activateUserAndBuildContents(trainerName);
                 });
+                
+                // Remove error content if exists
+                this.buildErrorContent('');
 
                 aloneButton.addClass('hide');
                 dropDownMenu.removeClass('hide');
             } else {
-                aloneButton.html(noDataFoundMessageNavBar);
+                aloneButton.html(noDataFoundMessageShort);
+                this.errorLog(noDataFoundMessageShort);
                 this.buildErrorContent(noDataFoundMessage);
             }
         } else if (trainers.length === 1 && typeof this.trainerData[trainers[0]] !== 'undefined') {
@@ -212,10 +248,14 @@ var trainerTools = {
             // Display trainer name in navbar
             aloneButton.html(trainerName);
 
+            // Remove error content if exists
+            this.buildErrorContent('');
+
             // Set team color and build contents
             this.activateUserAndBuildContents(trainerName);
         } else {
-            aloneButton.html(noDataFoundMessageNavBar);
+            aloneButton.html(noDataFoundMessageShort);
+            this.errorLog(noDataFoundMessageShort);
             this.buildErrorContent(noDataFoundMessage);
         }
     },
@@ -227,6 +267,9 @@ var trainerTools = {
     },
 
     activateUserAndBuildContents: function (trainerName) {
+        this.successLog(trainerName + ' player loaded');
+        this.successLog('Player data last updated: ' + this.timeConverterFullDate(this.trainerData[trainerName].lastUpdateTimestamp));
+
         // Build content card
         this.buildAllContents(trainerName);
 
@@ -269,8 +312,8 @@ var trainerTools = {
             (currentTrainerStats.experience / currentTrainerStats.next_level_xp) * 100 + '%">' +
             '</div>' +
             '</div></li>' +
-            '<li class="collection-item">Start to play: ' + this.timeConverter(playerInfo.creation_timestamp_ms) +
-            (parseInt(currentTrainerStats.next_level_xp, 10) - currentTrainerStats.experience) + ')</li>' +
+            '<li class="collection-item">Start to play: ' + this.timeConverterFullDate(playerInfo.creation_timestamp_ms) +
+            (parseInt(currentTrainerStats.next_level_xp, 10) - currentTrainerStats.experience) + '</li>' +
             '<li class="collection-item">Stardust: ' + (parseFloat(playerInfo.currencies[1].amount) || 0) + '</li>' +
             '<li class="collection-item">Pokecoin: ' + (parseFloat(playerInfo.currencies[0].amount) || 0) + '</li>' +
             '<li class="collection-item">Exp: ' + currentTrainerStats.experience + ' (to next level: ' +
@@ -298,10 +341,10 @@ var trainerTools = {
     },
 
     buildPokemonContent: function (trainerName) {
-        var container = $('article.content[data-section="pokemon"]');
+        var container = $('article.content[data-section="pokemon"]'),
+            pkmnTotal = this.trainerData[trainerName].bagPokemon.length;
 
-        var pkmnTotal = this.trainerData[trainerName].bagPokemon.length;
-        container.find('.subtitle').html(pkmnTotal + " Pokemon");
+        container.find('.subtitle').html(pkmnTotal + ' Pokemon');
 
         var sortButtons = '<div class="col s12" data-user-id="' + trainerName + '">Sort : ';
         sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="cp">CP</a></div>';
@@ -324,9 +367,9 @@ var trainerTools = {
     },
 
     buildPokedexContent: function (trainerName) {
-        var container = $('article.content[data-section="pokedex"]');
+        var container = $('article.content[data-section="pokedex"]'),
+            pkmnTotal = this.trainerData[trainerName].pokedex.length;
 
-        var pkmnTotal = this.trainerData[trainerName].pokedex.length;
         container.find('.subtitle').html('Pokedex ' + pkmnTotal + ' / 151');
 
         var sortButtons = '<div class="col s12" dat-user-id="' + trainerName + '">Sort : ';
@@ -350,10 +393,10 @@ var trainerTools = {
 
     buildItemContent: function (trainerName) {
         var container = $('article.content[data-section="item"]'),
+            currentTrainerItems = this.trainerData[trainerName].bagItems,
             html;
 
-        var currentTrainerItems = this.trainerData[trainerName].bagItems;
-        container.find('.subtitle').html(currentTrainerItems.length + " item" + (currentTrainerItems.length !== 1 ? "s" : "") + " in Bag");
+        container.find('.subtitle').html(currentTrainerItems.length + ' item' + (currentTrainerItems.length !== 1 ? 's' : '') + ' in Bag');
 
         html = '<div class="items"><div class="row">';
         for (var i = 0; i < currentTrainerItems.length; i++) {
@@ -640,7 +683,7 @@ var trainerTools = {
         if (playerInfo && typeof playerInfo !== 'undefined' && playerInfo.length !== 0) {
             return playerInfo.team;
         } else {
-            this.errorLogAndConsole('No team was found for ' + trainerName + '.');
+            this.errorLog('No team was found for ' + trainerName + '.');
             return 0;
         }
     },
@@ -649,11 +692,14 @@ var trainerTools = {
         if (typeof trainerTools.trainerData[trainerName] === 'undefined') {
             trainerTools.trainerData[trainerName] = {};
         }
-        trainerTools.trainerData[trainerName].bagCandy = trainerTools.filterInventory(data, 'candy');
-        trainerTools.trainerData[trainerName].bagItems = trainerTools.filterInventory(data, 'item');
-        trainerTools.trainerData[trainerName].bagPokemon = trainerTools.filterInventory(data, 'pokemon_data');
-        trainerTools.trainerData[trainerName].pokedex = trainerTools.filterInventory(data, 'pokedex_entry');
-        trainerTools.trainerData[trainerName].stats = trainerTools.filterInventory(data, 'player_stats');
+
+        trainerTools.trainerData[trainerName].bagCandy = trainerTools.filterInventory(data.inventory_items, 'candy');
+        trainerTools.trainerData[trainerName].bagItems = trainerTools.filterInventory(data.inventory_items, 'item');
+        trainerTools.trainerData[trainerName].bagPokemon = trainerTools.filterInventory(data.inventory_items, 'pokemon_data');
+        trainerTools.trainerData[trainerName].pokedex = trainerTools.filterInventory(data.inventory_items, 'pokedex_entry');
+        trainerTools.trainerData[trainerName].stats = trainerTools.filterInventory(data.inventory_items, 'player_stats');
+
+        trainerTools.trainerData[trainerName].lastUpdateTimestamp = data.new_timestamp_ms;
     },
 
     setPlayerData: function (data, trainerName) {
@@ -668,6 +714,35 @@ var trainerTools = {
             trainerTools.trainerData[trainerName] = {};
         }
         trainerTools.trainerData[trainerName].settings = data;
+    },
+
+    doAPokeScan: function (location) {
+        var url = trainerTools.pythonServer.urlAPIScan,
+            logoButton = $('#scan-logo');
+
+        logoButton.addClass('waiting');
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                location: location,
+                debug: 'false'
+            },
+            success: function () {
+                // Refresh page
+                trainerTools.loadTrainers();
+                // Design view
+                setTimeout(function () {
+                    trainerTools.initView();
+                }, 1000);
+            },
+            error: function () {
+                trainerTools.errorLog('Failed to scan for new data')
+            },
+            complete: function () {
+                logoButton.removeClass('waiting');
+            }
+        });
     },
 
     loadJSON: function (path, successCallback, successData, errorCallback, errorMessage, addToast) {
@@ -759,13 +834,13 @@ var trainerTools = {
         return filtered;
     },
 
-    timeConverter: function (timestamp) {
+    timeConverterFullDate: function (timestamp) {
         var datetime = new Date(timestamp);
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         var year = datetime.getFullYear();
         var month = months[datetime.getMonth()];
         var date = datetime.getDate();
-        var hour = datetime.getHours();
+        var hour = datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours();
         var min = datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes();
         var sec = datetime.getSeconds() < 10 ? '0' + datetime.getSeconds() : datetime.getSeconds();
         return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;

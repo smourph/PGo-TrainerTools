@@ -33,6 +33,14 @@
     opacity: 1;
   }
 }
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
 html,
 body {
   height: 100%;
@@ -85,10 +93,21 @@ body {
 }
 /* Navbar */
 nav .brand-logo .trainertool-logo {
+  margin: 0;
   width: 48px;
   height: 56px;
   background: transparent url(../image/icons/Settings.png) no-repeat center center;
   background-size: 48px;
+}
+nav .brand-logo .trainertool-logo.waiting {
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: rotate;
+  -moz-animation-duration: 2s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
 }
 @media only screen and (min-width: 601px) {
   nav .brand-logo .trainertool-logo {

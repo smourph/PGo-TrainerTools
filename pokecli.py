@@ -87,32 +87,35 @@ def init_config():
     return config
 
 
-def main():
-    # log settings
-    # log format
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s [%(module)11s] [%(levelname)5s] %(message)s')
-    # log level for http request class
-    logging.getLogger("requests").setLevel(logging.WARNING)
-    # log level for main pgoapi class
-    logging.getLogger("pgoapi").setLevel(logging.INFO)
-    # log level for internal pgoapi class
-    logging.getLogger("rpc_api").setLevel(logging.INFO)
-
+def main(custom_location=None, allow_debug=True):
     config = init_config()
     if not config:
         return
 
-    if config.debug:
-        logging.getLogger("requests").setLevel(logging.DEBUG)
-        logging.getLogger("pgoapi").setLevel(logging.DEBUG)
-        logging.getLogger("rpc_api").setLevel(logging.DEBUG)
+    if custom_location:
+        config.location = custom_location
+
+    # log settings
+    if allow_debug:
+        logging.basicConfig(level=logging.DEBUG, format='%(asctime)s [%(module)11s] [%(levelname)5s] %(message)s')
+        # log level for http request class
+        logging.getLogger("requests").setLevel(logging.WARNING)
+        # log level for main pgoapi class
+        logging.getLogger("pgoapi").setLevel(logging.INFO)
+        # log level for internal pgoapi class
+        logging.getLogger("rpc_api").setLevel(logging.INFO)
+
+        if config.debug:
+            logging.getLogger("requests").setLevel(logging.DEBUG)
+            logging.getLogger("pgoapi").setLevel(logging.DEBUG)
+            logging.getLogger("rpc_api").setLevel(logging.DEBUG)
 
     # instantiate pgoapi
     api = pgoapi.PGoApi()
 
     # parse position
     position = util.get_pos_by_name(config.location)
-    if not position:
+    if not position and allow_debug:
         log.error('Your given location could not be found by name')
         return
     elif config.test:
@@ -157,21 +160,21 @@ def main():
     if os.path.isfile(web_settings_user):
         copyfile(web_settings_user, web_settings_user + '.' + now)
 
+    # declare output request log
+    web_log_api = os.path.join(app_root_dir, 'web/playerdata/api-request.' + now + '.log')
+
     # write the output inventory file
-    inventory_dict = response_dict['responses']['GET_INVENTORY'][
-        'inventory_delta']['inventory_items']
+    inventory_dict = response_dict['responses']['GET_INVENTORY']['inventory_delta']
     with open(web_inventory_user, 'w') as output_file:
         json.dump(inventory_dict, output_file, indent=2, cls=util.JSONByteEncoder)
 
     # write the output player file
-    player_dict = response_dict['responses']['GET_PLAYER'][
-        'player_data']
+    player_dict = response_dict['responses']['GET_PLAYER']['player_data']
     with open(web_player_user, 'w') as output_file:
         json.dump(player_dict, output_file, indent=2, cls=util.JSONByteEncoder)
 
     # write the output setting file
-    setting_dict = response_dict['responses']['DOWNLOAD_SETTINGS'][
-        'settings']
+    setting_dict = response_dict['responses']['DOWNLOAD_SETTINGS']['settings']
     with open(web_settings_user, 'w') as output_file:
         json.dump(setting_dict, output_file, indent=2, cls=util.JSONByteEncoder)
 
@@ -225,8 +228,14 @@ def main():
         reverse=True
     )
 
-    # display the tab in console
-    print(tabulate(sorted_pokemon_for_console, headers="keys"))
+    if allow_debug:
+        # display the tab in console
+        print(tabulate(sorted_pokemon_for_console, headers="keys"))
+
+    # log the request
+    config.password = 'HIDDEN_PASSWORD'
+    with open(web_log_api, 'w') as output_file:
+        output_file.write(repr(config))
 
 
 if __name__ == '__main__':
