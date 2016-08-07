@@ -16,9 +16,10 @@ venv/
 # Personal load details
 config.json
 web/config/trainersdata.js
-web/inventory-*.json*
-web/player-*.json*
-web/settings-*.json*
+web/config/serverdata.js
+web/playerdata/inventory-*.json*
+web/playerdata/player-*.json*
+web/playerdata/settings-*.json*
 
 
 

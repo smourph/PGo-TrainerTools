@@ -76,9 +76,9 @@ var trainerTools = {
     },
 
     loadDatagameFiles: function () {
-        var pokemonsJsonFile = 'data/pokemons.json',
-            candiesJsonFile = 'data/candies.json',
-            itemsJsonFile = 'data/items.json';
+        var pokemonsJsonFile = 'gamedata/pokemons.json',
+            candiesJsonFile = 'gamedata/candies.json',
+            itemsJsonFile = 'gamedata/items.json';
 
         this.infoLog('Loading game data...');
 
@@ -112,9 +112,9 @@ var trainerTools = {
             for (var i = 0; i < trainersNameList.length; i++) {
                 trainerName = trainersNameList[i];
 
-                inventoryJson = 'inventory-' + trainerName + '.json';
-                playerJson = 'player-' + trainerName + '.json';
-                settingsJson = 'settings-' + trainerName + '.json';
+                inventoryJson = 'playerdata/inventory-' + trainerName + '.json';
+                playerJson = 'playerdata/player-' + trainerName + '.json';
+                settingsJson = 'playerdata/settings-' + trainerName + '.json';
 
                 this.loadJSON(inventoryJson, this.setInventoryData, trainerName, this.errorLog);
                 this.loadJSON(playerJson, this.setPlayerData, trainerName, this.errorLog);

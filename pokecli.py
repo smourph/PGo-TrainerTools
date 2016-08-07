@@ -144,9 +144,9 @@ def main():
     response_dict = req.call()
 
     # declare output files location
-    web_inventory_user = os.path.join(app_root_dir, 'web/inventory-%s.json' % config.username)
-    web_player_user = os.path.join(app_root_dir, 'web/player-%s.json' % config.username)
-    web_settings_user = os.path.join(app_root_dir, 'web/settings-%s.json' % config.username)
+    web_inventory_user = os.path.join(app_root_dir, 'web/playerdata/inventory-%s.json' % config.username)
+    web_player_user = os.path.join(app_root_dir, 'web/playerdata/player-%s.json' % config.username)
+    web_settings_user = os.path.join(app_root_dir, 'web/playerdata/settings-%s.json' % config.username)
 
     # backup latest output files
     now = str(int(time.time()))
@@ -176,10 +176,10 @@ def main():
         json.dump(setting_dict, output_file, indent=2, cls=util.JSONByteEncoder)
 
     # load data files
-    pokemons_details_file = os.path.join(app_root_dir, 'web/data/pokemons.json')
+    pokemons_details_file = os.path.join(app_root_dir, 'web/gamedata/pokemons.json')
     with open(pokemons_details_file) as json_file:
         pokemons_details = json.load(json_file)
-    moves_details_files = os.path.join(app_root_dir, 'web/data/moves.json')
+    moves_details_files = os.path.join(app_root_dir, 'web/gamedata/moves.json')
     with open(moves_details_files) as json_file:
         moves_details = json.load(json_file)
 
