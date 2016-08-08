@@ -51,9 +51,11 @@ var trainerTools = {
     settings: {},
     pythonServer: {},
 
-    pokemonArray: {},
-    pokemoncandyArray: {},
+    pokemonsArray: {},
+    candiesArray: {},
     itemsArray: {},
+    movesArray: {},
+    levelXpArray: {},
 
     trainerData: {},
 
@@ -82,17 +84,19 @@ var trainerTools = {
     loadDatagameFiles: function () {
         var pokemonsJsonFile = 'gamedata/pokemons.json',
             candiesJsonFile = 'gamedata/candies.json',
-            itemsJsonFile = 'gamedata/items.json';
+            itemsJsonFile = 'gamedata/items.json',
+            movesJsonFile = 'gamedata/moves.json',
+            xpbylevelJsonFile = 'gamedata/xpbylevel.json';
 
         this.infoLog('Loading game data...');
 
         this.loadJSON(pokemonsJsonFile, function (data) {
-            trainerTools.pokemonArray = data;
+            trainerTools.pokemonsArray = data;
             trainerTools.successLog(pokemonsJsonFile + ' loaded');
         }, null, this.errorLog, 'Failed to load \'' + pokemonsJsonFile + '\' file', true);
 
         this.loadJSON(candiesJsonFile, function (data) {
-            trainerTools.pokemoncandyArray = data;
+            trainerTools.candiesArray = data;
             trainerTools.successLog(candiesJsonFile + ' loaded');
         }, null, this.errorLog, 'Failed to load \'' + candiesJsonFile + '\' file', true);
 
@@ -100,6 +104,16 @@ var trainerTools = {
             trainerTools.itemsArray = data;
             trainerTools.successLog(itemsJsonFile + ' loaded');
         }, null, this.errorLog, 'Failed to load \'' + itemsJsonFile + '\' file', true);
+
+        this.loadJSON(movesJsonFile, function (data) {
+            trainerTools.movesArray = data;
+            trainerTools.successLog(movesJsonFile + ' loaded');
+        }, null, this.errorLog, 'Failed to load \'' + movesJsonFile + '\' file', true);
+
+        this.loadJSON(xpbylevelJsonFile, function (data) {
+            trainerTools.levelXpArray = data;
+            trainerTools.successLog(xpbylevelJsonFile + ' loaded');
+        }, null, this.errorLog, 'Failed to load \'' + xpbylevelJsonFile + '\' file', true);
     },
 
     loadTrainers: function () {
@@ -230,7 +244,7 @@ var trainerTools = {
                     // Set team color and build contents
                     trainerTools.activateUserAndBuildContents(trainerName);
                 });
-                
+
                 // Remove error content if exists
                 this.buildErrorContent('');
 
@@ -307,16 +321,19 @@ var trainerTools = {
             '<div class="col s12">' +
             '<ul class="collection with-header">' +
             '<li class="collection-header"><h5 class="center">' + playerInfo.username + ' (' + currentTrainerStats.level + ')</h5></li>' +
-            '<li class="collection-header"><div class="progress teambar-' + team + '" style="height: 10px">' +
+            '<li class="collection-item">Start to play: ' + this.timeConverterFullDate(playerInfo.creation_timestamp_ms) +
+            (parseInt(currentTrainerStats.next_level_xp, 10) - currentTrainerStats.experience) + '</li>' +
+            '<li class="collection-item">Exp to next Lvl: ' +
+            (currentTrainerStats.experience - this.levelXpArray[currentTrainerStats.level - 1].current_level_xp) + ' / ' +
+            this.levelXpArray[currentTrainerStats.level - 1].exp_to_next_level +
+            '<div class="progress teambar-' + team + '" style="height: 10px">' +
             '<div class="determinate team-' + team + '" style="width: ' +
             (currentTrainerStats.experience / currentTrainerStats.next_level_xp) * 100 + '%">' +
             '</div>' +
             '</div></li>' +
-            '<li class="collection-item">Start to play: ' + this.timeConverterFullDate(playerInfo.creation_timestamp_ms) +
-            (parseInt(currentTrainerStats.next_level_xp, 10) - currentTrainerStats.experience) + '</li>' +
+            '<li class="collection-item">Exp total: ' + currentTrainerStats.experience + '</li>' +
             '<li class="collection-item">Stardust: ' + (parseFloat(playerInfo.currencies[1].amount) || 0) + '</li>' +
             '<li class="collection-item">Pokecoin: ' + (parseFloat(playerInfo.currencies[0].amount) || 0) + '</li>' +
-            '<li class="collection-item">Exp: ' + currentTrainerStats.experience + ' (to next level: ' +
             '<li class="collection-item">Kilometers walked: ' + (parseFloat(currentTrainerStats.km_walked).toFixed(3) || 0) + '</li>' +
             '<li class="collection-item">Pokemon encountered: ' + (currentTrainerStats.pokemons_encountered || 0) + '</li>' +
             '<li class="collection-item">Pokeballs thrown: ' + (currentTrainerStats.pokeballs_thrown || 0) + '</li>' +
@@ -325,9 +342,9 @@ var trainerTools = {
             '<li class="collection-item">Eggs hatched: ' + (currentTrainerStats.eggs_hatched || 0) + '</li>' +
             '<li class="collection-item">Unique pokedex entries: ' + (currentTrainerStats.unique_pokedex_entries || 0) + '</li>' +
             '<li class="collection-item">PokeStops visited: ' + (currentTrainerStats.poke_stop_visits || 0) + '</li>' +
-            '<li class="collection-item">Gym attacks won/total: ' + (currentTrainerStats.battle_attack_won || 0) + '/' +
+            '<li class="collection-item">Gym attacks won / total: ' + (currentTrainerStats.battle_attack_won || 0) + ' / ' +
             (currentTrainerStats.battle_attack_total || 0) + '</li>' +
-            '<li class="collection-item">Gym training won/total: ' + (currentTrainerStats.battle_training_won || 0) + '/' +
+            '<li class="collection-item">Gym training won / total: ' + (currentTrainerStats.battle_training_won || 0) + ' / ' +
             (currentTrainerStats.battle_training_total || 0) + '</li>' +
             '<li class="collection-item">Prestige raised: ' + (currentTrainerStats.prestige_raised_total || 0) + '</li>' +
             '<li class="collection-item">Prestige dropped: ' + (currentTrainerStats.prestige_dropped_total || 0) + '</li>' +
@@ -481,7 +498,7 @@ var trainerTools = {
             }
             var pokemonData = trainer.bagPokemon[i].inventory_item_data.pokemon_data,
                 pkmID = pokemonData.pokemon_id,
-                pkmnName = this.pokemonArray[pkmID - 1].Name,
+                pkmnName = this.pokemonsArray[pkmID - 1].Name,
                 pkmCP = pokemonData.cp,
                 pkmIVA = pokemonData.individual_attack || 0,
                 pkmIVD = pokemonData.individual_defense || 0,
@@ -551,7 +568,7 @@ var trainerTools = {
         for (var i = 0; i < sortedPokemon.length; i++) {
             var pkmnNum = sortedPokemon[i].id,
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
-                pkmnName = this.pokemonArray[pkmnNum - 1].Name,
+                pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
                 pkmnCP = sortedPokemon[i].cp,
                 pkmnIV = sortedPokemon[i].iv,
                 pkmnIVA = sortedPokemon[i].attack,
@@ -596,7 +613,7 @@ var trainerTools = {
         for (var i = 0; i < trainer.pokedex.length; i++) {
             var pokedex_entry = trainer.pokedex[i].inventory_item_data.pokedex_entry,
                 pkmID = pokedex_entry.pokemon_id,
-                pkmnName = this.pokemonArray[pkmID - 1].Name,
+                pkmnName = this.pokemonsArray[pkmID - 1].Name,
                 pkmEnc = pokedex_entry.times_encountered,
                 pkmCap = pokedex_entry.times_captured;
 
@@ -639,8 +656,8 @@ var trainerTools = {
         for (var i = 0; i < sortedPokedex.length; i++) {
             var pkmnNum = sortedPokedex[i].id,
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
-                pkmnName = this.pokemonArray[pkmnNum - 1].Name,
-                pkmnName = this.pokemonArray[pkmnNum - 1].Name,
+                pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
+                pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
                 pkmnEnc = sortedPokedex[i].enc,
                 pkmnCap = sortedPokedex[i].cap,
                 candyNum = this.getCandy(pkmnNum, trainer);
@@ -671,7 +688,7 @@ var trainerTools = {
     getCandy: function (p_num, trainer) {
         for (var i = 0; i < trainer.bagCandy.length; i++) {
             var checkCandy = trainer.bagCandy[i].inventory_item_data.candy.family_id;
-            if (this.pokemoncandyArray[p_num] === checkCandy) {
+            if (this.candiesArray[p_num] === checkCandy) {
                 return (trainer.bagCandy[i].inventory_item_data.candy.candy || 0);
             }
         }
@@ -748,7 +765,7 @@ var trainerTools = {
     loadJSON: function (path, successCallback, successData, errorCallback, errorMessage, addToast) {
         var xhr = new XMLHttpRequest();
 
-        xhr.open('GET', path, true);
+        xhr.open('GET', path + "?v=" + Date.now(), true);
         xhr.send();
 
         xhr.onreadystatechange = function () {
