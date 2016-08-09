@@ -38,7 +38,6 @@ from pgoapi import pgoapi
 from pgoapi import utilities as util
 
 # other stuff
-from tabulate import tabulate
 from shutil import copyfile
 
 # add directory of this file to PATH, so that the package will be found
@@ -177,60 +176,6 @@ def main(custom_location=None, allow_debug=True):
     setting_dict = response_dict['responses']['DOWNLOAD_SETTINGS']['settings']
     with open(web_settings_user, 'w') as output_file:
         json.dump(setting_dict, output_file, indent=2, cls=util.JSONByteEncoder)
-
-    # load data files
-    pokemons_details_file = os.path.join(app_root_dir, 'web/gamedata/pokemons.json')
-    with open(pokemons_details_file) as json_file:
-        pokemons_details = json.load(json_file)
-    moves_details_files = os.path.join(app_root_dir, 'web/gamedata/moves.json')
-    with open(moves_details_files) as json_file:
-        moves_details = json.load(json_file)
-
-    # format the table
-    def format_table(pokemons_list):
-        pl = pokemons_list['inventory_item_data']['pokemon_data']
-
-        pl = {k: v for k, v in pl.items() if
-              k in ['nickname', 'move_1', 'move_2', 'pokemon_id', 'individual_defense', 'stamina', 'cp',
-                    'individual_stamina', 'individual_attack']}
-        pl['individual_defense'] = pl.get('individual_defense', 0)
-        pl['individual_attack'] = pl.get('individual_attack', 0)
-        pl['individual_stamina'] = pl.get('individual_stamina', 0)
-        pl['power_quotient'] = round(
-            ((float(pl['individual_defense']) + float(pl['individual_attack']) + float(
-                pl['individual_stamina'])) / 45) * 1000) / 1000
-        pl['name'] = list(filter(lambda detail:
-                                 int(detail['Number']) == pl['pokemon_id'],
-                                 pokemons_details)
-                          )[0]['Name']
-        pl['move_1'] = list(filter(lambda detail:
-                                   detail['id'] == pl['move_1'],
-                                   moves_details)
-                            )[0]['name']
-        pl['move_2'] = list(filter(lambda detail:
-                                   detail['id'] == pl['move_2'],
-                                   moves_details)
-                            )[0]['name']
-        return pl
-
-    # get only pokemons from GET_INVENTORY request
-    sorted_pokemon_for_console = filter(
-        lambda i:
-        'pokemon_data' in i['inventory_item_data'] and 'is_egg' not in i['inventory_item_data']['pokemon_data'],
-        response_dict['responses']['GET_INVENTORY']['inventory_delta']['inventory_items']
-    )
-    # beautify pokemons list with format_table function
-    sorted_pokemon_for_console = list(map(format_table, sorted_pokemon_for_console))
-    # sort pokemons list
-    sorted_pokemon_for_console.sort(
-        key=lambda x:
-        x['power_quotient'],
-        reverse=True
-    )
-
-    if allow_debug:
-        # display the tab in console
-        print(tabulate(sorted_pokemon_for_console, headers="keys"))
 
     # log the request
     config.password = 'HIDDEN_PASSWORD'
