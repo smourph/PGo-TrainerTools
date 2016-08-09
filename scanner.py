@@ -45,8 +45,6 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 log = logging.getLogger(__name__)
 
-app_root_dir = os.path.dirname(os.path.realpath(__file__))
-
 
 def init_config(config_file="config.json"):
     parser = argparse.ArgumentParser()
@@ -85,7 +83,7 @@ def init_config(config_file="config.json"):
     return config
 
 
-def main(custom_location=None, allow_debug=True):
+def get_all_player_data(custom_location=None, allow_debug=True):
     # log settings
     if allow_debug:
         # log format
@@ -110,6 +108,20 @@ def main(custom_location=None, allow_debug=True):
         logging.getLogger("requests").setLevel(logging.DEBUG)
         logging.getLogger("pgoapi").setLevel(logging.DEBUG)
         logging.getLogger("rpc_api").setLevel(logging.DEBUG)
+
+    # get current timestamp
+    now = str(int(time.time()))
+
+    # get root dir
+    app_root_dir = os.path.dirname(os.path.realpath(__file__))
+
+    # declare output files location
+    web_inventory_user = os.path.join(app_root_dir, 'web/playerdata/inventory-%s.json' % config.username)
+    web_player_user = os.path.join(app_root_dir, 'web/playerdata/player-%s.json' % config.username)
+    web_settings_user = os.path.join(app_root_dir, 'web/playerdata/settings-%s.json' % config.username)
+
+    # declare output request log
+    web_log_api = os.path.join(app_root_dir, 'web/playerdata/api-request.' + now + '.log')
 
     # instantiate pgoapi
     api = pgoapi.PGoApi()
@@ -154,22 +166,13 @@ def main(custom_location=None, allow_debug=True):
     time.sleep(2)
     response_dict = req.call()
 
-    # declare output files location
-    web_inventory_user = os.path.join(app_root_dir, 'web/playerdata/inventory-%s.json' % config.username)
-    web_player_user = os.path.join(app_root_dir, 'web/playerdata/player-%s.json' % config.username)
-    web_settings_user = os.path.join(app_root_dir, 'web/playerdata/settings-%s.json' % config.username)
-
     # backup latest output files
-    now = str(int(time.time()))
     if os.path.isfile(web_inventory_user):
         copyfile(web_inventory_user, web_inventory_user + '.' + now)
     if os.path.isfile(web_player_user):
         copyfile(web_player_user, web_player_user + '.' + now)
     if os.path.isfile(web_settings_user):
         copyfile(web_settings_user, web_settings_user + '.' + now)
-
-    # declare output request log
-    web_log_api = os.path.join(app_root_dir, 'web/playerdata/api-request.' + now + '.log')
 
     # write the output inventory file
     inventory_dict = response_dict['responses']['GET_INVENTORY']['inventory_delta']
@@ -193,4 +196,4 @@ def main(custom_location=None, allow_debug=True):
 
 
 if __name__ == '__main__':
-    main()
+    get_all_player_data()

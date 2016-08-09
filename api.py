@@ -60,7 +60,7 @@ def do_a_poke_scan():
         allow_debug = True
 
     try:
-        scanner.main(location, allow_debug)
+        scanner.get_all_player_data(location, allow_debug)
     except:
         return jsonify('error')
     else:
