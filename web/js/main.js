@@ -369,6 +369,7 @@ var trainerTools = {
         sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="id">ID</a></div>';
         sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="name">Name</a></div>';
         sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="time">Time</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon"  href="#" data-sort="candy">Candy</a></div>';
         sortButtons += '</div>';
         container.find('.sort-buttons').html(sortButtons);
 
@@ -411,17 +412,19 @@ var trainerTools = {
     buildItemContent: function (trainerName) {
         var container = $('article.content[data-section="item"]'),
             currentTrainerItems = this.trainerData[trainerName].bagItems,
+            total = 0,
             html;
-
-        container.find('.subtitle').html(currentTrainerItems.length + ' item' + (currentTrainerItems.length !== 1 ? 's' : '') + ' in Bag');
 
         html = '<div class="items"><div class="row">';
         for (var i = 0; i < currentTrainerItems.length; i++) {
-            html += '<div class="col s12 m6 l3 center" style="float: left">' +
-                '<img src="image/items/' + currentTrainerItems[i].inventory_item_data.item.item_id + '.png"' + 'class="item_img"><br>' +
-                '<b>' + this.itemsArray[currentTrainerItems[i].inventory_item_data.item.item_id] + '</b><br>' +
-                'Count: ' + (currentTrainerItems[i].inventory_item_data.item.count || 0) +
-                '</div>';
+            if (currentTrainerItems[i].inventory_item_data.item.count > 0) {
+                html += '<div class="col s12 m6 l3 center" style="float: left">' +
+                    '<img src="image/items/' + currentTrainerItems[i].inventory_item_data.item.item_id + '.png"' + 'class="item_img"><br>' +
+                    '<b>' + this.itemsArray[currentTrainerItems[i].inventory_item_data.item.item_id] + '</b><br>' +
+                    'Count: ' + (currentTrainerItems[i].inventory_item_data.item.count || 0) +
+                    '</div>';
+                total = total + (currentTrainerItems[i].inventory_item_data.item.count || 0);
+            }
         }
         html += '</div></div>';
         var nth = 0;
@@ -429,6 +432,7 @@ var trainerTools = {
             nth++;
             return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
         });
+        container.find('.subtitle').html(total + " item" + (total !== 1 ? "s" : "") + " in Bag");
         container.find('.subcontent').html(html);
     },
 
@@ -498,22 +502,29 @@ var trainerTools = {
             }
             var pokemonData = trainer.bagPokemon[i].inventory_item_data.pokemon_data,
                 pkmID = pokemonData.pokemon_id,
+                pkmUID = pokemonData.id,
                 pkmnName = this.pokemonsArray[pkmID - 1].Name,
                 pkmCP = pokemonData.cp,
                 pkmIVA = pokemonData.individual_attack || 0,
                 pkmIVD = pokemonData.individual_defense || 0,
                 pkmIVS = pokemonData.individual_stamina || 0,
+                pkmCurrentHP = pokemonData.stamina || 0,
+                pkmMaxHP = pokemonData.stamina_max || 0,
                 pkmIV = ((pkmIVA + pkmIVD + pkmIVS) / 45.0).toFixed(2),
                 pkmTime = pokemonData.creation_time_ms || 0;
 
             sortedPokemon.push({
                 "name": pkmnName,
                 "id": pkmID,
+                "unique_id": pkmUID,
                 "cp": pkmCP,
                 "iv": pkmIV,
                 "attack": pkmIVA,
                 "defense": pkmIVD,
                 "stamina": pkmIVS,
+                "current_health": pkmCurrentHP,
+                "max_health": pkmMaxHP,
+                'candy': this.getCandy(pkmnNum, trainer),
                 "creation_time": pkmTime
             });
         }
@@ -557,6 +568,13 @@ var trainerTools = {
                     return 0;
                 });
                 break;
+            case 'candy':
+                sortedPokemon.sort(function (a, b) {
+                    if (a.candy > b.candy) return -1;
+                    if (a.candy < b.candy) return 1;
+                    return 0;
+                });
+                break;
             default:
                 sortedPokemon.sort(function (a, b) {
                     if (a.cp > b.cp) return -1;
@@ -565,8 +583,10 @@ var trainerTools = {
                 });
                 break;
         }
+
         for (var i = 0; i < sortedPokemon.length; i++) {
             var pkmnNum = sortedPokemon[i].id,
+                pkmnUnique = sortedPokemon[i].unique_id,
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
                 pkmnCP = sortedPokemon[i].cp,
@@ -574,24 +594,43 @@ var trainerTools = {
                 pkmnIVA = sortedPokemon[i].attack,
                 pkmnIVD = sortedPokemon[i].defense,
                 pkmnIVS = sortedPokemon[i].stamina,
+                pkmnEnc = sortedPokemon[i].enc,
+                pkmnCap = sortedPokemon[i].cap,
+                pkmnCurrentHP = sortedPokemon[i].current_health,
+                pkmnMaxHP = sortedPokemon[i].max_health,
                 candyNum = this.getCandy(pkmnNum, trainer);
-
             html += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
-                pkmnImage +
-                '" class="png_img"><br><b>' +
+                pkmnImage + '" class="png_img"><br><b>' +
                 pkmnName +
-                '</b><br>' +
-                pkmnCP +
-                '<br>IV: ' +
-                pkmnIV +
-                '<br>A/D/S:' +
-                pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS +
-                '<br>Candy: ' +
-                candyNum +
+                '</b><br><div class="progress pkmn-progress pkmn-' + pkmnNum + '"> <div class="determinate pkmn-' + pkmnNum + '" style="width: ' + (pkmnCurrentHP / pkmnMaxHP) * 100 + '%"></div> </div>' +
+                '<b>HP:</b> ' + pkmnCurrentHP + ' / ' + pkmnMaxHP +
+                '<br><b>CP:</b>' + pkmnCP +
+                '<br><b>IV:</b> ' + (pkmnIV >= 0.8 ? '<span style="color: #039be5">' + pkmnIV + '</span>' : pkmnIV) +
+                '<br><b>A/D/S:</b> ' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS +
+                '<br><b>Candy: </b>' + candyNum +
                 '</div>';
         }
         // Add number of eggs
-        html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/pokemon/Egg.png" class="png_img"><br><b>You have ' + eggs + ' egg' + (eggs !== 1 ? "s" : "") + '</div>';
+        html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/Egg.png" class="png_img"><br><b>You have ' + eggs + ' egg' + (eggs !== 1 ? "s" : "") + '</div>';
+        for (var b = 0; b < trainer.eggs.length; b++) {
+            var incubator = trainer.eggs[b].inventory_item_data.egg_incubators.egg_incubator;
+            //TODO: Fix error, some incubator aren't display
+            if (!incubator.item_id) {
+                var incubator = trainer.eggs[b].inventory_item_data.egg_incubators.egg_incubator[0];
+            }
+            var currentTrainerStats = trainer.stats[0].inventory_item_data.player_stats;
+            var totalToWalk = incubator.target_km_walked - incubator.start_km_walked;
+            var kmsLeft = incubator.target_km_walked - currentTrainerStats.km_walked;
+            var walked = totalToWalk - kmsLeft;
+            var eggString = (parseFloat(walked).toFixed(1) || 0) + "/" + (parseFloat(totalToWalk).toFixed(1) || 0) + "km";
+            if (incubator.item_id == 902) {
+                var img = 'EggIncubator';
+            } else {
+                var img = 'EggIncubatorUnlimited';
+            }
+            html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/' + img + '.png" class="png_img"><br>';
+            html += eggString;
+        }
         html += '</div></div>';
         var nth = 0;
         html = html.replace(/<\/div><div/g, function (match, i, original) {
@@ -657,7 +696,6 @@ var trainerTools = {
             var pkmnNum = sortedPokedex[i].id,
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
-                pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
                 pkmnEnc = sortedPokedex[i].enc,
                 pkmnCap = sortedPokedex[i].cap,
                 candyNum = this.getCandy(pkmnNum, trainer);
@@ -713,6 +751,7 @@ var trainerTools = {
         trainerTools.trainerData[trainerName].bagCandy = trainerTools.filterInventory(data.inventory_items, 'candy');
         trainerTools.trainerData[trainerName].bagItems = trainerTools.filterInventory(data.inventory_items, 'item');
         trainerTools.trainerData[trainerName].bagPokemon = trainerTools.filterInventory(data.inventory_items, 'pokemon_data');
+        trainerTools.trainerData[trainerName].eggs = trainerTools.filterInventory(data.inventory_items, 'egg_incubators');
         trainerTools.trainerData[trainerName].pokedex = trainerTools.filterInventory(data.inventory_items, 'pokedex_entry');
         trainerTools.trainerData[trainerName].stats = trainerTools.filterInventory(data.inventory_items, 'player_stats');
 
