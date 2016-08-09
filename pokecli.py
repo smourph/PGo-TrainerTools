@@ -125,8 +125,14 @@ def main(custom_location=None, allow_debug=True):
     # set player position on the earth
     api.set_position(*position)
 
-    if not api.login(config.auth_service, config.username, config.password, app_simulation=True):
-        return
+    # new authentication initialitation
+    api.set_authentication(provider=config.auth_service, username=config.username, password=config.password)
+
+    # provide the path for your encrypt dll, see http://pgoapi.com/
+    if os.path.isfile('libencrypt.dll'):
+        api.activate_signature("libencrypt.dll")
+    elif os.path.isfile('libencrypt.so'):
+        api.activate_signature("libencrypt.so")
 
     # create thread-safe request
     # ----------------------
@@ -144,7 +150,8 @@ def main(custom_location=None, allow_debug=True):
     # ----------------------
     req.download_settings()
 
-    # execute the RPC call
+    # execute the RPC call after 2 seconds
+    time.sleep(2)
     response_dict = req.call()
 
     # declare output files location
