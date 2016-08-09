@@ -55,7 +55,7 @@ It also provide an virtual space for more than 1 instance!
 2. Edit `config.json` and replace auth_service (`google` or `apc`), username, password and location with your parameters
 3. Launch the python script
    ```bash
-   python pokecli.py
+   python scanner.py
    ```
 
 #### Web view tool
@@ -63,7 +63,7 @@ It also provide an virtual space for more than 1 instance!
 1. Go to `web` dir
 2. Copy `trainersdata.js.example` to `trainersdata.js`
 3. Edit `trainersdata.js` and replace trainer with your parameters (same as Scan tool username)
-4. Configure a web server
+4. Configure a web server (see next section)
 
 #### Web server
 

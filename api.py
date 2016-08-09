@@ -2,7 +2,7 @@ from flask import Flask, request, make_response, jsonify, current_app
 from datetime import timedelta
 from functools import update_wrapper
 
-import pokecli
+import scanner
 
 app = Flask(__name__)
 
@@ -60,7 +60,7 @@ def do_a_poke_scan():
         allow_debug = True
 
     try:
-        pokecli.main(location, allow_debug)
+        scanner.main(location, allow_debug)
     except:
         return jsonify('error')
     else:
