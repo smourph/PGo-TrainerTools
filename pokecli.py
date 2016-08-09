@@ -48,9 +48,8 @@ log = logging.getLogger(__name__)
 app_root_dir = os.path.dirname(os.path.realpath(__file__))
 
 
-def init_config():
+def init_config(config_file="config.json"):
     parser = argparse.ArgumentParser()
-    config_file = "config.json"
 
     # If config file exists, load variables from json
     load = {}
@@ -87,15 +86,9 @@ def init_config():
 
 
 def main(custom_location=None, allow_debug=True):
-    config = init_config()
-    if not config:
-        return
-
-    if custom_location:
-        config.location = custom_location
-
     # log settings
     if allow_debug:
+        # log format
         logging.basicConfig(level=logging.DEBUG, format='%(asctime)s [%(module)11s] [%(levelname)5s] %(message)s')
         # log level for http request class
         logging.getLogger("requests").setLevel(logging.WARNING)
@@ -104,10 +97,19 @@ def main(custom_location=None, allow_debug=True):
         # log level for internal pgoapi class
         logging.getLogger("rpc_api").setLevel(logging.INFO)
 
-        if config.debug:
-            logging.getLogger("requests").setLevel(logging.DEBUG)
-            logging.getLogger("pgoapi").setLevel(logging.DEBUG)
-            logging.getLogger("rpc_api").setLevel(logging.DEBUG)
+    config_file = "config.json"
+    config = init_config(config_file)
+    if not config:
+        return
+
+    if custom_location:
+        config.location = custom_location
+
+    # debug mode
+    if allow_debug and config.debug:
+        logging.getLogger("requests").setLevel(logging.DEBUG)
+        logging.getLogger("pgoapi").setLevel(logging.DEBUG)
+        logging.getLogger("rpc_api").setLevel(logging.DEBUG)
 
     # instantiate pgoapi
     api = pgoapi.PGoApi()
@@ -126,7 +128,7 @@ def main(custom_location=None, allow_debug=True):
     if not api.login(config.auth_service, config.username, config.password, app_simulation=True):
         return
 
-    # Create thread-safe request
+    # create thread-safe request
     # ----------------------
     req = api.create_request()
 
