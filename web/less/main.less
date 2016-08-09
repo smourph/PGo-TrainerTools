@@ -73,7 +73,6 @@ html, body {
 /* Design Fix Action Button tooltips */
 .menu-section-fab-tip {
   position: fixed;
-  z-index: 2000;
   right: 85px;
   margin-top: 12px;
   padding: 10px 8px;
@@ -216,8 +215,9 @@ section.bloc-content {
 aside.section-menu-bloc {
   .fixed-action-btn {
     bottom: 10px;
-    right: 2.75rem;
+    right: 3rem;
     margin-right: -28px;
+    z-index: 1000;
     .section-button-logo {
       width: 55.5px;
       height: 55.5px;
@@ -276,18 +276,19 @@ aside.logs-bloc {
   .button {
     position: fixed;
     z-index: 1000;
-    left: 0.75rem;
-    bottom: 10px;
+    left: 1rem;
+    bottom: 17px;
     border-radius: 10px;
   }
 
   .panel {
     display: none;
     position: fixed;
-    height: 40vh;
-    z-index: 1000;
+    height: 50vh;
+    z-index: 400;
     left: 0.75rem;
-    bottom: 56px;
+    right: 0.75rem;
+    bottom: 75px;
     .title {
       font-size: 18px;
       font-weight: bold;
