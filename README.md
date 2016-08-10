@@ -52,7 +52,7 @@ It also provide an virtual space for more than 1 instance!
 #### Scan tool
 
 1. Copy `config.json.example` to `config.json`
-2. Edit `config.json` and replace auth_service (`google` or `apc`), username, password and location with your parameters
+2. Edit `config.json` and replace auth_service (`google` or `ptc`), username, password and location with your parameters
 3. Launch the python script
    ```bash
    python scanner.py
