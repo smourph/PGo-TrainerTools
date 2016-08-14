@@ -13,6 +13,10 @@ __pycache__/
 env/
 venv/
 
+# SSL keys
+*.crt
+*.key
+
 # Personal load details
 config/config.json
 web/config/settings.js

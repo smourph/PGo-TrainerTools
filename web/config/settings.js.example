@@ -14,8 +14,6 @@ var settings = {
      * REMOTE SERVER SETTINGS
      */
     remoteServer: {
-        url: 'REMOTE_URL',
-        defaultLocation: 'DEFAULT_LOCATION',
-        gmapApiKey: "GMAP_API_KEY"
+        url: 'REMOTE_URL'
     }
 };

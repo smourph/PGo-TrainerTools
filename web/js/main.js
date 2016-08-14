@@ -153,31 +153,29 @@ var trainerTools = {
     bindUIEvents: function () {
         // Launch a scan
         $('#scan-logo').click(function () {
-            var gmapApiKey = trainerTools.settings.remoteServer.gmapApiKey,
-                location;
+            var logoButton = $('#scan-logo');
 
-            $.ajax({
-                url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + gmapApiKey,
-                type: "POST",
-                success: function (data) {
-                    if (typeof data !== 'undefined' &&
-                        typeof data.accuracy !== 'undefined' &&
-                        typeof data.location !== 'undefined' &&
-                        typeof data.location.lat !== 'undefined' &&
-                        typeof data.location.lng !== 'undefined' &&
-                        data.accuracy < 2000) {
-                        location = data.location.lat + ',' + data.location.lng
+            logoButton.addClass('waiting');
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude,
+                        lon = position.coords.longitude,
+                        location = '';
+
+                    if (typeof lat !== 'undefined' && typeof lon !== 'undefined') {
+                        location = lat.toString() + ',' + lon.toString();
+                        trainerTools.successLog('Geolocalisation data retrieved: ' + location);
+                        trainerTools.doARemoteScan(location);
                     } else {
-                        location = trainerTools.settings.remoteServer.defaultLocation;
+                        trainerTools.errorLog('Failed to retrieve geolocalisation data.', true);
+                        logoButton.removeClass('waiting');
                     }
-                },
-                error: function () {
-                    location = trainerTools.settings.remoteServer.defaultLocation;
-                },
-                complete: function () {
-                    trainerTools.doAPokeScan(location);
-                }
-            });
+                });
+            } else {
+                trainerTools.errorLog('Failed to retrieve geolocalisation data.', true);
+                logoButton.removeClass('waiting');
+            }
         });
 
         // Open / close logs panels
@@ -900,11 +898,10 @@ var trainerTools = {
         trainerTools.trainerData[trainerName].settings = data;
     },
 
-    doAPokeScan: function (location) {
+    doARemoteScan: function (location) {
         var remoteUrl = trainerTools.settings.remoteServer.url + '/doScan',
             logoButton = $('#scan-logo');
 
-        logoButton.addClass('waiting');
         $.ajax({
             url: remoteUrl,
             type: "POST",
@@ -912,7 +909,8 @@ var trainerTools = {
                 location: location,
                 debug: 'false'
             },
-            success: function () {
+            success: function (data) {
+                trainerTools.successLog('New data successfully retrieved from remote server.');
                 // Refresh page
                 trainerTools.loadTrainers();
                 // Design view
@@ -921,7 +919,7 @@ var trainerTools = {
                 }, 1000);
             },
             error: function () {
-                trainerTools.errorLog('Failed to scan for new data')
+                trainerTools.errorLog('Failed to scan for new data');
             },
             complete: function () {
                 logoButton.removeClass('waiting');
@@ -986,7 +984,7 @@ var trainerTools = {
         var currentDate = new Date(),
             time = ('0' + currentDate.getHours()).slice(-2) + ':' + ('0' +
                 (currentDate.getMinutes())).slice(-2) + ':' +
-                currentDate.getSeconds(),
+                ('0' + currentDate.getSeconds()).slice(-2),
             logLine;
 
         // Write log line
@@ -1003,7 +1001,7 @@ var trainerTools = {
             if (toastClass && toastClass !== '') {
                 toastDesign += ' ' + toastClass;
             }
-            Materialize.toast(log.message, 1500, toastDesign);
+            Materialize.toast(log.message, 2500, toastDesign);
         }
     },
 

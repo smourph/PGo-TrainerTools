@@ -39,10 +39,18 @@ from pgoapi import utilities as util
 
 # other stuff
 from shutil import copyfile
+import BaseHTTPServer, SimpleHTTPServer
+import ssl
+from flask import Flask, request, make_response, jsonify, current_app, send_from_directory
+from datetime import timedelta
+from functools import update_wrapper
 
 # add directory of this file to PATH, so that the package will be found
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
+static_folder_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), "web")
+
+app = Flask(__name__)
 log = logging.getLogger(__name__)
 
 
@@ -62,6 +70,7 @@ def init_config(config_file="config/config.json"):
     parser.add_argument("-u", "--username", help="Username", required=required("username"))
     parser.add_argument("-p", "--password", help="Password")
     parser.add_argument("-l", "--location", help="Location", required=required("location"))
+    parser.add_argument("-os", "--only-server", help="Only remote server mode", action='store_true', default=False)
     parser.add_argument("-d", "--debug", help="Debug Mode", action='store_true')
     parser.add_argument("-t", "--test", help="Only parse the specified location", action='store_true')
     parser.set_defaults(DEBUG=False, TEST=False)
@@ -83,7 +92,7 @@ def init_config(config_file="config/config.json"):
     return config
 
 
-def get_all_player_data(custom_location=None, allow_debug=True):
+def get_all_player_data(config, custom_location=None, allow_debug=True):
     # log settings
     if allow_debug:
         # log format
@@ -94,10 +103,6 @@ def get_all_player_data(custom_location=None, allow_debug=True):
         logging.getLogger("pgoapi").setLevel(logging.INFO)
         # log level for internal pgoapi class
         logging.getLogger("rpc_api").setLevel(logging.INFO)
-
-    config = init_config()
-    if not config:
-        return
 
     if custom_location:
         config.location = custom_location
@@ -194,5 +199,99 @@ def get_all_player_data(custom_location=None, allow_debug=True):
         output_file.write(repr(config))
 
 
+def crossdomain(origin=None, methods=None, headers=None,
+                max_age=21600, attach_to_all=True,
+                automatic_options=True):
+    if methods is not None:
+        methods = ', '.join(sorted(x.upper() for x in methods))
+    if headers is not None and not isinstance(headers, basestring):
+        headers = ', '.join(x.upper() for x in headers)
+    if not isinstance(origin, basestring):
+        origin = ', '.join(origin)
+    if isinstance(max_age, timedelta):
+        max_age = max_age.total_seconds()
+
+    def get_methods():
+        if methods is not None:
+            return methods
+
+        options_resp = current_app.make_default_options_response()
+        return options_resp.headers['allow']
+
+    def decorator(f):
+        def wrapped_function(*args, **kwargs):
+            if automatic_options and request.method == 'OPTIONS':
+                resp = current_app.make_default_options_response()
+            else:
+                resp = make_response(f(*args, **kwargs))
+            if not attach_to_all and request.method != 'OPTIONS':
+                return resp
+
+            h = resp.headers
+
+            h['Access-Control-Allow-Origin'] = origin
+            h['Access-Control-Allow-Methods'] = get_methods()
+            h['Access-Control-Max-Age'] = str(max_age)
+            if headers is not None:
+                h['Access-Control-Allow-Headers'] = headers
+            return resp
+
+        f.provide_automatic_options = False
+        return update_wrapper(wrapped_function, f)
+
+    return decorator
+
+
+@app.route('/doScan', methods=['POST'])
+@crossdomain(origin='*')
+def do_a_remote_scan():
+    config = init_config()
+
+    if not config:
+        return jsonify('error')
+
+    if request.form['location']:
+        location = request.form['location']
+    else:
+        return jsonify('error')
+
+    allow_debug = False
+    if request.form['debug'] == 'true' or request.form['debug'] == 'True':
+        allow_debug = True
+
+    try:
+        get_all_player_data(config, location, allow_debug)
+    except:
+        return jsonify('error')
+    else:
+        return jsonify('success')
+
+
+def run_server():
+    context = ('server.crt', 'server.key')
+    app.run(host='0.0.0.0', port=5421, ssl_context=context)
+
+
+def serve_index():
+    return serve_page("index.html")
+
+
+def serve_page(file_relative_path_to_root):
+    return send_from_directory(static_folder_root, file_relative_path_to_root)
+
+
+def main():
+    config = init_config()
+    if not config:
+        return
+
+    if not config.only_server:
+        get_all_player_data(config)
+    else:
+        app.add_url_rule('/<path:file_relative_path_to_root>', 'serve_page', serve_page, methods=['GET'])
+        app.add_url_rule('/', 'index', serve_index, methods=['GET'])
+        run_server()
+
+
 if __name__ == '__main__':
-    get_all_player_data()
+    main()
