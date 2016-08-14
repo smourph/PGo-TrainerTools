@@ -652,25 +652,25 @@ var trainerTools = {
                 classIV = '';
 
             if (parseFloat(pkmnIV) >= 0.9) {
-                classIV = "green-text";
+                classIV = ' green-text';
             } else if (parseFloat(pkmnIV) >= 0.8) {
-                classIV = "blue-text";
+                classIV = ' blue-text';
             } else if (parseFloat(pkmnIV) < 0.5) {
-                classIV = "red-text";
+                classIV = ' red-text';
             }
 
             if (j % 4 === 0) {
                 html += '<div class="row">';
             }
 
-            html += '<div class="col s12 m6 l3 center poke-item">' +
+            html += '<div class="col s12 m6 l3 center poke-item' + classIV + '">' +
                 '<div class="poke-title">' + pkmnName + ' (' + pkmnCP + ')</div>' +
                 '<div class="col s4 poke-img">' +
                 '<img src="image/pokemon/' + pkmnImage + '" class="png_img">' +
                 '</div>' +
                 '<div class="col s8 poke-stats">' +
                 'HP <b>' + pkmnMaxHP + '</b><br/>' +
-                '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'IV <b>' + pkmnIV + '</b> (' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS + ')</span><br/>' +
+                'IV <b>' + pkmnIV + '</b> (' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS + ')<br/>' +
                 '<div class="poke-moves">' +
                 '<img src="image/types/' + pkmnMove1.type.toString().toLowerCase() + '.gif"> <span class="poke-move-name">' + pkmnMove1.name + '</span><br/>' +
                 '<img src="image/types/' + pkmnMove2.type.toString().toLowerCase() + '.gif"> <span class="poke-move-name">' + pkmnMove2.name + '</span><br/>' +
