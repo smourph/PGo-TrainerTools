@@ -516,29 +516,28 @@ var trainerTools = {
             var pokemonData = trainer.bagPokemon[i].inventory_item_data.pokemon_data,
                 pkmID = pokemonData.pokemon_id,
                 pkmUID = pokemonData.id,
-                pkmnName = this.pokemonsArray[pkmID - 1].Name,
+                pkmName = this.pokemonsArray[pkmID - 1].Name,
                 pkmCP = pokemonData.cp,
+                pkmMaxHP = pokemonData.stamina_max || 0,
+                pkmCurrentHP = pokemonData.stamina || 0,
                 pkmIVA = pokemonData.individual_attack || 0,
                 pkmIVD = pokemonData.individual_defense || 0,
                 pkmIVS = pokemonData.individual_stamina || 0,
-                pkmCurrentHP = pokemonData.stamina || 0,
-                pkmMaxHP = pokemonData.stamina_max || 0,
                 pkmIV = ((pkmIVA + pkmIVD + pkmIVS) / 45.0).toFixed(2),
-                pkmTime = pokemonData.creation_time_ms || 0;
+                pkmCreationTime = pokemonData.creation_time_ms || 0;
 
             sortedPokemon.push({
-                "name": pkmnName,
                 "id": pkmID,
                 "unique_id": pkmUID,
+                "name": pkmName,
                 "cp": pkmCP,
-                "iv": pkmIV,
+                "maxHealth": pkmMaxHP,
+                "currentHealth": pkmCurrentHP,
                 "attack": pkmIVA,
                 "defense": pkmIVD,
                 "stamina": pkmIVS,
-                "current_health": pkmCurrentHP,
-                "max_health": pkmMaxHP,
-                'candy': this.getCandy(pkmnNum, trainer),
-                "creation_time": pkmTime
+                "iv": pkmIV,
+                "creationTime": pkmCreationTime
             });
         }
         switch (sortOn) {
@@ -576,8 +575,8 @@ var trainerTools = {
                 break;
             case 'time':
                 sortedPokemon.sort(function (a, b) {
-                    if (a.creation_time > b.creation_time) return -1;
-                    if (a.creation_time < b.creation_time) return 1;
+                    if (a.creationTime > b.creationTime) return -1;
+                    if (a.creationTime < b.creationTime) return 1;
                     return 0;
                 });
                 break;
@@ -606,7 +605,7 @@ var trainerTools = {
                 pkmnIVA = sortedPokemon[i].attack,
                 pkmnIVD = sortedPokemon[i].defense,
                 pkmnIVS = sortedPokemon[i].stamina,
-                pkmnMaxHP = sortedPokemon[i].max_health,
+                pkmnMaxHP = sortedPokemon[i].maxHealth,
                 candyNum = this.getCandy(pkmnNum, trainer),
                 classIV = '';
 
@@ -677,19 +676,20 @@ var trainerTools = {
 
         html = '<div class="items"><div class="row">';
         for (var i = 0; i < trainer.pokedex.length; i++) {
-            var pokedex_entry = trainer.pokedex[i].inventory_item_data.pokedex_entry,
-                pkmID = pokedex_entry.pokemon_id,
-                pkmnName = this.pokemonsArray[pkmID - 1].Name,
-                pkmEnc = pokedex_entry.times_encountered,
-                pkmCap = pokedex_entry.times_captured;
+            var pokedexData = trainer.pokedex[i].inventory_item_data.pokedex_entry,
+                pkmID = pokedexData.pokemon_id,
+                pkmName = this.pokemonsArray[pkmID - 1].Name,
+                pkmEnc = pokedexData.times_encountered,
+                pkmCap = pokedexData.times_captured;
 
             sortedPokedex.push({
-                "name": pkmnName,
+                "name": pkmName,
                 "id": pkmID,
-                "cap": (pkmCap || 0),
-                "enc": (pkmEnc || 0)
+                "enc": (pkmEnc || 0),
+                "cap": (pkmCap || 0)
             });
         }
+
         switch (sortOn) {
             case 'id':
                 sortedPokedex.sort(function (a, b) {
@@ -726,6 +726,7 @@ var trainerTools = {
                 pkmnEnc = sortedPokedex[i].enc,
                 pkmnCap = sortedPokedex[i].cap,
                 candyNum = this.getCandy(pkmnNum, trainer);
+
             html += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
                 pkmnImage +
                 '" class="png_img"><br/><b> ' +
