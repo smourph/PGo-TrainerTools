@@ -511,7 +511,7 @@ var trainerTools = {
 
         if (!trainer.bagPokemon.length) return;
 
-        html = '<div class="items"><div class="row">';
+        html = '<div class="items">';
 
         for (var i = 0; i < trainer.bagPokemon.length; i++) {
             if (trainer.bagPokemon[i].inventory_item_data.pokemon_data.is_egg) {
@@ -636,6 +636,10 @@ var trainerTools = {
                 classIV = "red-text";
             }
 
+            if (i % 4 === 0) {
+                html += '<div class="row">';
+            }
+
             html += '<div class="col s12 m6 l3 center poke-item">' +
                 '<div class="poke-title">' + pkmnName + ' (' + pkmnCP + ')</div>' +
                 '<div class="col s4 poke-img">' +
@@ -651,11 +655,19 @@ var trainerTools = {
                 'Candy <b>' + candyNum + '</b>' +
                 '</div>' +
                 '</div>';
+
+            if (i % 4 === 3 || i === sortedPokemon.length - 1) {
+                html += '</div>';
+            }
         }
 
         // Add incubators
         var incubators = this.getIncubators(trainer.eggs);
         for (var b = 0; b < incubators.length; b++) {
+            if (b % 4 === 0) {
+                html += '<div class="row">';
+            }
+
             var incubator = incubators[b],
                 currentTrainerStats = trainer.stats[0].inventory_item_data.player_stats,
                 totalToWalk = incubator.target_km_walked - incubator.start_km_walked,
@@ -676,15 +688,20 @@ var trainerTools = {
                 '<img src="image/items/' + img + '.png" class="png_img">' +
                 '</div>' +
                 '</div>';
+
+            if (b % 4 === 3) {
+                html += '</div>';
+            }
         }
 
         // Add number of eggs
         html += '<div class="col s12 m6 l3 center poke-item">' +
             '<img src="image/items/Egg.png" class="png_img"><br/>' +
             '<b>You have ' + eggs + ' egg' + (eggs !== 1 ? "s" : "") +
+            '</div>' +
             '</div>';
 
-        html += '</div></div>';
+        html += '</div>';
 
         return html;
     },
