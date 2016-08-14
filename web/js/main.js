@@ -419,8 +419,8 @@ var trainerTools = {
         for (var i = 0; i < currentTrainerItems.length; i++) {
             if (currentTrainerItems[i].inventory_item_data.item.count > 0) {
                 html += '<div class="col s12 m6 l3 center" style="float: left">' +
-                    '<img src="image/items/' + currentTrainerItems[i].inventory_item_data.item.item_id + '.png"' + 'class="item_img"><br>' +
-                    '<b>' + this.itemsArray[currentTrainerItems[i].inventory_item_data.item.item_id] + '</b><br>' +
+                    '<img src="image/items/' + currentTrainerItems[i].inventory_item_data.item.item_id + '.png"' + 'class="item_img"><br/>' +
+                    '<b>' + this.itemsArray[currentTrainerItems[i].inventory_item_data.item.item_id] + '</b><br/>' +
                     'Count: ' + (currentTrainerItems[i].inventory_item_data.item.count || 0) +
                     '</div>';
                 total = total + (currentTrainerItems[i].inventory_item_data.item.count || 0);
@@ -586,7 +586,6 @@ var trainerTools = {
 
         for (var i = 0; i < sortedPokemon.length; i++) {
             var pkmnNum = sortedPokemon[i].id,
-                pkmnUnique = sortedPokemon[i].unique_id,
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
                 pkmnCP = sortedPokemon[i].cp,
@@ -594,24 +593,34 @@ var trainerTools = {
                 pkmnIVA = sortedPokemon[i].attack,
                 pkmnIVD = sortedPokemon[i].defense,
                 pkmnIVS = sortedPokemon[i].stamina,
-                pkmnEnc = sortedPokemon[i].enc,
-                pkmnCap = sortedPokemon[i].cap,
-                pkmnCurrentHP = sortedPokemon[i].current_health,
                 pkmnMaxHP = sortedPokemon[i].max_health,
-                candyNum = this.getCandy(pkmnNum, trainer);
-            html += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
-                pkmnImage + '" class="png_img"><br><b>' +
-                pkmnName +
-                '</b><br><div class="progress pkmn-progress pkmn-' + pkmnNum + '"> <div class="determinate pkmn-' + pkmnNum + '" style="width: ' + (pkmnCurrentHP / pkmnMaxHP) * 100 + '%"></div> </div>' +
-                '<b>HP:</b> ' + pkmnCurrentHP + ' / ' + pkmnMaxHP +
-                '<br><b>CP:</b>' + pkmnCP +
-                '<br><b>IV:</b> ' + (pkmnIV >= 0.8 ? '<span style="color: #039be5">' + pkmnIV + '</span>' : pkmnIV) +
-                '<br><b>A/D/S:</b> ' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS +
-                '<br><b>Candy: </b>' + candyNum +
+                candyNum = this.getCandy(pkmnNum, trainer),
+                classIV = '';
+
+            if (parseFloat(pkmnIV) >= 0.9) {
+                classIV = "green-text";
+            } else if (parseFloat(pkmnIV) >= 0.8) {
+                classIV = "blue-text";
+            } else if (parseFloat(pkmnIV) >= 0.5) {
+                classIV = "red-text";
+            }
+
+            html += '<div class="col s12 m6 l3 center poke-item">' +
+                '<div class="poke-title">' + pkmnName + ' (' + pkmnCP + ')</div>' +
+                '<div class="col s4 poke-img">' +
+                '<img src="image/pokemon/' + pkmnImage + '" class="png_img">' +
+                '</div>' +
+                '<div class="col s8 poke-stats">' +
+
+                'HP <b>' + pkmnMaxHP + '</b><br/>' +
+                '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'IV <b>' + pkmnIV + '</b></span><br/>' +
+                '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'A/D/S <b>' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS + '</b></span><br/>' +
+                'Candy <b>' + candyNum + '</b>' +
+                '</div>' +
                 '</div>';
         }
         // Add number of eggs
-        html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/Egg.png" class="png_img"><br><b>You have ' + eggs + ' egg' + (eggs !== 1 ? "s" : "") + '</div>';
+        html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/Egg.png" class="png_img"><br/><b>You have ' + eggs + ' egg' + (eggs !== 1 ? "s" : "") + '</div>';
         for (var b = 0; b < trainer.eggs.length; b++) {
             var incubator = trainer.eggs[b].inventory_item_data.egg_incubators.egg_incubator;
             //TODO: Fix error, some incubator aren't display
@@ -628,15 +637,15 @@ var trainerTools = {
             } else {
                 var img = 'EggIncubatorUnlimited';
             }
-            html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/' + img + '.png" class="png_img"><br>';
+            html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/' + img + '.png" class="png_img"><br/>';
             html += eggString;
         }
         html += '</div></div>';
-        var nth = 0;
-        html = html.replace(/<\/div><div/g, function (match, i, original) {
-            nth++;
-            return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
-        });
+        /*var nth = 0;
+         html = html.replace(/<\/div><div/g, function (match, i, original) {
+         nth++;
+         return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
+         });*/
 
         return html;
     },
@@ -701,15 +710,15 @@ var trainerTools = {
                 candyNum = this.getCandy(pkmnNum, trainer);
             html += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
                 pkmnImage +
-                '" class="png_img"><br><b> ' +
+                '" class="png_img"><br/><b> ' +
                 this.addMissingZero(pkmnNum, 3) +
                 ' ' +
                 pkmnName +
-                '</b><br>Times Seen: ' +
+                '</b><br/>Times Seen: ' +
                 pkmnEnc +
-                '<br>Times Caught: ' +
+                '<br/>Times Caught: ' +
                 pkmnCap +
-                '<br>Candy: ' +
+                '<br/>Candy: ' +
                 candyNum +
                 '</div>';
         }
