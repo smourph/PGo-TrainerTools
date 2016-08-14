@@ -46,7 +46,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 log = logging.getLogger(__name__)
 
 
-def init_config(config_file="config.json"):
+def init_config(config_file="config/config.json"):
     parser = argparse.ArgumentParser()
 
     # If config file exists, load variables from json
@@ -95,8 +95,7 @@ def get_all_player_data(custom_location=None, allow_debug=True):
         # log level for internal pgoapi class
         logging.getLogger("rpc_api").setLevel(logging.INFO)
 
-    config_file = "config.json"
-    config = init_config(config_file)
+    config = init_config()
     if not config:
         return
 
