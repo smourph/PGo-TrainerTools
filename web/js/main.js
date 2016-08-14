@@ -420,22 +420,36 @@ var trainerTools = {
             html;
 
         html = '<div class="items"><div class="row">';
+
         for (var i = 0; i < currentTrainerItems.length; i++) {
+            var nbItems = 0;
+
             if (currentTrainerItems[i].inventory_item_data.item.count > 0) {
-                html += '<div class="col s12 m6 l3 center" style="float: left">' +
-                    '<img src="image/items/' + currentTrainerItems[i].inventory_item_data.item.item_id + '.png"' + 'class="item_img"><br/>' +
-                    '<b>' + this.itemsArray[currentTrainerItems[i].inventory_item_data.item.item_id] + '</b><br/>' +
-                    'Count: ' + (currentTrainerItems[i].inventory_item_data.item.count || 0) +
+                var itemData = currentTrainerItems[i].inventory_item_data.item;
+
+                if (nbItems % 4 === 0) {
+                    html += '<div class="row">';
+                }
+
+                html += '<div class="col s12 m6 l3 center poke-item">' +
+                    '<div class="poke-title">' + this.itemsArray[itemData.item_id] + ' (' + (itemData.count || 0) + ')</div>' +
+                    '<div class="col s12 poke-img">' +
+                    '<img src="image/items/' + itemData.item_id + '.png" class="png_img">' +
+                    '</div>' +
                     '</div>';
-                total = total + (currentTrainerItems[i].inventory_item_data.item.count || 0);
+
+                if (nbItems % 4 === 3 || i === currentTrainerItems.length - 1) {
+                    html += '</div>';
+                }
+
+                total = total + (itemData.count || 0);
+
+                nbItems++;
             }
         }
+
         html += '</div></div>';
-        var nth = 0;
-        html = html.replace(/<\/div><div/g, function (match, i, original) {
-            nth++;
-            return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
-        });
+
         container.find('.subtitle').html(total + " item" + (total !== 1 ? "s" : "") + " in Bag");
         container.find('.subcontent').html(html);
     },
