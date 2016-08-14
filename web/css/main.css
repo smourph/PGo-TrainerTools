@@ -134,11 +134,11 @@ section.bloc-content .col .card-content .close {
   cursor: pointer;
   line-height: 48px;
 }
-section.bloc-content .col .card-content .bloc-list-button.bloc-list-button-sort {
-  text-align: right;
-}
-section.bloc-content .col .card-content .bloc-list-button.bloc-list-button-sort .chip {
-  margin-right: 3px;
+section.bloc-content .col .card-content .sort-buttons .chip {
+  height: 38px;
+  margin: 0 6px 8px;
+  line-height: 38px;
+  font-size: 15px;
 }
 section.bloc-content .col .card-content .subcontent {
   overflow-y: scroll;

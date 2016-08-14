@@ -363,13 +363,13 @@ var trainerTools = {
 
         container.find('.subtitle').html(pkmnTotal + ' Pokemon');
 
-        var sortButtons = '<div class="col s12" data-user-id="' + trainerName + '">Sort : ';
-        sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="cp">CP</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="iv">IV</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="id">ID</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="name">Name</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokemon" href="#" data-sort="time">Time</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokemon"  href="#" data-sort="candy">Candy</a></div>';
+        var sortButtons = '<div class="col s12 center">';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="cp">CP</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="iv">IV</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="id">ID</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="name">Name</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="time">Time</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text"  href="#" data-sort="candy">Candy</a></div>';
         sortButtons += '</div>';
         container.find('.sort-buttons').html(sortButtons);
 
@@ -390,11 +390,11 @@ var trainerTools = {
 
         container.find('.subtitle').html('Pokedex ' + pkmnTotal + ' / 151');
 
-        var sortButtons = '<div class="col s12" dat-user-id="' + trainerName + '">Sort : ';
-        sortButtons += '<div class="chip"><a class="sort pokedex" href="#" data-sort="id">ID</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokedex" href="#" data-sort="name">Name</></div>';
-        sortButtons += '<div class="chip"><a class="sort pokedex" href="#" data-sort="enc">Seen</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokedex" href="#" data-sort="cap">Caught</a></div>';
+        var sortButtons = '<div class="col s12 center">';
+        sortButtons += '<div class="chip"><a class="sort pokedex white-text" href="#" data-sort="id">ID</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokedex white-text" href="#" data-sort="name">Name</></div>';
+        sortButtons += '<div class="chip"><a class="sort pokedex white-text" href="#" data-sort="enc">Seen</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokedex white-text" href="#" data-sort="cap">Caught</a></div>';
         sortButtons += '</div>';
         container.find('.sort-buttons').html(sortButtons);
 
@@ -467,6 +467,19 @@ var trainerTools = {
         // Change color for section button elements
         var sectionButton = $('#section-button');
         sectionButton.find('.btn-floating').each(function () {
+            for (var i = 0; i < teams.length; i++) {
+                $(this).removeClass(teams[i].color);
+                if (teams[i].colorVariant !== '') {
+                    $(this).removeClass(teams[i].colorVariant);
+                }
+            }
+            $(this).addClass(trainerTeam.color);
+            $(this).addClass(trainerTeam.colorVariant);
+        });
+
+        // Change color for sort buttons
+        var sectionButton = $('.sort-buttons');
+        sectionButton.find('.chip').each(function () {
             for (var i = 0; i < teams.length; i++) {
                 $(this).removeClass(teams[i].color);
                 if (teams[i].colorVariant !== '') {

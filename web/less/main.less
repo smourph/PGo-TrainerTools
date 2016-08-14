@@ -145,13 +145,12 @@ section.bloc-content {
         line-height: 48px;
       }
 
-      .bloc-list-button {
-        &.bloc-list-button-sort {
-          text-align: right;
-
-          .chip {
-            margin-right: 3px;
-          }
+      .sort-buttons {
+        .chip {
+          height: 38px;
+          margin: 0 6px 8px;
+          line-height: 38px;
+          font-size: 15px;
         }
       }
 
@@ -159,17 +158,20 @@ section.bloc-content {
         overflow-y: scroll;
         overflow-x: hidden;
         height: 80vh;
+
         .poke-item {
           margin: 5px 0;
           padding: 0;
           @media only screen and (min-width: 601px) {
             margin: 5px 0 30px;
           }
+
           .poke-title {
             line-height: 32px;
             font-size: 18px;
             font-weight: bold;
           }
+
           .poke-stats {
             font-size: 14px;
           }
