@@ -611,7 +611,6 @@ var trainerTools = {
                 '<img src="image/pokemon/' + pkmnImage + '" class="png_img">' +
                 '</div>' +
                 '<div class="col s8 poke-stats">' +
-
                 'HP <b>' + pkmnMaxHP + '</b><br/>' +
                 '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'IV <b>' + pkmnIV + '</b></span><br/>' +
                 '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'A/D/S <b>' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS + '</b></span><br/>' +
@@ -619,33 +618,39 @@ var trainerTools = {
                 '</div>' +
                 '</div>';
         }
-        // Add number of eggs
-        html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/Egg.png" class="png_img"><br/><b>You have ' + eggs + ' egg' + (eggs !== 1 ? "s" : "") + '</div>';
-        for (var b = 0; b < trainer.eggs.length; b++) {
-            var incubator = trainer.eggs[b].inventory_item_data.egg_incubators.egg_incubator;
-            //TODO: Fix error, some incubator aren't display
-            if (!incubator.item_id) {
-                var incubator = trainer.eggs[b].inventory_item_data.egg_incubators.egg_incubator[0];
-            }
-            var currentTrainerStats = trainer.stats[0].inventory_item_data.player_stats;
-            var totalToWalk = incubator.target_km_walked - incubator.start_km_walked;
-            var kmsLeft = incubator.target_km_walked - currentTrainerStats.km_walked;
-            var walked = totalToWalk - kmsLeft;
-            var eggString = (parseFloat(walked).toFixed(1) || 0) + "/" + (parseFloat(totalToWalk).toFixed(1) || 0) + "km";
+
+        // Add incubators
+        var incubators = this.getIncubators(trainer.eggs);
+        for (var b = 0; b < incubators.length; b++) {
+            var incubator = incubators[b],
+                currentTrainerStats = trainer.stats[0].inventory_item_data.player_stats,
+                totalToWalk = incubator.target_km_walked - incubator.start_km_walked,
+                kmsLeft = incubator.target_km_walked - currentTrainerStats.km_walked,
+                walked = totalToWalk - kmsLeft,
+                kmString = (parseFloat(walked).toFixed(1) || 0) + "/" + (parseFloat(totalToWalk).toFixed(1) || 0) + " km",
+                img;
+
             if (incubator.item_id == 902) {
-                var img = 'EggIncubator';
+                img = 'EggIncubator';
             } else {
-                var img = 'EggIncubatorUnlimited';
+                img = 'EggIncubatorUnlimited';
             }
-            html += '<div class="col s12 m4 l3 center" style="float: left;"><img src="image/items/' + img + '.png" class="png_img"><br/>';
-            html += eggString;
+
+            html += '<div class="col s12 m6 l3 center poke-item">' +
+                '<div class="poke-title">' + kmString + '</div>' +
+                '<div class="col s12 poke-img">' +
+                '<img src="image/items/' + img + '.png" class="png_img">' +
+                '</div>' +
+                '</div>';
         }
+
+        // Add number of eggs
+        html += '<div class="col s12 m6 l3 center poke-item">' +
+            '<img src="image/items/Egg.png" class="png_img"><br/>' +
+            '<b>You have ' + eggs + ' egg' + (eggs !== 1 ? "s" : "") +
+            '</div>';
+
         html += '</div></div>';
-        /*var nth = 0;
-         html = html.replace(/<\/div><div/g, function (match, i, original) {
-         nth++;
-         return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
-         });*/
 
         return html;
     },
@@ -730,6 +735,24 @@ var trainerTools = {
         });
 
         return html;
+    },
+
+    getIncubators: function (incubators) {
+        var incubatorsReturn = [];
+
+        for (var a = 0; a < incubators.length; a++) {
+            var incubator = incubators[a].inventory_item_data.egg_incubators.egg_incubator;
+            if (Array.isArray(incubator)) {
+                for (var b = 0; b < incubator.length; b++) {
+                    var incubatorUnder = incubator[b];
+                    incubatorsReturn.push(incubatorUnder);
+                }
+            } else {
+                incubatorsReturn.push(incubator);
+            }
+        }
+
+        return incubatorsReturn;
     },
 
     getCandy: function (p_num, trainer) {
