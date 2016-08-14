@@ -211,7 +211,7 @@ var trainerTools = {
             aloneButton = navContainer.find('.alone-button'),
             trainersNameList = $('#trainers-list'),
             atLeastOneTrainer = false,
-            noDataFoundMessage = 'No trainer data found in web directory!<br/>' +
+            noDataFoundMessage = 'No trainer data found in web/playerdata directory!<br/>' +
                 'Please, check you have already fetch some data with python scan tool then reload this page',
             noDataFoundMessageShort = 'No trainer data found',
             html;
@@ -280,6 +280,9 @@ var trainerTools = {
     activateUserAndBuildContents: function (trainerName) {
         this.successLog(trainerName + ' player loaded');
         this.successLog('Player data last updated: ' + this.timeConverterFullDate(this.trainerData[trainerName].lastUpdateTimestamp));
+
+        // Show default content
+        trainerTools.showSelectedContentAndHideTheRest('welcome');
 
         // Build content card
         this.buildAllContents(trainerName);
