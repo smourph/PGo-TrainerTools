@@ -321,39 +321,39 @@ var trainerTools = {
 
         container.find('.subtitle').html('Trainer Infos');
 
-        html = '<div class="row">' +
+        html = '<div class="info row">' +
             '<div class="col s12">' +
-            '<ul class="collection with-header">' +
+            '<ul class="collection with-header center">' +
             '<li class="collection-header"><h5 class="center">' + playerInfo.username + ' (' + currentTrainerStats.level + ')</h5></li>' +
-            '<li class="collection-item">Start to play: ' + this.timeConverterFullDate(playerInfo.creation_timestamp_ms) +
-            (parseInt(currentTrainerStats.next_level_xp, 10) - currentTrainerStats.experience) + '</li>' +
-            '<li class="collection-item">Exp to next Lvl: ' +
+            '<li class="collection-item">Start to play <b>' + this.timeConverterFullDate(playerInfo.creation_timestamp_ms) +
+            (parseInt(currentTrainerStats.next_level_xp, 10) - currentTrainerStats.experience) + '</b></li>' +
+            '<li class="collection-item">Exp total <b>' + currentTrainerStats.experience + '</b></li>' +
+            '<li class="collection-item">Exp to next Lvl <b>' +
             (currentTrainerStats.experience - this.levelXpArray[currentTrainerStats.level - 1].current_level_xp) + ' / ' +
-            this.levelXpArray[currentTrainerStats.level - 1].exp_to_next_level +
+            this.levelXpArray[currentTrainerStats.level - 1].exp_to_next_level + '</b>' +
             '<div class="progress teambar-' + team + '" style="height: 10px">' +
             '<div class="determinate team-' + team + '" style="width: ' +
-            (currentTrainerStats.experience / currentTrainerStats.next_level_xp) * 100 + '%">' +
+            (currentTrainerStats.experience / currentTrainerStats.next_level_xp) * 100 + '%"></div>' +
             '</div>' +
-            '</div></li>' +
-            '<li class="collection-item">Exp total: ' + currentTrainerStats.experience + '</li>' +
-            '<li class="collection-item">Stardust: ' + (parseFloat(playerInfo.currencies[1].amount) || 0) + '</li>' +
-            '<li class="collection-item">Pokecoin: ' + (parseFloat(playerInfo.currencies[0].amount) || 0) + '</li>' +
-            '<li class="collection-item">Kilometers walked: ' + (parseFloat(currentTrainerStats.km_walked).toFixed(3) || 0) + '</li>' +
-            '<li class="collection-item">Pokemon encountered: ' + (currentTrainerStats.pokemons_encountered || 0) + '</li>' +
-            '<li class="collection-item">Pokeballs thrown: ' + (currentTrainerStats.pokeballs_thrown || 0) + '</li>' +
-            '<li class="collection-item">Pokemon caught: ' + (currentTrainerStats.pokemons_captured || 0) + '</li>' +
-            '<li class="collection-item">Pokemon evolved: ' + (currentTrainerStats.evolutions || 0) + '</li>' +
-            '<li class="collection-item">Eggs hatched: ' + (currentTrainerStats.eggs_hatched || 0) + '</li>' +
-            '<li class="collection-item">Unique pokedex entries: ' + (currentTrainerStats.unique_pokedex_entries || 0) + '</li>' +
-            '<li class="collection-item">PokeStops visited: ' + (currentTrainerStats.poke_stop_visits || 0) + '</li>' +
-            '<li class="collection-item">Gym attacks won / total: ' + (currentTrainerStats.battle_attack_won || 0) + ' / ' +
-            (currentTrainerStats.battle_attack_total || 0) + '</li>' +
-            '<li class="collection-item">Gym training won / total: ' + (currentTrainerStats.battle_training_won || 0) + ' / ' +
-            (currentTrainerStats.battle_training_total || 0) + '</li>' +
-            '<li class="collection-item">Prestige raised: ' + (currentTrainerStats.prestige_raised_total || 0) + '</li>' +
-            '<li class="collection-item">Prestige dropped: ' + (currentTrainerStats.prestige_dropped_total || 0) + '</li>' +
-            '<li class="collection-item">Big magikarp caught: ' + (currentTrainerStats.big_magikarp_caught || 0) + '</li>' +
-            '<li class="collection-item">Small rattata caught: ' + (currentTrainerStats.small_rattata_caught || 0) + '</li>' +
+            '</li>' +
+            '<li class="collection-item">Stardust <b>' + (parseFloat(playerInfo.currencies[1].amount) || 0) + '</b></li>' +
+            '<li class="collection-item">Pokecoin <b>' + (parseFloat(playerInfo.currencies[0].amount) || 0) + '</b></li>' +
+            '<li class="collection-item">Kilometers walked <b>' + (parseFloat(currentTrainerStats.km_walked).toFixed(3) || 0) + '</b></li>' +
+            '<li class="collection-item">Pokemon encountered <b>' + (currentTrainerStats.pokemons_encountered || 0) + '</b></li>' +
+            '<li class="collection-item">Pokeballs thrown <b>' + (currentTrainerStats.pokeballs_thrown || 0) + '</b></li>' +
+            '<li class="collection-item">Pokemon caught <b>' + (currentTrainerStats.pokemons_captured || 0) + '</b></li>' +
+            '<li class="collection-item">Pokemon evolved <b>' + (currentTrainerStats.evolutions || 0) + '</b></li>' +
+            '<li class="collection-item">Eggs hatched <b>' + (currentTrainerStats.eggs_hatched || 0) + '</b></li>' +
+            '<li class="collection-item">Unique pokedex entries <b>' + (currentTrainerStats.unique_pokedex_entries || 0) + '</b></li>' +
+            '<li class="collection-item">PokeStops visited <b>' + (currentTrainerStats.poke_stop_visits || 0) + '</b></li>' +
+            '<li class="collection-item">Gym attacks won/total <b>' + (currentTrainerStats.battle_attack_won || 0) + ' / ' +
+            (currentTrainerStats.battle_attack_total || 0) + '</b></li>' +
+            '<li class="collection-item">Gym training won/total <b>' + (currentTrainerStats.battle_training_won || 0) + ' / ' +
+            (currentTrainerStats.battle_training_total || 0) + '</b></li>' +
+            '<li class="collection-item">Prestige raised <b>' + (currentTrainerStats.prestige_raised_total || 0) + '</b></li>' +
+            '<li class="collection-item">Prestige dropped <b>' + (currentTrainerStats.prestige_dropped_total || 0) + '</b></li>' +
+            '<li class="collection-item">Big magikarp caught <b>' + (currentTrainerStats.big_magikarp_caught || 0) + '</b></li>' +
+            '<li class="collection-item">Small rattata caught <b>' + (currentTrainerStats.small_rattata_caught || 0) + '</b></li>' +
             '</ul>' +
             '</div>' +
             '</div>';

@@ -145,6 +145,9 @@ section.bloc-content .col .card .card-content .subcontent {
   overflow-x: hidden;
   height: 80vh;
 }
+section.bloc-content .col .card .card-content .subcontent .info .collection-item {
+  font-size: 15px;
+}
 section.bloc-content .col .card .card-content .subcontent .poke-item {
   margin: 5px 0;
   padding: 0;
