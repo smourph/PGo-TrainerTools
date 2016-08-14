@@ -55,6 +55,7 @@ var trainerTools = {
     candiesArray: {},
     itemsArray: {},
     movesArray: {},
+    movesArrayIdsOrder: [],
     levelXpArray: {},
 
     trainerData: {},
@@ -104,6 +105,9 @@ var trainerTools = {
 
         this.loadJSON(movesJsonFile, function (data) {
             trainerTools.movesArray = data;
+            for (var i = 0; i < trainerTools.movesArray.length; i++) {
+                trainerTools.movesArrayIdsOrder[trainerTools.movesArray[i].id] = i;
+            }
             trainerTools.successLog(movesJsonFile + ' loaded');
         }, null, this.errorLog, 'Failed to load \'' + movesJsonFile + '\' file', true);
 
@@ -508,6 +512,7 @@ var trainerTools = {
         if (!trainer.bagPokemon.length) return;
 
         html = '<div class="items"><div class="row">';
+
         for (var i = 0; i < trainer.bagPokemon.length; i++) {
             if (trainer.bagPokemon[i].inventory_item_data.pokemon_data.is_egg) {
                 eggs++;
@@ -520,6 +525,8 @@ var trainerTools = {
                 pkmCP = pokemonData.cp,
                 pkmMaxHP = pokemonData.stamina_max || 0,
                 pkmCurrentHP = pokemonData.stamina || 0,
+                pkmMove1 = pokemonData.move_1 || null,
+                pkmMove2 = pokemonData.move_2 || null,
                 pkmIVA = pokemonData.individual_attack || 0,
                 pkmIVD = pokemonData.individual_defense || 0,
                 pkmIVS = pokemonData.individual_stamina || 0,
@@ -533,6 +540,8 @@ var trainerTools = {
                 "cp": pkmCP,
                 "maxHealth": pkmMaxHP,
                 "currentHealth": pkmCurrentHP,
+                "move1": pkmMove1,
+                "move2": pkmMove2,
                 "attack": pkmIVA,
                 "defense": pkmIVD,
                 "stamina": pkmIVS,
@@ -601,6 +610,16 @@ var trainerTools = {
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
                 pkmnCP = sortedPokemon[i].cp,
+                pkmnMove1 = {
+                    name: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move1]].name,
+                    type: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move1]].type
+                },
+                pkmnMove2 = {
+                    name: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move2]].name,
+                    type: (typeof this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move2]].type === 'string' ?
+                        this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move2]].type :
+                        'unknown')
+                },
                 pkmnIV = sortedPokemon[i].iv,
                 pkmnIVA = sortedPokemon[i].attack,
                 pkmnIVD = sortedPokemon[i].defense,
@@ -624,8 +643,11 @@ var trainerTools = {
                 '</div>' +
                 '<div class="col s8 poke-stats">' +
                 'HP <b>' + pkmnMaxHP + '</b><br/>' +
-                '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'IV <b>' + pkmnIV + '</b></span><br/>' +
-                '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'A/D/S <b>' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS + '</b></span><br/>' +
+                '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'IV <b>' + pkmnIV + '</b> (' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS + ')</span><br/>' +
+                '<div class="poke-moves">' +
+                '<img src="image/types/' + pkmnMove1.type + '.gif"> <span class="poke-move-name">' + pkmnMove1.name + '</span><br/>' +
+                '<img src="image/types/' + pkmnMove1.type + '.gif"> <span class="poke-move-name">' + pkmnMove2.name + '</span><br/>' +
+                '</div>' +
                 'Candy <b>' + candyNum + '</b>' +
                 '</div>' +
                 '</div>';

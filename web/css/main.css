@@ -162,6 +162,14 @@ section.bloc-content .col .card-content .subcontent .poke-item .poke-title {
 section.bloc-content .col .card-content .subcontent .poke-item .poke-stats {
   font-size: 14px;
 }
+section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-moves img {
+  vertical-align: middle;
+  height: 12px;
+}
+section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-moves .poke-move-name {
+  vertical-align: middle;
+  font-weight: bold;
+}
 section.bloc-content .col .card-content .item_img {
   width: 75px;
   height: auto;
