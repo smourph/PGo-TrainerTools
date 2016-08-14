@@ -166,6 +166,13 @@ section.bloc-content {
             margin: 5px 0 30px;
           }
 
+          &.not-caught {
+            img {
+              opacity: 0.6;
+              filter: alpha(opacity=60); /* msie fix */
+            }
+          }
+
           .poke-title {
             line-height: 32px;
             font-size: 18px;
@@ -174,15 +181,23 @@ section.bloc-content {
 
           .poke-stats {
             font-size: 14px;
-            .poke-moves {
+            .poke-moves, .poke-types {
               img {
                 vertical-align: middle;
-                height: 12px;
+                height: 14px;
               }
+            }
 
+            .poke-moves {
               .poke-move-name {
                 vertical-align: middle;
                 font-weight: bold;
+              }
+            }
+
+            .poke-types {
+              .poke-type-name {
+                vertical-align: middle;
               }
             }
           }

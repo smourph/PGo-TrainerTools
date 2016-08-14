@@ -154,6 +154,11 @@ section.bloc-content .col .card-content .subcontent .poke-item {
     margin: 5px 0 30px;
   }
 }
+section.bloc-content .col .card-content .subcontent .poke-item.not-caught img {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  /* msie fix */
+}
 section.bloc-content .col .card-content .subcontent .poke-item .poke-title {
   line-height: 32px;
   font-size: 18px;
@@ -162,13 +167,17 @@ section.bloc-content .col .card-content .subcontent .poke-item .poke-title {
 section.bloc-content .col .card-content .subcontent .poke-item .poke-stats {
   font-size: 14px;
 }
-section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-moves img {
+section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-moves img,
+section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-types img {
   vertical-align: middle;
-  height: 12px;
+  height: 14px;
 }
 section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-moves .poke-move-name {
   vertical-align: middle;
   font-weight: bold;
+}
+section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-types .poke-type-name {
+  vertical-align: middle;
 }
 section.bloc-content .col .card-content .item_img {
   width: 75px;

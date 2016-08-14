@@ -717,11 +717,15 @@ var trainerTools = {
 
         if (!trainer.pokedex.length) return;
 
-        html = '<div class="items"><div class="row">';
+        html = '<div class="items">';
         for (var i = 0; i < trainer.pokedex.length; i++) {
             var pokedexData = trainer.pokedex[i].inventory_item_data.pokedex_entry,
                 pkmID = pokedexData.pokemon_id,
                 pkmName = this.pokemonsArray[pkmID - 1].Name,
+                pkmType1 = this.pokemonsArray[pkmID - 1].TypeI,
+                pkmType2 = (typeof this.pokemonsArray[pkmID - 1].TypeII !== 'undefined' ?
+                    this.pokemonsArray[pkmID - 1].TypeII :
+                    ''),
                 pkmEnc = pokedexData.times_encountered,
                 pkmCap = pokedexData.times_captured;
 
@@ -729,7 +733,9 @@ var trainerTools = {
                 "name": pkmName,
                 "id": pkmID,
                 "enc": (pkmEnc || 0),
-                "cap": (pkmCap || 0)
+                "cap": (pkmCap || 0),
+                "type1": (pkmType1),
+                "type2": (pkmType2)
             });
         }
 
@@ -768,28 +774,43 @@ var trainerTools = {
                 pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
                 pkmnEnc = sortedPokedex[j].enc,
                 pkmnCap = sortedPokedex[j].cap,
-                candyNum = this.getCandy(pkmnNum, trainer);
+                pkmnType1 = sortedPokedex[j].type1,
+                pkmnType2 = sortedPokedex[j].type2,
+                candyNum = this.getCandy(pkmnNum, trainer),
+                isNotCaughtClass = '';
 
-            html += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
-                pkmnImage +
-                '" class="png_img"><br/><b> ' +
-                this.addMissingZero(pkmnNum, 3) +
-                ' ' +
-                pkmnName +
-                '</b><br/>Times Seen: ' +
-                pkmnEnc +
-                '<br/>Times Caught: ' +
-                pkmnCap +
-                '<br/>Candy: ' +
-                candyNum +
+            if (j % 4 === 0) {
+                html += '<div class="row">';
+            }
+
+            if (pkmnCap === 0) {
+                isNotCaughtClass = ' not-caught grey-text';
+            }
+
+            html += '<div class="col s12 m6 l3 center poke-item' + isNotCaughtClass + '">' +
+                '<div class="poke-title">#' + pkmnNum + ' ' + pkmnName + '</div>' +
+                '<div class="col s4 poke-img">' +
+                '<img src="image/pokemon/' + pkmnImage + '" class="png_img">' +
+                '</div>' +
+                '<div class="col s8 poke-stats">' +
+                'Times Seen <b>' + pkmnEnc + '</b><br/>' +
+                'Times Caught <b>' + pkmnCap + '</b><br/>' +
+                'Candy <b>' + candyNum + '</b>' +
+                '<div class="poke-types">' +
+                '<span class="poke-type-name">Type 1</span> <img src="image/types/' + pkmnType1 + '.gif"><br/>' +
+                '<span class="poke-type-name">Type 2</span> ' + ((pkmnType2 !== '') ?
+                '<img src="image/types/' + pkmnType2 + '.gif">' : '<span class="poke-type-name"><b>None</b></span>') +
+                '<br/>' +
+                '</div>' +
+                '</div>' +
                 '</div>';
+
+            if (j % 4 === 3 || j === sortedPokedex.length - 1) {
+                html += '</div>';
+            }
         }
-        html += '</div></div>';
-        var nth = 0;
-        html = html.replace(/<\/div><div/g, function (match, i, original) {
-            nth++;
-            return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
-        });
+
+        html += '</div>';
 
         return html;
     },
