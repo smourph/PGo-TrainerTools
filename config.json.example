@@ -1,6 +1,0 @@
-{
-    "auth_service": "google",
-    "username": "example@gmail.com",
-    "password": "password",
-    "location": "Lat,Lng OR Place name in google map"
-}

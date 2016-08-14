@@ -1,0 +1,21 @@
+var settings = {
+    /**
+     * TRAINERS INFO SETTINGS
+     */
+    trainers: ["USERNAME"],
+
+    //Multiple trainers example:
+    /*trainers: [
+        "USERNAME1",
+        "USERNAME2"
+    ],*/
+
+    /**
+     * REMOTE SERVER SETTINGS
+     */
+    remoteServer: {
+        url: 'REMOTE_URL',
+        defaultLocation: 'DEFAULT_LOCATION',
+        gmapApiKey: "GMAP_API_KEY"
+    }
+};

@@ -60,11 +60,8 @@ var trainerTools = {
     trainerData: {},
 
     init: function () {
-        // Load settings from trainersdata.js
-        this.settings = $.extend(true, this.settings, trainersInfo);
-
-        // Load settings from serverdata.js
-        this.pythonServer = $.extend(true, this.pythonServer, pythonServerInfo);
+        // Load settings from settings.js
+        this.settings = $.extend(true, this.settings, settings);
 
         // Load datagame files
         this.loadDatagameFiles();
@@ -122,7 +119,7 @@ var trainerTools = {
             inventoryJson,
             playerJson,
             settingsJson,
-            noSettingFound = 'No setting was found for trainer in config/trainersdata.js';
+            noSettingFound = 'No setting was found for trainer in web/config/settings.js';
 
         if (trainersNameList.length >= 1) {
             this.infoLog('Starting to load trainers data...');
@@ -152,7 +149,7 @@ var trainerTools = {
     bindUIEvents: function () {
         // Launch a scan
         $('#scan-logo').click(function () {
-            var gmapApiKey = trainerTools.pythonServer.gmapApiKey,
+            var gmapApiKey = trainerTools.settings.remoteServer.gmapApiKey,
                 location;
 
             $.ajax({
@@ -167,11 +164,11 @@ var trainerTools = {
                         data.accuracy < 2000) {
                         location = data.location.lat + ',' + data.location.lng
                     } else {
-                        location = trainerTools.pythonServer.defaultLocation;
+                        location = trainerTools.settings.remoteServer.defaultLocation;
                     }
                 },
                 error: function () {
-                    location = trainerTools.pythonServer.defaultLocation;
+                    location = trainerTools.settings.remoteServer.defaultLocation;
                 },
                 complete: function () {
                     trainerTools.doAPokeScan(location);
@@ -782,12 +779,12 @@ var trainerTools = {
     },
 
     doAPokeScan: function (location) {
-        var url = trainerTools.pythonServer.urlAPIScan,
+        var remoteUrl = trainerTools.settings.remoteServer.url + '/doScan',
             logoButton = $('#scan-logo');
 
         logoButton.addClass('waiting');
         $.ajax({
-            url: url,
+            url: remoteUrl,
             type: "POST",
             data: {
                 location: location,

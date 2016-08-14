@@ -1,9 +1,0 @@
-var userInfo = {
-    trainers: [ "username"]
-
-    /* Example for multiple trainers case:
-    trainers: [
-        "username1",
-        "username2"
-    ]*/
-};
