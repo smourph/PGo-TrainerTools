@@ -667,8 +667,8 @@ var trainerTools = {
                 'HP <b>' + pkmnMaxHP + '</b><br/>' +
                 '<span' + (classIV !== '' ? ' class="' + classIV + '"' : '') + '>' + 'IV <b>' + pkmnIV + '</b> (' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS + ')</span><br/>' +
                 '<div class="poke-moves">' +
-                '<img src="image/types/' + pkmnMove1.type + '.gif"> <span class="poke-move-name">' + pkmnMove1.name + '</span><br/>' +
-                '<img src="image/types/' + pkmnMove1.type + '.gif"> <span class="poke-move-name">' + pkmnMove2.name + '</span><br/>' +
+                '<img src="image/types/' + pkmnMove1.type.toString().toLowerCase() + '.gif"> <span class="poke-move-name">' + pkmnMove1.name + '</span><br/>' +
+                '<img src="image/types/' + pkmnMove2.type.toString().toLowerCase() + '.gif"> <span class="poke-move-name">' + pkmnMove2.name + '</span><br/>' +
                 '</div>' +
                 'Candy <b>' + candyNum + '</b>' +
                 '</div>' +
@@ -811,9 +811,8 @@ var trainerTools = {
                 'Times Caught <b>' + pkmnCap + '</b><br/>' +
                 'Candy <b>' + candyNum + '</b>' +
                 '<div class="poke-types">' +
-                '<span class="poke-type-name">Type 1</span> <img src="image/types/' + pkmnType1 + '.gif"><br/>' +
-                '<span class="poke-type-name">Type 2</span> ' + ((pkmnType2 !== '') ?
-                '<img src="image/types/' + pkmnType2 + '.gif">' : '<span class="poke-type-name"><b>None</b></span>') +
+                '<span class="poke-type-name">Type 1</span> <img src="image/types/' + pkmnType1.toString().toLowerCase() + '.gif"><br/>' +
+                '<span class="poke-type-name">Type 2</span> ' + ((pkmnType2 !== '') ? '<img src="image/types/' + pkmnType2.toString().toLowerCase() + '.gif">' : '<span class="poke-type-name"><b>None</b></span>') +
                 '<br/>' +
                 '</div>' +
                 '</div>' +
