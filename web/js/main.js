@@ -609,26 +609,26 @@ var trainerTools = {
                 break;
         }
 
-        for (var i = 0; i < sortedPokemon.length; i++) {
-            var pkmnNum = sortedPokemon[i].id,
+        for (var j = 0; j < sortedPokemon.length; j++) {
+            var pkmnNum = sortedPokemon[j].id,
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
-                pkmnCP = sortedPokemon[i].cp,
+                pkmnCP = sortedPokemon[j].cp,
                 pkmnMove1 = {
-                    name: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move1]].name,
-                    type: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move1]].type
+                    name: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[j].move1]].name,
+                    type: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[j].move1]].type
                 },
                 pkmnMove2 = {
-                    name: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move2]].name,
-                    type: (typeof this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move2]].type === 'string' ?
-                        this.movesArray[this.movesArrayIdsOrder[sortedPokemon[i].move2]].type :
+                    name: this.movesArray[this.movesArrayIdsOrder[sortedPokemon[j].move2]].name,
+                    type: (typeof this.movesArray[this.movesArrayIdsOrder[sortedPokemon[j].move2]].type === 'string' ?
+                        this.movesArray[this.movesArrayIdsOrder[sortedPokemon[j].move2]].type :
                         'unknown')
                 },
-                pkmnIV = sortedPokemon[i].iv,
-                pkmnIVA = sortedPokemon[i].attack,
-                pkmnIVD = sortedPokemon[i].defense,
-                pkmnIVS = sortedPokemon[i].stamina,
-                pkmnMaxHP = sortedPokemon[i].maxHealth,
+                pkmnIV = sortedPokemon[j].iv,
+                pkmnIVA = sortedPokemon[j].attack,
+                pkmnIVD = sortedPokemon[j].defense,
+                pkmnIVS = sortedPokemon[j].stamina,
+                pkmnMaxHP = sortedPokemon[j].maxHealth,
                 candyNum = this.getCandy(pkmnNum, trainer),
                 classIV = '';
 
@@ -640,7 +640,7 @@ var trainerTools = {
                 classIV = "red-text";
             }
 
-            if (i % 4 === 0) {
+            if (j % 4 === 0) {
                 html += '<div class="row">';
             }
 
@@ -660,7 +660,7 @@ var trainerTools = {
                 '</div>' +
                 '</div>';
 
-            if (i % 4 === 3 || i === sortedPokemon.length - 1) {
+            if (j % 4 === 3 || j === sortedPokemon.length - 1) {
                 html += '</div>';
             }
         }
@@ -762,12 +762,12 @@ var trainerTools = {
                 });
                 break;
         }
-        for (var i = 0; i < sortedPokedex.length; i++) {
-            var pkmnNum = sortedPokedex[i].id,
+        for (var j = 0; j < sortedPokedex.length; j++) {
+            var pkmnNum = sortedPokedex[j].id,
                 pkmnImage = this.addMissingZero(pkmnNum, 3) + '.png',
                 pkmnName = this.pokemonsArray[pkmnNum - 1].Name,
-                pkmnEnc = sortedPokedex[i].enc,
-                pkmnCap = sortedPokedex[i].cap,
+                pkmnEnc = sortedPokedex[j].enc,
+                pkmnCap = sortedPokedex[j].cap,
                 candyNum = this.getCandy(pkmnNum, trainer);
 
             html += '<div class="col s12 m6 l3 center"><img src="image/pokemon/' +
