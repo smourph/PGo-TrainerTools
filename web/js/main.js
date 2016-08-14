@@ -368,16 +368,16 @@ var trainerTools = {
         container.find('.subtitle').html(pkmnTotal + ' Pokemon');
 
         var sortButtons = '<div class="col s12 center">';
-        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="cp">CP</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="iv">IV</a></div>';
         sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="id">ID</a></div>';
-        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="name">Name</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="iv">IV</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="cp">CP</a></div>';
         sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="time">Time</a></div>';
+        sortButtons += '<div class="chip"><a class="sort pokemon white-text" href="#" data-sort="name">Name</a></div>';
         sortButtons += '<div class="chip"><a class="sort pokemon white-text"  href="#" data-sort="candy">Candy</a></div>';
         sortButtons += '</div>';
         container.find('.sort-buttons').html(sortButtons);
 
-        var pokemonListSorted = this.sortAndShowBagPokemon('cp', trainerName);
+        var pokemonListSorted = this.sortAndShowBagPokemon('id', trainerName);
         container.find('.subcontent').html(pokemonListSorted);
 
         // Binding sorts button
@@ -572,6 +572,8 @@ var trainerTools = {
                 sortedPokemon.sort(function (a, b) {
                     if (a.cp > b.cp) return -1;
                     if (a.cp < b.cp) return 1;
+                    if (a.iv > b.iv) return -1;
+                    if (a.iv < b.iv) return 1;
                     return 0;
                 });
                 break;
@@ -579,6 +581,8 @@ var trainerTools = {
                 sortedPokemon.sort(function (a, b) {
                     if (a.iv > b.iv) return -1;
                     if (a.iv < b.iv) return 1;
+                    if (a.cp > b.cp) return -1;
+                    if (a.cp < b.cp) return 1;
                     return 0;
                 });
                 break;
