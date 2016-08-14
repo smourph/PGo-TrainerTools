@@ -560,7 +560,8 @@ var trainerTools = {
                 "defense": pkmIVD,
                 "stamina": pkmIVS,
                 "iv": pkmIV,
-                "creationTime": pkmCreationTime
+                "creationTime": pkmCreationTime,
+                "candy": this.getCandy(pkmID, trainer)
             });
         }
         switch (sortOn) {
@@ -568,6 +569,8 @@ var trainerTools = {
                 sortedPokemon.sort(function (a, b) {
                     if (a.name < b.name) return -1;
                     if (a.name > b.name) return 1;
+                    if (a.iv > b.iv) return -1;
+                    if (a.iv < b.iv) return 1;
                     if (a.cp > b.cp) return -1;
                     if (a.cp < b.cp) return 1;
                     return 0;
@@ -577,6 +580,8 @@ var trainerTools = {
                 sortedPokemon.sort(function (a, b) {
                     if (a.id < b.id) return -1;
                     if (a.id > b.id) return 1;
+                    if (a.iv > b.iv) return -1;
+                    if (a.iv < b.iv) return 1;
                     if (a.cp > b.cp) return -1;
                     if (a.cp < b.cp) return 1;
                     return 0;
@@ -650,7 +655,7 @@ var trainerTools = {
                 classIV = "green-text";
             } else if (parseFloat(pkmnIV) >= 0.8) {
                 classIV = "blue-text";
-            } else if (parseFloat(pkmnIV) >= 0.5) {
+            } else if (parseFloat(pkmnIV) < 0.5) {
                 classIV = "red-text";
             }
 
