@@ -125,94 +125,94 @@ section.bloc-content .row {
 section.bloc-content .col {
   padding: 0 0.25rem;
 }
-section.bloc-content .col .card-content {
+section.bloc-content .col .card .card-content {
   padding: 10px 20px 50px;
 }
-section.bloc-content .col .card-content .close {
+section.bloc-content .col .card .card-content .close {
   float: right;
   font-size: 32px;
   cursor: pointer;
   line-height: 48px;
 }
-section.bloc-content .col .card-content .sort-buttons .chip {
+section.bloc-content .col .card .card-content .sort-buttons .chip {
   height: 38px;
   margin: 0 6px 8px;
   line-height: 38px;
   font-size: 15px;
 }
-section.bloc-content .col .card-content .subcontent {
+section.bloc-content .col .card .card-content .subcontent {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 80vh;
 }
-section.bloc-content .col .card-content .subcontent .poke-item {
+section.bloc-content .col .card .card-content .subcontent .poke-item {
   margin: 5px 0;
   padding: 0;
 }
 @media only screen and (min-width: 601px) {
-  section.bloc-content .col .card-content .subcontent .poke-item {
+  section.bloc-content .col .card .card-content .subcontent .poke-item {
     margin: 5px 0 30px;
   }
 }
-section.bloc-content .col .card-content .subcontent .poke-item.not-caught img {
+section.bloc-content .col .card .card-content .subcontent .poke-item.not-caught img {
   opacity: 0.6;
   filter: alpha(opacity=60);
   /* msie fix */
 }
-section.bloc-content .col .card-content .subcontent .poke-item .poke-title {
+section.bloc-content .col .card .card-content .subcontent .poke-item .poke-title {
   line-height: 32px;
   font-size: 18px;
   font-weight: bold;
 }
-section.bloc-content .col .card-content .subcontent .poke-item .poke-stats {
+section.bloc-content .col .card .card-content .subcontent .poke-item .poke-stats {
   font-size: 14px;
 }
-section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-moves img,
-section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-types img {
+section.bloc-content .col .card .card-content .subcontent .poke-item .poke-stats .poke-moves img,
+section.bloc-content .col .card .card-content .subcontent .poke-item .poke-stats .poke-types img {
   vertical-align: middle;
   height: 14px;
 }
-section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-moves .poke-move-name {
+section.bloc-content .col .card .card-content .subcontent .poke-item .poke-stats .poke-moves .poke-move-name {
   vertical-align: middle;
   font-weight: bold;
 }
-section.bloc-content .col .card-content .subcontent .poke-item .poke-stats .poke-types .poke-type-name {
+section.bloc-content .col .card .card-content .subcontent .poke-item .poke-stats .poke-types .poke-type-name {
   vertical-align: middle;
 }
-section.bloc-content .col .card-content .item_img {
+section.bloc-content .col .card .card-content .subcontent .poke-item .item_img {
   width: 75px;
   height: auto;
 }
-section.bloc-content .col .card-content .gif_img {
+section.bloc-content .col .card .card-content .subcontent .poke-item .gif_img {
   width: 38px;
   height: auto;
 }
-section.bloc-content .col .card-content .png_img {
+section.bloc-content .col .card .card-content .subcontent .poke-item .png_img {
   width: 96px;
   height: auto;
 }
-section.bloc-content .col .card-content .teambar-0 {
+section.bloc-content .col .card .card-content .teambar-0 {
   background-color: #BBB;
 }
-section.bloc-content .col .card-content .teambar-1 {
+section.bloc-content .col .card .card-content .teambar-1 {
   background-color: #A9CCE3;
 }
-section.bloc-content .col .card-content .teambar-2 {
+section.bloc-content .col .card .card-content .teambar-2 {
   background-color: #E6B0AA;
 }
-section.bloc-content .col .card-content .teambar-3 {
+section.bloc-content .col .card .card-content .teambar-3 {
   background-color: #F9E79F;
 }
-section.bloc-content .col .card-content .team-0 {
+section.bloc-content .col .card .card-content .team-0 {
   background-color: #777;
 }
-section.bloc-content .col .card-content .team-1 {
+section.bloc-content .col .card .card-content .team-1 {
   background-color: #2471A3;
 }
-section.bloc-content .col .card-content .team-2 {
+section.bloc-content .col .card .card-content .team-2 {
   background-color: #A93226;
 }
-section.bloc-content .col .card-content .team-3 {
+section.bloc-content .col .card .card-content .team-3 {
   background-color: #D4AC0D;
 }
 /* Section menu bloc */

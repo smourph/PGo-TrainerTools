@@ -136,119 +136,121 @@ section.bloc-content {
   }
   .col {
     padding: 0 0.25rem;
-    .card-content {
-      padding: 10px 20px 50px;
-      .close {
-        float: right;
-        font-size: 32px;
-        cursor: pointer;
-        line-height: 48px;
-      }
-
-      .sort-buttons {
-        .chip {
-          height: 38px;
-          margin: 0 6px 8px;
-          line-height: 38px;
-          font-size: 15px;
+    .card {
+      .card-content {
+        padding: 10px 20px 50px;
+        .close {
+          float: right;
+          font-size: 32px;
+          cursor: pointer;
+          line-height: 48px;
         }
-      }
 
-      .subcontent {
-        overflow-y: scroll;
-        overflow-x: hidden;
-        height: 80vh;
-
-        .poke-item {
-          margin: 5px 0;
-          padding: 0;
-          @media only screen and (min-width: 601px) {
-            margin: 5px 0 30px;
+        .sort-buttons {
+          .chip {
+            height: 38px;
+            margin: 0 6px 8px;
+            line-height: 38px;
+            font-size: 15px;
           }
+        }
 
-          &.not-caught {
-            img {
-              opacity: 0.6;
-              filter: alpha(opacity=60); /* msie fix */
+        .subcontent {
+          overflow-y: scroll;
+          overflow-x: hidden;
+          height: 80vh;
+
+          .poke-item {
+            margin: 5px 0;
+            padding: 0;
+            @media only screen and (min-width: 601px) {
+              margin: 5px 0 30px;
             }
-          }
 
-          .poke-title {
-            line-height: 32px;
-            font-size: 18px;
-            font-weight: bold;
-          }
-
-          .poke-stats {
-            font-size: 14px;
-            .poke-moves, .poke-types {
+            &.not-caught {
               img {
-                vertical-align: middle;
-                height: 14px;
+                opacity: 0.6;
+                filter: alpha(opacity=60); /* msie fix */
               }
             }
 
-            .poke-moves {
-              .poke-move-name {
-                vertical-align: middle;
-                font-weight: bold;
+            .poke-title {
+              line-height: 32px;
+              font-size: 18px;
+              font-weight: bold;
+            }
+
+            .poke-stats {
+              font-size: 14px;
+              .poke-moves, .poke-types {
+                img {
+                  vertical-align: middle;
+                  height: 14px;
+                }
+              }
+
+              .poke-moves {
+                .poke-move-name {
+                  vertical-align: middle;
+                  font-weight: bold;
+                }
+              }
+
+              .poke-types {
+                .poke-type-name {
+                  vertical-align: middle;
+                }
               }
             }
 
-            .poke-types {
-              .poke-type-name {
-                vertical-align: middle;
-              }
+            .item_img {
+              width: 75px;
+              height: auto;
+            }
+
+            .gif_img {
+              width: 38px;
+              height: auto;
+            }
+
+            .png_img {
+              width: 96px;
+              height: auto;
             }
           }
         }
-      }
 
-      .item_img {
-        width: 75px;
-        height: auto;
-      }
+        .teambar-0 {
+          background-color: #BBB;
+        }
 
-      .gif_img {
-        width: 38px;
-        height: auto;
-      }
+        .teambar-1 {
+          background-color: #A9CCE3;
+        }
 
-      .png_img {
-        width: 96px;
-        height: auto;
-      }
+        .teambar-2 {
+          background-color: #E6B0AA;
+        }
 
-      .teambar-0 {
-        background-color: #BBB;
-      }
+        .teambar-3 {
+          background-color: #F9E79F;
+        }
 
-      .teambar-1 {
-        background-color: #A9CCE3;
-      }
+        .team-0 {
+          background-color: #777;
+        }
 
-      .teambar-2 {
-        background-color: #E6B0AA;
-      }
+        .team-1 {
+          background-color: #2471A3;
+        }
 
-      .teambar-3 {
-        background-color: #F9E79F;
-      }
+        .team-2 {
+          background-color: #A93226;
+        }
 
-      .team-0 {
-        background-color: #777;
-      }
-
-      .team-1 {
-        background-color: #2471A3;
-      }
-
-      .team-2 {
-        background-color: #A93226;
-      }
-
-      .team-3 {
-        background-color: #D4AC0D;
+        .team-3 {
+          background-color: #D4AC0D;
+        }
       }
     }
   }
