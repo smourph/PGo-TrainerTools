@@ -14,6 +14,6 @@ var settings = {
      * REMOTE SERVER SETTINGS
      */
     remoteServer: {
-        url: 'REMOTE_URL'
+        url: 'REMOTE_URL (let empty by default)'
     }
 };
