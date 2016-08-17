@@ -69,7 +69,7 @@ class AuthGoogle(Auth):
             self._refresh_token = None
             raise AuthException("Invalid Google Username/password")
 
-        self.get_access_token()
+        return self.get_access_token()
 
     def set_refresh_token(self, refresh_token):
         self.log.info('Google Refresh Token provided by user')
