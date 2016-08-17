@@ -39,8 +39,6 @@ from pgoapi import utilities as util
 
 # other stuff
 from shutil import copyfile
-import BaseHTTPServer, SimpleHTTPServer
-import ssl
 from flask import Flask, request, make_response, jsonify, current_app, send_from_directory
 from datetime import timedelta
 from functools import update_wrapper
@@ -70,6 +68,8 @@ def init_config(config_file="config/config.json"):
     parser.add_argument("-u", "--username", help="Username", required=required("username"))
     parser.add_argument("-p", "--password", help="Password")
     parser.add_argument("-l", "--location", help="Location", required=required("location"))
+    parser.add_argument("-rh", "--remote-host", help="Remote host")
+    parser.add_argument("-rp", "--remote-port", help="Remote port")
     parser.add_argument("-os", "--only-server", help="Only remote server mode", action='store_true', default=False)
     parser.add_argument("-d", "--debug", help="Debug Mode", action='store_true')
     parser.add_argument("-t", "--test", help="Only parse the specified location", action='store_true')
@@ -267,11 +267,6 @@ def do_a_remote_scan():
         return jsonify('success')
 
 
-def run_server():
-    context = ('server.crt', 'server.key')
-    app.run(host='0.0.0.0', port=5421, ssl_context=context)
-
-
 def serve_index():
     return serve_page("index.html")
 
@@ -280,17 +275,35 @@ def serve_page(file_relative_path_to_root):
     return send_from_directory(static_folder_root, file_relative_path_to_root)
 
 
+def run_server(config):
+    if config.remote_host:
+        host = config.remote_host
+    else:
+        host = '0.0.0.0'
+
+    if config.remote_port:
+        port = config.remote_port
+    else:
+        port = '12345'
+
+    if os.path.isfile('server.crt') and os.path.isfile('server.key'):
+        context = ('server.crt', 'server.key')
+        app.run(host=host, port=port, ssl_context=context)
+    else:
+        app.run(host=host, port=port)
+
+
 def main():
     config = init_config()
     if not config:
         return
 
-    if not config.only_server:
-        get_all_player_data(config)
-    else:
+    if config.only_server:
         app.add_url_rule('/<path:file_relative_path_to_root>', 'serve_page', serve_page, methods=['GET'])
         app.add_url_rule('/', 'index', serve_index, methods=['GET'])
-        run_server()
+        run_server(config)
+    else:
+        get_all_player_data(config)
 
 
 if __name__ == '__main__':

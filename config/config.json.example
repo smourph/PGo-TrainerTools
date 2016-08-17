@@ -3,6 +3,6 @@
     "username": "example@gmail.com",
     "password": "password",
     "location": "Lat,Lng OR Place name in Gmap",
-    "remote_host": "(facultative, use remote mode) Host for remote mode",
-    "remote_port": "(facultative, use remote mode) Port for remote mode"
+    "remote_host": "(Remote mode only) Host for remote mode",
+    "remote_port": "(Remote mode only) Port for remote mode"
 }
