@@ -910,16 +910,20 @@ var trainerTools = {
                 debug: 'false'
             },
             success: function (data) {
-                trainerTools.successLog('New data successfully retrieved from remote server.');
-                // Refresh page
-                trainerTools.loadTrainers();
-                // Design view
-                setTimeout(function () {
-                    trainerTools.initView();
-                }, 1000);
+                if (data === 'success') {
+                    trainerTools.successLog('New data successfully retrieved from remote server.');
+                    // Refresh page
+                    trainerTools.loadTrainers();
+                    // Design view
+                    setTimeout(function () {
+                        trainerTools.initView();
+                    }, 1000);
+                } else {
+                    trainerTools.errorLog('Failed to scan for new data', true);
+                }
             },
             error: function () {
-                trainerTools.errorLog('Failed to scan for new data');
+                trainerTools.errorLog('Failed to scan for new data', true);
             },
             complete: function () {
                 logoButton.removeClass('waiting');
