@@ -73,6 +73,7 @@ def init_config(config_file="config/config.json"):
     parser.add_argument("-os", "--only-server", help="Only remote server mode", action='store_true', default=False)
     parser.add_argument("-d", "--debug", help="Debug Mode", action='store_true')
     parser.add_argument("-t", "--test", help="Only parse the specified location", action='store_true')
+    parser.add_argument("-px", "--proxy", help="Specify a socks5 proxy url")
     parser.set_defaults(DEBUG=False, TEST=False)
     config = parser.parse_args()
 
@@ -129,6 +130,8 @@ def get_all_player_data(config, custom_location=None, allow_debug=True):
 
     # instantiate pgoapi
     api = pgoapi.PGoApi()
+    if config.proxy:
+        api.set_proxy({'http': config.proxy, 'https': config.proxy})
 
     # parse position
     position = util.get_pos_by_name(config.location)
@@ -141,8 +144,12 @@ def get_all_player_data(config, custom_location=None, allow_debug=True):
     # set player position on the earth
     api.set_position(*position)
 
-    # new authentication initialitation
-    api.set_authentication(provider=config.auth_service, username=config.username, password=config.password)
+    # new authentication initialisation
+    if config.proxy:
+        api.set_authentication(provider=config.auth_service, username=config.username, password=config.password,
+                               proxy_config={'http': config.proxy, 'https': config.proxy})
+    else:
+        api.set_authentication(provider=config.auth_service, username=config.username, password=config.password)
 
     # provide the path for your encrypt dll, see http://pgoapi.com/
     if os.path.isfile('libencrypt.dll'):
